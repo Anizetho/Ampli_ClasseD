@@ -75,16 +75,16 @@ Ce document reprend notre réalisation et notre analyse du circuit.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Hypothèses considérées}
+\section{Hypothèses de départ}
 Avant de s'attaquer au problème, définissons l'environnement dans lequel nous allons travailler tel que la nature du signal reçu en entré.
 Notre amplificateur doit être conçu pour les signaux audio ;
 les signaux audio sont produit par un module convertisseur analogique-numérique (sigle CAN, ou DAC en anglais).
 Leur tension est asymétrique entre \num{0} et une référence observée habituellement à \SI{2048}{\milli\volt} et leur fréquence varie entre \num{20} et \SI{22000}{\hertz}~\cite{heffner2007hearing}.
-Nous supprimerons donc les composantes fréquentielles hors de ces bornes par des filtres passe-haut et passe-bas.
+Nous supprimerons donc les composantes fréquentielles hors de ces bornes par des filtres passe-haut et passe-bas distincts.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Principes exploités}
+\section{Circuit amplificateur}
 Le circuit réalisé repose sur deux modules pour amplifier le signal d'entré :
 un convertisseur analogique-numérique de type Sigma-Delta, et un contrôleur de transistor MOSFET.
 La mise en série de ces deux modules permet de créer un amplificateur de classe D.
@@ -129,7 +129,7 @@ C'est ce signal binaire qui est réutilisé en rétro-action.
 Le système va tenter de compenser le signal d'entrée avec la tension haute ou la tension basse.
 Cette tension n'ayant pas de valeur intermédiaire, le système ne parviendra jamais à compenser le signal d'entré si celui-ci se trouve entre les bornes.
 Le système est oscillant.
-L'information modulée s'encode comme les différences entre cycle tension haute -- basse.
+L'information modulée s'encode comme les différences entre cycle tension haute--basse.
 
 \begin{figure}[tbp]
     \centering
