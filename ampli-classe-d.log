@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.0.4 (TeX Live 2017)  (format=lualatex 2018.3.15)  14 APR 2018 23:41
+This is LuaTeX, Version 1.0.4 (TeX Live 2017)  (format=lualatex 2018.3.15)  15 APR 2018 13:35
  restricted system commands enabled.
  file:line:error style messages enabled.
 **ampli-classe-d.tex
@@ -1449,35 +1449,34 @@ File: eps/Schematique_All.jpg Graphic file (type jpg)
 <use eps/Schematique_All.jpg>
 Package luatex.def Info: eps/Schematique_All.jpg  used on input line 222.
 (luatex.def)             Requested size: 224.06544pt x 97.9936pt.
-File: eps/Schematique_All.jpg Graphic file (type jpg)
-<use eps/Schematique_All.jpg>
-Package luatex.def Info: eps/Schematique_All.jpg  used on input line 230.
-(luatex.def)             Requested size: 224.06544pt x 97.9936pt.
-File: eps/Schematique_All.jpg Graphic file (type jpg)
-<use eps/Schematique_All.jpg>
-Package luatex.def Info: eps/Schematique_All.jpg  used on input line 240.
-(luatex.def)             Requested size: 225.84547pt x 98.76976pt.
+<eps/Schématique_all.jpg, id=178, 415.5525pt x 236.75954pt>
+File: eps/Schématique_all.jpg Graphic file (type jpg)
+<use eps/Schématique_all.jpg>
+Package luatex.def Info: eps/Schématique_all.jpg  used on input line 230.
+(luatex.def)             Requested size: 224.06544pt x 127.66037pt.
+<eps/Filtre_passe_bas.jpg, id=179, 342.5297pt x 216.05719pt>
+File: eps/Filtre_passe_bas.jpg Graphic file (type jpg)
+<use eps/Filtre_passe_bas.jpg>
+Package luatex.def Info: eps/Filtre_passe_bas.jpg  used on input line 240.
+(luatex.def)             Requested size: 185.53297pt x 109.99977pt.
+<eps/Filtre_passe_haut.jpg, id=180, 403.88391pt x 167.87718pt>
+File: eps/Filtre_passe_haut.jpg Graphic file (type jpg)
+<use eps/Filtre_passe_haut.jpg>
+Package luatex.def Info: eps/Filtre_passe_haut.jpg  used on input line 244.
+(luatex.def)             Requested size: 226.75891pt x 110.00006pt.
 
-Overfull \hbox (19.70226pt too wide) in paragraph at lines 240--241
+Overfull \hbox (20.61569pt too wide) in paragraph at lines 244--245
 [][] 
  []
 
-File: eps/Schematique_All.jpg Graphic file (type jpg)
-<use eps/Schematique_All.jpg>
-Package luatex.def Info: eps/Schematique_All.jpg  used on input line 244.
-(luatex.def)             Requested size: 225.84547pt x 98.76976pt.
-
-Overfull \hbox (19.70226pt too wide) in paragraph at lines 244--245
-[][] 
- []
-
-[5] [6<./eps/Schematique_All.jpg>]
-<eps/Tableau_Filtres.jpg, id=192, 668.4975pt x 60.225pt>
+[5] [6<./eps/Schematique_All.jpg><./eps/Schématique_all.jpg><./eps/Filtre_pass
+e_bas.jpg><./eps/Filtre_passe_haut.jpg>]
+<eps/Tableau_Filtres.jpg, id=198, 667.49374pt x 77.28876pt>
 File: eps/Tableau_Filtres.jpg Graphic file (type jpg)
 <use eps/Tableau_Filtres.jpg>
 Package luatex.def Info: eps/Tableau_Filtres.jpg  used on input line 289.
-(luatex.def)             Requested size: 434.51822pt x 39.14577pt.
-<eps/Resultat_filtres.jpg, id=193, 798.985pt x 446.66875pt>
+(luatex.def)             Requested size: 433.8658pt x 50.23709pt.
+<eps/Resultat_filtres.jpg, id=199, 798.985pt x 446.66875pt>
 File: eps/Resultat_filtres.jpg Graphic file (type jpg)
 <use eps/Resultat_filtres.jpg>
 Package luatex.def Info: eps/Resultat_filtres.jpg  used on input line 304.
@@ -1498,7 +1497,7 @@ Package epstopdf Info: Source file: <eps/Bode_Filtres.eps>
 ted-to.pdf eps/Bode_Filtres.eps>
 (epstopdf)             \includegraphics on input line 312.
 Package epstopdf Info: Output file is already uptodate.
-<eps/Bode_Filtres-eps-converted-to.pdf, id=211, 1445.4pt x 739.76375pt>
+<eps/Bode_Filtres-eps-converted-to.pdf, id=217, 1445.4pt x 739.76375pt>
 File: eps/Bode_Filtres-eps-converted-to.pdf Graphic file (type pdf)
 <use eps/Bode_Filtres-eps-converted-to.pdf>
 Package luatex.def Info: eps/Bode_Filtres-eps-converted-to.pdf  used on input li
@@ -1526,7 +1525,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--18
  []
 
 )
-<pdf/DIDACTRL.pdf, id=245, 597.23125pt x 845.1575pt>
+<pdf/DIDACTRL.pdf, id=251, 597.23125pt x 845.1575pt>
 File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 <use pdf/DIDACTRL.pdf>
 Package luatex.def Info: pdf/DIDACTRL.pdf  used on input line 375.
@@ -1535,7 +1534,7 @@ File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 <use pdf/DIDACTRL.pdf>
 Package luatex.def Info: pdf/DIDACTRL.pdf  used on input line 375.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
-<pdf/DIDACTRL.pdf, id=248, page=1, 597.23125pt x 845.1575pt>
+<pdf/DIDACTRL.pdf, id=254, page=1, 597.23125pt x 845.1575pt>
 File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 <use pdf/DIDACTRL.pdf, page 1>
 Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 375.
@@ -1558,7 +1557,7 @@ File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 375.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
  [11<./pdf/DIDACTRL.pdf>]
-<pdf/DIDAMOS.pdf, id=267, 597.23125pt x 845.1575pt>
+<pdf/DIDAMOS.pdf, id=273, 597.23125pt x 845.1575pt>
 File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 <use pdf/DIDAMOS.pdf>
 Package luatex.def Info: pdf/DIDAMOS.pdf  used on input line 376.
@@ -1567,7 +1566,7 @@ File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 <use pdf/DIDAMOS.pdf>
 Package luatex.def Info: pdf/DIDAMOS.pdf  used on input line 376.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
-<pdf/DIDAMOS.pdf, id=270, page=1, 597.23125pt x 845.1575pt>
+<pdf/DIDAMOS.pdf, id=276, page=1, 597.23125pt x 845.1575pt>
 File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 <use pdf/DIDAMOS.pdf, page 1>
 Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 376.
@@ -1589,7 +1588,7 @@ File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 376.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
  [12<./pdf/DIDAMOS.pdf>]
-<pdf/DIDAMO2.pdf, id=280, 597.23125pt x 845.1575pt>
+<pdf/DIDAMO2.pdf, id=286, 597.23125pt x 845.1575pt>
 File: pdf/DIDAMO2.pdf Graphic file (type pdf)
 <use pdf/DIDAMO2.pdf>
 Package luatex.def Info: pdf/DIDAMO2.pdf  used on input line 377.
@@ -1598,7 +1597,7 @@ File: pdf/DIDAMO2.pdf Graphic file (type pdf)
 <use pdf/DIDAMO2.pdf>
 Package luatex.def Info: pdf/DIDAMO2.pdf  used on input line 377.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
-<pdf/DIDAMO2.pdf, id=283, page=1, 597.23125pt x 845.1575pt>
+<pdf/DIDAMO2.pdf, id=289, page=1, 597.23125pt x 845.1575pt>
 File: pdf/DIDAMO2.pdf Graphic file (type pdf)
 <use pdf/DIDAMO2.pdf, page 1>
 Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 377.
@@ -1637,13 +1636,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 379.
 )
 
 Here is how much of LuaTeX's memory you used:
- 27776 strings out of 494480
+ 27788 strings out of 494480
  156263,794899 words of node,token memory allocated
- 108862 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 111 glue, 1 kern, 1 penalty, 17196 glyph, 1880 attr
-ibute, 67 glue_spec, 315 attribute_list, 1 write, 2 pdf_action nodes
-   avail lists: 2:1429,3:235,4:95,5:254,6:1223,7:950,8:163,9:248,10:15,11:474
- 30891 multiletter control sequences out of 65536+600000
+ 109020 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 111 glue, 1 kern, 1 penalty, 17220 glyph, 1886 attr
+ibute, 67 glue_spec, 316 attribute_list, 1 write, 2 pdf_action nodes
+   avail lists: 2:1450,3:235,4:94,5:254,6:1223,7:965,8:163,9:248,10:15,11:474
+ 30903 multiletter control sequences out of 65536+600000
  83 fonts using 14767711 bytes
  39i,18n,67p,803b,941s stack positions out of 5000i,500n,10000p,200000b,100000s
 </usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.ot
@@ -1666,9 +1665,9 @@ public/lm/lmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lm
 r5.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/
 local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texli
 ve/2017/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on ampli-classe-d.pdf (13 pages, 700601 bytes).
+Output written on ampli-classe-d.pdf (13 pages, 753723 bytes).
 
-PDF statistics: 396 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 402 PDF objects out of 1000 (max. 8388607)
  311 compressed objects within 4 object streams
  57 named destinations out of 1000 (max. 131072)
  177 words of extra memory for PDF output out of 10000 (max. 100000000)

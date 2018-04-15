@@ -227,7 +227,7 @@ Afin de mieux visualiser le circuit schématique de la partie pré-amplification
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{eps/Schematique_All.jpg}
+    \includegraphics[width=0.5\textwidth]{eps/Schématique_all.jpg}
     \caption{Circuit schématique semblable à celui de la figure 3 et permettant de mieux visualiser la partie pré-amplification et filtre de l'amplificateur classe D.}
     \label{fig:classeD}
 \end{figure}
@@ -237,12 +237,12 @@ Afin de mieux distinguer les filtres sur le circuit schématique de la figure 3,
 \begin{figure}
     \centering
     \begin{minipage}[c]{.46\linewidth}
-        \includegraphics[scale=0.6]{eps/Schematique_All.jpg}
-        \caption{Filtre passe-bas de l'amplificateur classe D.}   
+        \includegraphics[height=110pt, width=0.9\textwidth]{eps/Filtre_passe_bas.jpg}
+        \caption{Filtre actif passe-bas de l'amplificateur classe D.}   
     \end{minipage} \hfill
     \begin{minipage}[c]{.46\linewidth}
-        \includegraphics[scale=0.6]{eps/Schematique_All.jpg}
-        \caption{Filtre passe-haut de l'amplificateur classe D.}    
+        \includegraphics[height=110pt, width=1.1\textwidth]{eps/Filtre_passe_haut.jpg}
+        \caption{Filtre actif passe-haut de l'amplificateur classe D.}    
     \end{minipage}
     \label{fig:classeD}
 \end{figure}
@@ -254,7 +254,7 @@ Afin de mieux distinguer les filtres sur le circuit schématique de la figure 3,
 
 Pour dimensionner les composants électroniques (résistances et condensateurs) des deux filtres de l'amplificateur classe D, nous avons procédé comme suit : 
 
-\textbf{N.B.} : Se référer à la figure 4 de la page 6 pour la notation des deux résistances et des deux condensateurs.
+\textbf{N.B.} : Se référer à la figure 4 de la page 6 pour la notation des deux résistances ($R1$ et $R2$) et des deux condensateurs ($C1$ et $C2$).
 
 \begin{description}
 \item[ Pour le filtre passe-bas :] Durant le laboratoire, nous avons commencé par dimensionner le filtre passe-bas. La fréquence de coupure doit se trouver aux environ de 20 000 Hz.
@@ -262,28 +262,28 @@ Pour dimensionner les composants électroniques (résistances et condensateurs) 
 		\item Prendre les formules théoriques permettant de calculer la fréquence de coupure et le gain de l'amplificateur. Ces formules sont les suivantes : 
 			\begin{center} $f_{c}=\frac{1}{2*\pi*R_{2}*C_{2}}$ \end{center} 
 			\begin{center} $A_{v}=\frac{-R_{2}}{R_{1}}$ \end{center} 
-		\item Poser comme hypothèse que nous souhaitons un gain unitaire. Cela signifie que la valeur de la résistance R13 est égale à la valeur de la résistance R14. En effet : \begin{center} $A_{v}=\frac{R_{2}}{R_{1}} = 1$ \end{center} 
-		\item Fixer une valeur standard pour R13 et ré-écrire la formule permettant de trouver la valeur de C18. Nous avons pris une valeur standard de 8200 Ohm pour la résistance R13.
+		\item Poser comme hypothèse que nous souhaitons un gain unitaire. Cela signifie que la valeur de la résistance R1 est égale à la valeur de la résistance R2. En effet : \begin{center} $A_{v}=\frac{-R_{2}}{R_{1}} = -1$ \end{center} 
+		\item Fixer une valeur standard pour R2 et ré-écrire la formule permettant de trouver la valeur de C2. Nous avons pris une valeur standard de 8200 Ohm pour la résistance R2.
 			\begin{center} $R_{1}= R_{2} = 8 200\Omega $ \end{center}
 			\begin{center} $C_{2}=\frac{1}{2*\pi*R_{2}*f_{c}}$ \end{center} 
-		\item Cherchant une valeur la plus standardisée possible pour le condensateur C18, nous devons ajuster la valeur de la fréquence de coupure dans la formule donnée précédemment. Ceci nous conduit à ajuster la fréquence de coupure à 19 400 Hz.
+		\item Cherchant une valeur la plus standardisée possible pour le condensateur C2, nous devons ajuster la valeur de la fréquence de coupure dans la formule donnée précédemment. Ceci nous conduit à ajuster la fréquence de coupure à 19 400 Hz.
 			\begin{center} $C_{2}=\frac{1}{2*\pi*8 200*19 400}= 1 nF$ \end{center} 
 	\end{enumerate}
 \end{description}
 
 \begin{description}
-\item[ Pour le filtre passe-haut :] La fréquence de coupure doit se trouver aux environ de 20 Hz. Nous connaissons déjà les valeurs standards des deux résistances R13 et R14 ainsi que du condensateur C18. Il nous reste donc à trouver la valeur standard du condensateur C1.
+\item[ Pour le filtre passe-haut :] La fréquence de coupure doit se trouver aux environ de 20 Hz. Nous connaissons déjà les valeurs standards des deux résistances R1 et R2 ainsi que du condensateur C2. Il nous reste donc à calculer la valeur standard du condensateur C1.
 	\begin{enumerate}
 		\item Prendre la formule théorique permettant de calculer la fréquence de coupure :
 			\begin{center} $f_{c}=\frac{1}{2*\pi*R_{2}*C_{1}}$ \end{center} 
 		\item Ré-écrire la formule permettant de calculer la valeur standard de C1 : 
 			\begin{center} $C_{1}=\frac{1}{2*\pi*R_{2}*f_{c}}$ \end{center} 
-		\item Connaissant la valeur de R13, nous trouvons la valeur de C1 en ajustant la valeur de la fréquence de coupure. Nous trouvons finalement une fréquence de coupure de 18 Hz. 
-			\begin{center} $C_{1}=\frac{1}{2*\pi*R_{2}*f_{c}}=\frac{1}{2*\pi*8200*18} = 0,001mF$ \end{center} 
+		\item Connaissant la valeur de R2, nous trouvons la valeur de C1 en ajustant la valeur de la fréquence de coupure. Nous trouvons finalement une fréquence de coupure de 18 Hz. 
+			\begin{center} $C_{1}=\frac{1}{2*\pi*R_{2}*f_{c}}=\frac{1}{2*\pi*8200*18} = 1uF $ \end{center} 
 	\end{enumerate}
 \end{description}
 
-Le tableau ci-dessous reprend les valeurs calculées pour le filtre passe-haut ainsi que pour le filtre passe-bas :
+Le tableau ci-dessous reprend les valeurs calculées pour le filtre passe-bas ainsi que pour le filtre passe-haut :
 \begin{figure}
     \centering
     \includegraphics[scale = 0.65]{eps/Tableau_Filtres.jpg}
