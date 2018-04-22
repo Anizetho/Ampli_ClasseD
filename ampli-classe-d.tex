@@ -45,37 +45,50 @@
 }
 
 \begin{document}
+
 \begin{titlepage}
-    \date{%
-        \today
-    }
-    \author{%
-        Alexis~\bsc{Nootens} \\
-        \href{mailto:16139@student.ecam.be}{16139@student.ecam.be}
-        \and
-        Thomas~\bsc{Anizet} \\
-        \href{mailto:14164@student.ecam.be}{14164@student.ecam.be}
-    }
-    \title{%
-        \color{gray}\LARGE\bfseries\sffamily
-        Rapport de bureau d'étude                  \\[3mm]
-        \rm\sffamily\large
-        Réalisation d'un amplificateur de classe D \\[7mm]
-        École Centrale des Arts et Métiers 		   \\
-        1200 Woluwe-Saint-Lambert				   \\
+	\centering
+	\includegraphics[width=0.5\textwidth]{image/logo-ecam.png}\par
+	\vspace{1cm}
+	
+	\rule{\linewidth}{1.5pt}%
+	\vspace{5mm}
+	{\rm\sffamily\LARGE Rapport de bureau d'étude\par}
+	\vspace{5mm}
+	{\sffamily\bfseries\LARGE Réalisation d'un amplificateur de classe D\par}
+	\vspace{5mm}
+	\rule{\linewidth}{1.5pt}%
+	\vspace{1.5cm}
+	
+	{\Large%
+		\begin{minipage}[t]{0.35\linewidth}
+			\centering
+			Alexis~\bsc{Nootens} \\
+        	\href{mailto:16139@student.ecam.be}{16139@student.ecam.be}
+        \end{minipage}
+        \begin{minipage}[t]{0.35\linewidth}
+        	\centering
+        	Thomas~\bsc{Anizet} \\
+        	\href{mailto:14164@student.ecam.be}{14164@student.ecam.be}
+        \end{minipage}
+    \par}
+    \vspace{1.5cm}
+    
+    {\Large%
+    	ECAM Brussels             \\
+		Promenade de l'Alma 50	  \\
+        1200 Woluwe-Saint-Lambert \\
         Belgique
-    }
+    \par}
+    
+	\vfill
+	{\Large\today\par}
 \end{titlepage}
 
-\maketitle
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%
 \tableofcontents
-
-
 \newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
 	\pdfbookmark[1]{Introduction}{sec:intro}
