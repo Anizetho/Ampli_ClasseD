@@ -233,14 +233,14 @@ Afin de mieux visualiser le circuit schématique de la partie pré-amplification
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{eps/Schematique_All.jpg}
+    \includegraphics[width=0.5\textwidth]{image/schematique-all-1.jpg}
     \caption{Schématique de la partie pré-amplification et filtre de l'amplificateur classe D. 
              Le signal d'entrée analogique arrive sur \textit{ININVA}. Ce signal poursuit son chemin tout d'abord à travers le condensateur placé entre \textit{ININVA} et \textit{ININVB} et ensuite à travers la résistance \textit{R14}. On retrouve le signal filtré à la sortie de l'amplificateur avec rétro-action (\textit{C18} et \textit{R13}) soit \textit{OUTINV}. À noter que la résistance \textit{R15} n'est pas employée.}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{eps/Schématique_all.jpg}
+    \includegraphics[width=0.5\textwidth]{image/schematique-all-2.jpg}
     \caption{Circuit schématique semblable à celui de la figure 3 et permettant de mieux visualiser la partie pré-amplification et filtre de l'amplificateur classe D.}
 \end{figure}
 
@@ -249,22 +249,23 @@ Afin de mieux distinguer les filtres sur le circuit schématique de la figure 3,
 \begin{figure}[htbp]
     \centering
     \begin{minipage}[c]{.46\linewidth}
-        \includegraphics[height=110pt, width=0.9\textwidth]{eps/Filtre_passe_bas.jpg}
+        \includegraphics[height=110pt, width=0.9\textwidth]{image/filtre-passe-bas.jpg}
         \caption{Filtre actif passe-bas de l'amplificateur classe D.}   
     \end{minipage} \hfill
     \begin{minipage}[c]{.46\linewidth}
-        \includegraphics[height=110pt, width=1.1\textwidth]{eps/Filtre_passe_haut.jpg}
+        \includegraphics[height=110pt, width=1.1\textwidth]{image/filtre-passe-haut.jpg}
         \caption{Filtre actif passe-haut de l'amplificateur classe D.}    
     \end{minipage}
 \end{figure}
 
-\subsubsection{Étude théorique}\label{sec:etudeTheorique}
+\subsubsection{Étude théorique}
+	\label{sec:etudeTheorique}
 Pour dimensionner les composants électroniques (résistances et condensateurs) des deux filtres de l'amplificateur classe D, nous avons procédé comme suit : 
 
-\textbf{N.B.} : Se référer à la figure 4 de la page 6 pour la notation des deux résistances ($R1$ et $R2$) et des deux condensateurs ($C1$ et $C2$).
+\textit{N.B.} : Se référer à la figure 4 de la page 6 pour la notation des deux résistances ($R1$ et $R2$) et des deux condensateurs ($C1$ et $C2$).
 
 \begin{description}
-\item[ Pour le filtre passe-bas :] Durant le laboratoire, nous avons commencé par dimensionner le filtre passe-bas. La fréquence de coupure doit se trouver aux environ de 20 000 Hz.
+\item[Pour le filtre passe-bas :] Durant le laboratoire, nous avons commencé par dimensionner le filtre passe-bas. La fréquence de coupure doit se trouver aux environ de \SI{20}{\kilo\hertz}.
     \begin{enumerate}
         \item Prendre les formules théoriques permettant de calculer la fréquence de coupure et le gain de l'amplificateur. Ces formules sont les suivantes : 
             \begin{center} $f_{c}=\frac{1}{2*\pi*R_{2}*C_{2}}$ \end{center} 
@@ -293,29 +294,33 @@ Pour dimensionner les composants électroniques (résistances et condensateurs) 
 Le tableau ci-dessous reprend les valeurs calculées pour le filtre passe-bas ainsi que pour le filtre passe-haut :
 \begin{figure}
     \centering
-    \includegraphics[scale = 0.65]{eps/Tableau_Filtres.jpg}
+    \includegraphics[scale=0.65]{image/tableau-filtres.jpg}
     \caption{Tableau récapitulatif des valeurs calculées pour les filtres de l'amplificateur classe D.}
 \end{figure}
 
 \subsubsection{Étude pratique}
 Voulant savoir si les valeurs théoriques calculées au point~\ref{sec:etudeTheorique} conduisent à des filtres de fidèle qualité, nous les avons testé. Nous avons donc tracé, dans le diagramme de Bode, la réponse fréquentielle de chaque filtre (passe-bas et passe-haut). Pour ce faire, nous avons utilisé : 
 \begin{description}
-\item[ Un générateur de signaux :] Le générateur de signaux permet de générer un signal analogique d'amplitude et fréquence connue. L'objectif est de faire varier la fréquence du signal d'entrée et d'observer les conséquences que cela a sur l'amplitude du signal de sortie. 
-\item[ Un oscilloscope :] L'oscilloscope permet de mesurer les amplitudes des signaux à l'entrée du filtre et à la sortie de ce dernier.
+    \item[Un générateur de signaux :] Le générateur de signaux permet de générer un signal 		analogique d'amplitude et fréquence connue.
+    L'objectif est de faire varier la fréquence du signal d'entrée et d'observer les
+    conséquences que cela a sur l'amplitude du signal de sortie. 
+    \item[Un oscilloscope :] L'oscilloscope permet de mesurer les amplitudes des signaux
+    à l'entrée du filtre et à la sortie de ce dernier.
 \end{description}
 
 Les deux tableaux ci-dessous reprennent les valeurs mesurées à l'oscilloscope, à savoir tension d'entrée et tension de sortie, ainsi que le calcul du gain en décibel pour chacun des deux filtres :
 \begin{figure}
     \centering
-    \includegraphics[scale = 0.57]{eps/Resultat_filtres.jpg}
+    \includegraphics[scale=0.57]{image/resultat-filtres.jpg}
     \caption{Tableau récapitulatif des valeurs mesurées pour les filtres de l'amplificateur classe D.}
 \end{figure}
 
 Nous avons réalisé un script en Matlab reprenant toutes les valeurs mesurées et reprises dans les tableaux ci-dessus afin de représenter la réponse fréquentielle de chacun des filtres dans le diagramme de Bode. Voici le résultat obtenu : 
 \begin{figure}
     \centering
-    \includegraphics[width=1\textwidth]{eps/Bode_Filtres.eps}
-    \caption{Réponse fréquentielle pour les filtres passe-bas et passe-haut de l'amplificateur classe D.}
+    \includegraphics[width=\textwidth]{eps/bode-filtres.eps}
+    \caption{Réponse fréquentielle pour les filtres passe-bas
+    		 et passe-haut de l'amplificateur classe D.}
 \end{figure}
 
 \subsection{Filtre RC}
@@ -330,7 +335,7 @@ Ces mesures sont toujours, sauf si cité explicitement, en tension par rapport �
 \subsection{Défaut de fabrication}
 Dés le premier branchement de la carte en tension symétrique \pm\SI{25}{\volt}DC,
 nous avons observé un appel de courant de \SI{200}{\milli\ampere} sur le circuit.
-Cette valeur était le maximum paramétré sur l'alimentation de laboratoire à notre portée.
+Cette valeur était le maximum parametré sur l'alimentation de laboratoire à notre portée.
 Ce courant est trop élevé pour un amplificateur au repos, c.-à-d. sans signal d'entrée.
 Il n'y a nul doute qu'un problème de connexion existe sur la carte.
 
