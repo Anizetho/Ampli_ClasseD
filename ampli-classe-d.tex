@@ -26,6 +26,7 @@
 \usepackage{caption}
     \captionsetup{labelfont={bf,sf,color=gray}}
 \usepackage{pdfpages}
+\usepackage{caption}
 
 
 % Keep lasts
@@ -40,7 +41,6 @@
 \renewcommand{\arraystretch}{1.1}
 \newcommand{\important}[1]{\textbf{\textsf{\color{gray}{#1}}}}
 \setlength{\parskip}{2mm}
-\setlength{\parindent}{0mm}
 
 \begin{document}
 
@@ -56,9 +56,9 @@
     {\sffamily\bfseries\LARGE Réalisation d'un amplificateur de classe D\par}
     \vspace{5mm}
     \rule{\linewidth}{1.5pt}%
-    \vspace{1cm}
+    \vspace{1.5cm}
     
-    {\large%
+    {\Large%
         \begin{minipage}[t]{0.35\linewidth}
             \centering
             Alexis~\bsc{Nootens} \\[1mm]
@@ -70,7 +70,7 @@
             \href{mailto:14164@student.ecam.be}{14164@student.ecam.be}
         \end{minipage}
     \par}
-    \vspace{1cm}
+    \vfill
     
     {\large%
         ECAM Brussels             \\[1mm]
@@ -79,7 +79,7 @@
         Belgique
     \par}
     
-    \vfill
+    \vspace{2cm}
     {\large\today\par}
 \end{titlepage}
 
@@ -187,155 +187,145 @@ Dans notre réalisation, nous considérons que le bobinage du haut-parleur lisse
     \centering
     \includegraphics[width=0.5\textwidth]{eps/classe-d.eps}
     \caption{Schématique du principe de l'amplificateur de classe D.
-    Le signal d'entré analogique est modulé en commande de commutation de transistor de puissance.
-    Le signal amplifié se trouve à l'état $+\text{Vdd}$ ou $-\text{Vss}$ uniquement.
-    Ce signal est ensuite lissé au travers d'un filtre LC pour retrouver des tensions intermédiaires.}
+             Le signal d'entré analogique est modulé en commande de commutation de
+             transistor de puissance.
+             Le signal amplifié se trouve à l'état $+\text{Vdd}$ ou $-\text{Vss}$
+             uniquement.
+             Ce signal est ensuite lissé au travers d'un filtre LC pour retrouver
+             des tensions intermédiaires.}
     \label{fig:classeD}
 \end{figure}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Filtrage des signaux}
+À la section~\ref{sec:hypothese}, il a été considéré que la fréquence du signal d'entrée varie entre \num{20} et \SI{22000}{\hertz}.
+Pour se débarasser des fréquences hors de cette bande, \textit{i.e.} du bruit, nous filtrons le signal.
+Il existe 2 familles de filtre selon les composants électroniques utilisés :
+\begin{itemize}
+    \item\textbf{Les filtre passifs} sont réalisés avec des composants passifs uniquement : principalement des résistances, des inductances et des condensateurs.
+        Leur gain ne peut dépasser 1.
+    \item\textbf{Les filtres actifs} contiennent des composants actifs : des transistors et des amplificateurs opérationnels.
+        Ils peuvent amener de la puissance et donc un gain supérieur à 1.
+\end{itemize}
+La réponse fréquentielle d'un filtre se définit comme l'évolution d'amplitude et de phase d'un signal le traversant en fonction de la fréquence.
+Le diagramme de Bode est une représentation de la réponse fréquentielle.
+Nous nous intéressons uniquement aux filtres passes-bas et passe-haut étant donné que ce sont les seuls utilisés dans le circuit.
+\begin{itemize}
+    \item\textbf{Les filtre passe-bas} laissent passer toutes les fréquences depuis
+        la fréquence nulle jusqu'à la fréquence de coupure et atténue toutes les
+        fréquences supérieures qui lui sont supérieures.
+    \item\textbf{Les filtre passe-haut} atténuent toutes les fréquences depuis la
+        fréquence nulle jusqu'à la fréquence de coupure et laisse passer toutes
+        celles qui lui sont supérieures.
+\end{itemize}
+Pour rappel, la fréquence de coupure d'un filtre, notée par la suite $f_c$, est la fréquence limite de fonctionnement utile de ce filtre.
+Elle est défini à \SI{-3}{\decibel}, là où le signal perd la moitié de sa puissance.
+Ainsi, nous définissions deux fréquences de coupures :
+\begin{itemize}
+    \item la $f_c$ du filtre passe-bas à \SI{22000}{\hertz}
+    \item la $f_c$ du filtre passe-haut à \SI{20}{\hertz}
+\end{itemize}
+La combinaison de ces deux filtres en série nous permettra d'obtenir une filtre passe-bande.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Schématique du circuit}
+Depuis une vue d'ensemble, le circuit que nous avons réalisé peut se diviser en quatre parties : le filtre d'entrée et de pré-amplification ; la modulation Sigma-Delta ; le contrôleur MOSFET de puissance, et le filtre de sortie.
+Cette section présente successivement chacune de ces parties.
+
+\subsection{Filtres d'entrées}
+La figure~\ref{fig:schemaPreAmpli} présente les parties de pré-amplification et de filtrage reçues au cours.
+Le trajet emprunté par le signal est le suivant : le signal analogique arrive sur la pin \texttt{ININV\underline{A}}.
+La résistance \texttt{R15} n'existe pas.
+Étant donné la nécessité d'un filtre passe-haut, un condensateur est ajouté entre les pins \texttt{ININV\underline{A}} et \texttt{ININV\underline{B}}.
+C'est par là que le signal se dirige.
+Une fois le condensateur traversé, le signal rencontre la résistance \texttt{R14} puis arrive à l'entrée inverseuse d'un amplificateur opérationnel avec rétro-action (\texttt{C18} et \texttt{R13}).
+La sortie de cet AOP, dénommée par \texttt{OUTINV}, renvoie un signal filtré.
+
+On peut apercevoir que le montage de filtrage et de pré-amplification n'est autre qu'une simple combinaison d'une implémentation élémentaire d'un filtre passe-haut et filtre passe-bas.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{image/schematique-all.jpg}
+    \caption{Circuit schématique du filtre d'entrée et de préamplification de la partie
+             Sigma-Delta.}
+    \label{fig:schemaPreAmpli}
+\end{figure}
+
+Afin de mieux distinguer le montage, les figures~\ref{fig:filtreLowpass} et \ref{fig:filtreHighpass} présentent respectivement le circuit d'un filtre élémentaire passe-bas et d'un filtre passe-haut :
+
+\begin{minipage}[t]{.475\textwidth}
+    \centering
+    \includegraphics[height=110pt]{eps/active-lowpass-filter-rc.eps}
+    \captionof{figure}{Implémentation élémentaire d'un filtre actif passe-bas déséquilibré.}
+    \label{fig:filtreLowpass}
+\end{minipage} \hfill
+\begin{minipage}[t]{.475\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{image/active-highpass-filter-rc.png}
+    \captionof{figure}{Implémentation élémentaire d'un filtre actif passe-haut déséquilibré.}
+    \label{fig:filtreHighpass}
+\end{minipage}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dimensionnement}
 
-\subsection{Filtre pré-amplification}
-\subsubsection{Définitions}
-À la section~\ref{sec:hypothese}, il a été considéré que la fréquence du signal d'entrée varie entre \num{20} et \SI{22000}{\hertz}.
-Pour se débarasser des fréquences hors de cette bande, nous filtrons le signal.
-Il existe 2 familles de filtres selon les composants électroniques utilisés :
-\begin{itemize}
-    \item\textbf{Les filtre passifs} sont réalisés avec seulement des composants
-        passifs : principalement des résistances, des inductances et des condensateurs.
-        Leur gain ne peut dépasser 1.
-    \item\textbf{Les filtres actifs} contiennent des composants actifs : des
-        transistors et des amplificateurs opérationnels.
-        Ils peuvent amener de la puissance et donc un gain supérieur à 1.
-\end{itemize}
-Dans notre circuit, nous utilisons un topologie de Sallen-Key qui consiste en un filtre actif de type Butterworth~\cite{Horowitz:2015aa}.
-
-La réponse fréquentielle d'un filtre se définit comme l'évolution d'amplitude et de phase d'un signal le traversant en fonction de la fréquence.
-Le diagramme de Bode est une représentation de la réponse fréquentielle.
-Nous nous intéressons uniquement aux filtres passes-bas et passe-haut étant donné que ce sont les seuls utilisés dans le circuit.
-\begin{itemize}
-    \item\textbf{Les filtre passe-bas} laisse passer toutes les fréquences depuis
-        la fréquence nulle jusqu'à la fréquence de coupure et atténue toutes les
-        fréquences supérieures à cette fréquence de coupure.
-    \item\textbf{Les filtre passe-haut} atténue toutes les fréquences depuis la
-        fréquence nulle jusqu'à la fréquence de coupure et laisse passer toutes les
-        fréquences supérieures.
-\end{itemize}
-
-Pour rappel, la fréquence de coupure (notée $f_c$) d'un filtre est la fréquence limite de fonctionnement utile de ce filtre.
-Elle est défini à \SI{-3}{\decibel}, là où le signal perd la moitié de sa puissance.
-Ainsi, nous définissions deux fréquences de coupures :
-\begin{itemize}
-    \item La $f_c$ du filtre passe-bas a \SI{22000}{\hertz}.
-    \item La $f_c$ du filtre passe-haut a \SI{20}{\hertz}.
-\end{itemize}
-La combinaison de ces deux filtres en série nous permettra d'obtenir une filtre passe-bande.
-
-\subsubsection{Circuits schématiques}
-La figure 3 ci-dessous présente le circuit schématique de la partie pré-amplification et filtre reçu au cours.
-Le trajet emprunté par le signal est le suivant : le signal analogique d'entrée arrive sur la pin \verb$ININVA$.
-Étant donné la nécessité d'un filtre passe-haut, l'ajout d'un condensateur entre les pins \verb$ININVA$ et \verb$ININVB$ est inévitable.
-Une fois qu'il a traversé le condensateur, le signal traverse la résistance \verb$R14$.
-Nous retrouvons ensuite un amplificateur opérationnel avec rétro-action (\verb$C18$ et \verb$R13$) dont la sortie, dénommé par \verb$OUTINV$, renvoie un signal filtré (fréquence comprise entre \num{20} et \SI{22000}{\hertz}).
-À noter que la résistance \verb$R15$ n'est pas employée.
-Afin de mieux visualiser le circuit schématique de la partie pré-amplification et filtre, la figure 4 est disponible ci-dessous.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\textwidth]{image/schematique-all-1.jpg}
-    \caption{Schématique de la partie pré-amplification et filtre de l'amplificateur classe D. 
-             Le signal d'entrée analogique arrive sur \texttt{ININVA}.
-             Ce signal poursuit son chemin tout d'abord à travers le condensateur placé
-             entre \texttt{ININVA} et \texttt{ININVB} et ensuite à travers la résistance
-             \texttt{R14}.
-             On retrouve le signal filtré à la sortie de l'amplificateur avec rétro-action
-             (\texttt{C18} et \texttt{R13}) soit \texttt{OUTINV}.
-             À noter que la résistance \texttt{R15} n'est pas employée.}
-\end{figure}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\textwidth]{image/schematique-all-2.jpg}
-    \caption{Circuit schématique semblable à celui de la figure 3 et permettant de mieux visualiser la partie pré-amplification et filtre de l'amplificateur classe D.}
-\end{figure}
-
-Afin de mieux distinguer les filtres sur le circuit schématique de la figure 3, les figures 5 et 6 présentent respectivement le circuit d'un filtre passe-bas et d'un filtre passe-haut :
-
-\begin{figure}[htbp]
-    \centering
-    \begin{minipage}[c]{.46\linewidth}
-        \includegraphics[height=110pt, width=0.9\textwidth]{image/filtre-passe-bas.jpg}
-        \caption{Filtre actif passe-bas de l'amplificateur classe D.}
-    \end{minipage} \hfill
-    \begin{minipage}[c]{.46\linewidth}
-        \includegraphics[height=110pt, width=1.1\textwidth]{image/filtre-passe-haut.jpg}
-        \caption{Filtre actif passe-haut de l'amplificateur classe D.}
-    \end{minipage}
-\end{figure}
-
-\subsubsection{Étude théorique}
-    \label{sec:etudeTheorique}
+\subsection{Filtres d'entrées}
+    \label{sec:filtrePreAmpli}
 Pour dimensionner les composants électroniques (résistances et condensateurs) des deux filtres de l'amplificateur classe D, nous avons procédé comme suit :
 
-\textit{N.B.} : Se référer à la figure 4 de la page 6 pour la notation des deux résistances (R1 et R2) et des deux condensateurs (C1 et C2).
+\textit{N.B.} : Se référer aux figures~\ref{fig:filtreLowpass} et \ref{fig:filtreHighpass} pour les notations.
+Les éléments R1 et C1 sont connectés entre l'entrée et la borne négative de l'AOP, les éléments R2 et C2 sont connectés à la rétro-action de cet AOP.
 
-\begin{description}
-\item[Pour le filtre passe-bas :] durant le laboratoire, nous avons commencé par
-    dimensionner le filtre passe-bas.
-    La fréquence de coupure doit se trouver aux environ de \SI{20}{\kilo\hertz}.
-    Prendre les formules théoriques permettant de calculer la fréquence de coupure
-    et le gain de l'amplificateur :
-    \begin{gather}
-        f_c = \frac{1}{2\pi R_2 C_2} \\[2mm]
-        A_v = -\frac{R_2}{R_1}
-    \end{gather}
-    Poser comme hypothèse que nous souhaitons un gain unitaire.
-    Cela signifie que la valeur de la résistance R1 est égale à la valeur
-    de la résistance $R2$.
-    \begin{equation}
-        A_v = - \frac{R_2}{R_1} = -1
-    \end{equation}
-    Fixer une valeur standard pour R2 et réécrire la formule permettant de trouver
-    la valeur de C2.
-    Nous avons pris une valeur standard de 8200 Ohm pour la résistance R2.
-    \begin{gather}
-        R_1 = R_2 = \SI{8200}{\Omega} \\
-        C_2 = \frac{1}{2\pi R_2 f_c}
-    \end{gather}
-    Cherchant une valeur la plus standardisée possible pour le condensateur C2, nous
-    devons ajuster la valeur de la fréquence de coupure dans la formule donnée précédemment.
-    Ceci nous conduit à ajuster la fréquence de coupure à \SI{19400}{\hertz}.
-    \begin{gather}
-        C_2 = \frac{1}{2\pi\;8200\times19400} = \SI{1}{\nano\farad}
-    \end{gather}
+\noindent\textbf{Pour le filtre passe-bas} : durant le laboratoire, nous avons commencé par
+dimensionner le filtre passe-bas.
+La fréquence de coupure doit se trouver aux environ de \SI{20}{\kilo\hertz}.
+Prendre les formules théoriques permettant de calculer la fréquence de coupure
+et le gain de l'amplificateur :
+\begin{align}
+    f_c &= \frac{1}{2\pi R_2 C_2} \\[2mm]
+    A_v &= -\frac{R_2}{R_1}
+\end{align}
+Poser comme hypothèse que nous souhaitons un gain unitaire.
+Cela signifie que la valeur de la résistance R1 est égale à la valeur
+de la résistance $R2$.
+\begin{equation}
+    A_v = - \frac{R_2}{R_1} = -1
+\end{equation}
+Fixer une valeur standard pour R2 et réécrire la formule permettant de trouver
+la valeur de C2.
+Nous avons pris une valeur standard de 8200 Ohm pour la résistance R2.
+\begin{gather}
+    R_1 = R_2 = \SI{8200}{\Omega} \\
+    C_2 = \frac{1}{2\pi R_2 f_c}
+\end{gather}
+Cherchant une valeur la plus standardisée possible pour le condensateur C2, nous
+devons ajuster la valeur de la fréquence de coupure dans la formule donnée précédemment.
+Ceci nous conduit à ajuster la fréquence de coupure à \SI{19400}{\hertz}.
+\begin{gather}
+    C_2 = \frac{1}{2\pi\;8200\times19400} = \SI{1}{\nano\farad}
+\end{gather}
 
-\item[Pour le filtre passe-haut :] la fréquence de coupure doit se trouver aux environ
-    de 20 Hz.
-    Nous connaissons déjà les valeurs standards des deux résistances R1 et R2 ainsi que
-    du condensateur C2.
-    Il nous reste donc à calculer la valeur standard du condensateur C1.
-    Prendre la formule théorique permettant de calculer la fréquence de coupure :
-    \begin{equation}
-        f_c = \frac{1}{2\pi R_2 C_1}
-    \end{equation}
-    Réécrire la formule permettant de calculer la valeur standard de C1 :
-    \begin{equation}
-        C_1 = \frac{1}{2\pi R_2 f_c}
-    \end{equation}
-    Connaissant la valeur de R2, nous trouvons la valeur de C1 en ajustant la valeur
-    de la fréquence de coupure.
-    Nous trouvons finalement une fréquence de coupure de 18 Hz.
-    \begin{equation}
-        C_1 = \frac{1}{2\pi R_2 f_c} = \frac{1}{2\pi\,8200\times18} = 1uF
-    \end{equation}
-
-\end{description}
+\noindent\textbf{Pour le filtre passe-haut} : la fréquence de coupure doit se trouver aux environ
+de 20 Hz.
+Nous connaissons déjà les valeurs standards des deux résistances R1 et R2 ainsi que
+du condensateur C2.
+Il nous reste donc à calculer la valeur standard du condensateur C1.
+Prendre la formule théorique permettant de calculer la fréquence de coupure :
+\begin{equation}
+    f_c = \frac{1}{2\pi R_2 C_1}
+\end{equation}
+Réécrire la formule permettant de calculer la valeur standard de C1 :
+\begin{equation}
+    C_1 = \frac{1}{2\pi R_2 f_c}
+\end{equation}
+Connaissant la valeur de R2, nous trouvons la valeur de C1 en ajustant la valeur
+de la fréquence de coupure.
+Nous trouvons finalement une fréquence de coupure de 18 Hz.
+\begin{equation}
+    C_1 = \frac{1}{2\pi R_2 f_c} = \frac{1}{2\pi\,8200\times18} = \SI{1e3}{\nano\farad}
+\end{equation}
 
 Le tableau ci-dessous reprend les valeurs calculées pour le filtre passe-bas ainsi que pour le filtre passe-haut :
 \begin{figure}[htbp]
@@ -344,39 +334,11 @@ Le tableau ci-dessous reprend les valeurs calculées pour le filtre passe-bas ai
     \caption{Tableau récapitulatif des valeurs calculées pour les filtres de l'amplificateur classe D.}
 \end{figure}
 
-\subsubsection{Étude pratique}
-Voulant savoir si les valeurs théoriques calculées au point~\ref{sec:etudeTheorique}
-conduisent à des filtres de fidèle qualité, nous les avons testé.
-Nous avons donc tracé, dans le diagramme de Bode, la réponse fréquentielle de chaque filtre (\textit{i.e.} passe-bas et passe-haut).
-Pour ce faire, nous avons utilisé :
-\begin{enumerate}
-    \item\textbf{Un générateur de signaux} pour générer un signal analogique
-        d'amplitude et fréquence connue.
-        L'objectif est de faire varier la fréquence du signal d'entrée et d'observer les
-        conséquences que cela a sur l'amplitude du signal de sortie.
-    \item\textbf{Un oscilloscope} pour mesurer les amplitudes des signaux à l'entrée du
-        filtre et à la sortie de ce dernier.
-\end{enumerate}
-
-Les deux tableaux ci-dessous reprennent les valeurs mesurées à l'oscilloscope, à savoir tension d'entrée et tension de sortie, ainsi que le calcul du gain en décibel pour chacun des deux filtres :
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[scale=0.57]{image/resultat-filtres.jpg}
-    \caption{Tableau récapitulatif des valeurs mesurées pour les filtres de l'amplificateur classe D.}
-\end{figure}
-
-Nous avons réalisé un script en Matlab\textregistered{} reprenant toutes les valeurs mesurées et reprises dans les tableaux ci-dessus afin de représenter la réponse fréquentielle de chacun des filtres dans le diagramme de Bode. La figure~\ref{fig:resultatRepFreq} présente le résultat obtenu :
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{eps/bode-filtres.eps}
-    \caption{Réponse fréquentielle pour les filtres passe-bas
-             et passe-haut de l'amplificateur classe D.}
-    \label{fig:resultatRepFreq}
-\end{figure}
-
 \subsection{Filtre RC}
+% TODO
 
 \subsection{Constante de temps du Sigma-Delta}
+% TODO
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analyse du circuit}
@@ -403,6 +365,38 @@ Nous avons remplacé un second circuit intégré douteux, le \verb|L6385E|, et l
 Tout cela démontre que deux des circuits imprimés ont été détruits.
 Nous ne savons pas déterminer l'instant auquel cela s'est produit.
 
+\subsection{Filtres d'entrées}
+Voulant savoir si les valeurs théoriques calculées au point~\ref{sec:filtrePreAmpli}
+conduisent à des filtres de fidèle qualité, nous les avons testé.
+Nous avons donc tracé, dans le diagramme de Bode de chaque filtre.
+Pour ce faire, nous avons utilisé :
+\begin{enumerate}
+    \item\textbf{Un générateur de signaux} pour générer un signal analogique
+        d'amplitude et fréquence connue.
+        L'objectif est de faire varier la fréquence du signal d'entrée et d'observer les
+        conséquences que cela a sur l'amplitude du signal de sortie.
+    \item\textbf{Un oscilloscope} pour mesurer les amplitudes des signaux à l'entrée du
+        filtre et à la sortie de ce dernier.
+\end{enumerate}
+
+Les deux tableaux ci-dessous reprennent les valeurs mesurées à l'oscilloscope, à savoir tension d'entrée et tension de sortie, ainsi que le calcul du gain en décibel pour chacun des deux filtres :
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.57]{image/resultat-filtres.jpg}
+    \caption{Tableau récapitulatif des valeurs mesurées pour les filtres de l'amplificateur classe D.}
+\end{figure}
+
+Nous avons réalisé un script en Matlab\textregistered{} reprenant toutes les valeurs mesurées et reprises dans les tableaux ci-dessus afin de représenter la réponse fréquentielle de chacun des filtres dans le diagramme de Bode.
+La figure~\ref{fig:resultatRepFreq} présente le résultat obtenu.
+Nous pouvons y reconnaitre au gain, qu'il s'agit de filtres Butterworth d'ordre 1.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{eps/bode-filtres.eps}
+    \caption{Réponse fréquentielle pour les filtres passe-bas
+             et passe-haut de l'amplificateur classe D.}
+    \label{fig:resultatRepFreq}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%
 \section*{Conclusion}
@@ -412,16 +406,21 @@ Nous ne savons pas déterminer l'instant auquel cela s'est produit.
 %%%%%%%%%%%%%%%%%%
 \section*{Crédits}
     \pdfbookmark[1]{Crédits}{sec:credits}
+    
 \begin{itemize}
-
 \item Figure~\ref{fig:sigmaDelta} provenant de :\\*
 Le blog officiel de Texas Instrument :
 \url{https://e2e.ti.com/blogs_/archives/b/precisionhub/archive/2015/01/21/delta-sigma-adc-basics-understanding-the-delta-sigma-modulator}
 
 \item Figure~\ref{fig:classeD} provenant de :\\*
 Par Yves-Laurent (Travail personnel) [GFDL (\url{http://www.gnu.org/copyleft/fdl.html}),
-CC-BY-SA-3.0 (\url{http://creativecommons.org/licenses/by-sa/3.0/})], via Wikimedia Commons
+CC-BY-SA-3.0 (\url{http://creativecommons.org/licenses/by-sa/3.0/})], de Wikimedia Commons
 
+\item Figure~\ref{fig:filtreLowpass} provenant de :\\*
+Par Inductiveload (Travail personnel) [Public domain], de Wikimedia Commons
+
+\item Figure~\ref{fig:filtreHighpass} provenant de :\\*
+Par Toriicelli (Travail personnel) [Public domain], de Wikimedia Commons
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
