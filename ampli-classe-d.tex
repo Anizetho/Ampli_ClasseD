@@ -16,10 +16,7 @@
     \titleformat*{\subsection}   {\color{gray}\large\bfseries\sffamily}
     \titleformat*{\subsubsection}{\color{gray}\large\bfseries\sffamily}
 \usepackage{geometry}
-%   \geometry{showframe}
     \geometry{scale={0.75,0.85}}
-%\usepackage{pgfplots}
-%    \pgfplotsset{compat=newest}
 \usepackage{siunitx}
     \sisetup{locale=FR}
 \usepackage{graphicx}
@@ -379,16 +376,17 @@ Pour ce faire, nous avons utilisé :
         filtre et à la sortie de ce dernier.
 \end{enumerate}
 
-Les deux tableaux ci-dessous reprennent les valeurs mesurées à l'oscilloscope, à savoir tension d'entrée et tension de sortie, ainsi que le calcul du gain en décibel pour chacun des deux filtres :
-\begin{figure}[!ht]
+Les tables~\ref{tab:gainFiltresEntrees} reprennent les valeurs mesurées à l'oscilloscope, à savoir tension d'entrée et tension de sortie, ainsi que le calcul du gain en décibel pour chacun des deux filtres :
+\begin{table}[!ht]
     \centering
     \includegraphics[scale=0.57]{image/resultat-filtres.jpg}
-    \caption{Tableau récapitulatif des valeurs mesurées pour les filtres de l'amplificateur classe D.}
-\end{figure}
+    \caption{Récapitulatif des valeurs mesurées pour les filtres d'entrées.}
+    \label{tab:gainFiltresEntrees}
+\end{table}
 
-Nous avons réalisé un script en Matlab\textregistered{} reprenant toutes les valeurs mesurées et reprises dans les tableaux ci-dessus afin de représenter la réponse fréquentielle de chacun des filtres dans le diagramme de Bode.
+Nous avons réalisé un script Matlab\textregistered{} reprenant toutes les valeurs mesurées et reprises aux tables~\ref{tab:gainFiltresEntrees} afin de représenter la réponse fréquentielle de chacun des filtres dans le diagramme de Bode.
 La figure~\ref{fig:resultatRepFreq} présente le résultat obtenu.
-Nous pouvons y reconnaitre au gain, qu'il s'agit de filtres Butterworth d'ordre 1.
+Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1~\cite{Horowitz:2015aa}.
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{eps/bode-filtres.eps}
