@@ -19,6 +19,7 @@
     \geometry{scale={0.75,0.85}}
 \usepackage{siunitx}
     \sisetup{locale=FR}
+    \sisetup{math-micro=\text{µ},text-micro=µ} % fix
 \usepackage{graphicx}
 \usepackage{caption}
     \captionsetup{labelfont={bf,sf,color=gray}}
@@ -321,7 +322,7 @@ Connaissant la valeur de R2, nous trouvons la valeur de C1 en ajustant la valeur
 de la fréquence de coupure.
 Nous trouvons finalement une fréquence de coupure de 18 Hz.
 \begin{equation}
-    C_1 = \frac{1}{2\pi R_2 f_c} = \frac{1}{2\pi\,8200\times18} = \SI{1e3}{\nano\farad}
+    C_1 = \frac{1}{2\pi R_2 f_c} = \frac{1}{2\pi\,8200\times18} = \SI{1}{\micro\farad}
 \end{equation}
 
 Le tableau ci-dessous reprend les valeurs calculées pour le filtre passe-bas ainsi que pour le filtre passe-haut :
