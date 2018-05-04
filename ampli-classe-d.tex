@@ -87,7 +87,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
-    \pdfbookmark[1]{Introduction}{sec:intro}
+\pdfbookmark[1]{Introduction}{sec:intro}
 Après avoir étudié la théorie derrière le transfert de puissance en électronique,
 nous avons mis à l'épreuve nos acquis théoriques dans un cas pratique en réalisant un circuit d'amplification de signaux audio analogiques.
 Ce circuit d'amplification appartient à la classe D, une classe exploitant la connaissance de l'électronique de puissance, pour minimiser les pertes d'énergies aux étages d'amplification.
@@ -96,7 +96,7 @@ Ce document reprend notre réalisation et notre analyse du circuit.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hypothèses de départ}
-    \label{sec:hypothese}
+\label{sec:hypothese}
 Avant de s'attaquer au problème, définissons l'environnement dans lequel nous allons travailler tel que la nature du signal reçu en entré.
 Notre amplificateur doit être conçu pour les signaux audio ;
 les signaux audio sont produit par un module convertisseur analogique-numérique (sigle CAN, ou DAC en anglais).
@@ -113,7 +113,7 @@ Les sous-sections \ref{sec:sigmaDelta} et \ref{sec:classeD} définissent le prin
 
 
 \subsection{Modulation Sigma-Delta}
-    \label{sec:sigmaDelta}
+\label{sec:sigmaDelta}
 Il existe une évolution des méthodes de modulation en pleine onde.
 La plus simple est la modulation de largeur d'impulsion, MLI.
 % Modulation de Largeur d'Impulsion
@@ -162,7 +162,7 @@ L'information modulée s'encode comme les différences entre cycle tension haute
 \end{figure}
 
 \subsection{Amplificateur de classe D}
-    \label{sec:classeD}
+\label{sec:classeD}
 La famille des amplificateurs contient plusieurs divisions --- dénommées \og classes \fg{} --- selon la nature du signal en sortie.
 Par exemples :
 les amplificateurs de classe A sortent une tension sinusoïdale amplifiée sur les deux crêtes ;
@@ -275,7 +275,7 @@ Afin de mieux distinguer le montage, les figures~\ref{fig:filtreLowpass} et \ref
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dimensionnement}
 \subsection{Filtres d'entrées}
-    \label{sec:filtrePreAmpli}
+\label{sec:filtrePreAmpli}
 Pour dimensionner les composants électroniques (résistances et condensateurs) des deux filtres de l'amplificateur classe D, nous avons procédé comme suit :
 
 \textit{N.B.} : Se référer aux figures~\ref{fig:filtreLowpass} et \ref{fig:filtreHighpass} pour les notations.
@@ -406,12 +406,12 @@ Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1
 
 %%%%%%%%%%%%%%%%%%%%%
 \section*{Conclusion}
-    \pdfbookmark[1]{Conclusion}{sec:conclusion}
+\pdfbookmark[1]{Conclusion}{sec:conclusion}
 
 
 %%%%%%%%%%%%%%%%%%
 \section*{Crédits}
-    \pdfbookmark[1]{Crédits}{sec:credits}
+\pdfbookmark[1]{Crédits}{sec:credits}
     
 \begin{itemize}
 \item Figure~\ref{fig:sigmaDelta} provenant de :\\*
