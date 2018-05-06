@@ -37,7 +37,6 @@
 
 \renewcommand{\UrlFont}{\small}
 \renewcommand{\arraystretch}{1.1}
-\newcommand{\important}[1]{\textbf{\textsf{\color{gray}{#1}}}}
 \setlength{\parskip}{2mm}
 
 \begin{document}
@@ -86,8 +85,7 @@
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section*{Introduction}
-\pdfbookmark[1]{Introduction}{sec:intro}
+\section{Introduction}
 Après avoir étudié la théorie derrière le transfert de puissance en électronique,
 nous avons mis à l'épreuve nos acquis théoriques dans un cas pratique en réalisant un circuit d'amplification de signaux audio analogiques.
 Ce circuit d'amplification appartient à la classe D, une classe exploitant la connaissance de l'électronique de puissance, pour minimiser les pertes d'énergies aux étages d'amplification.
@@ -117,7 +115,7 @@ Les sous-sections \ref{sec:sigmaDelta} et \ref{sec:classeD} définissent le prin
 Il existe une évolution des méthodes de modulation en pleine onde.
 La plus simple est la modulation de largeur d'impulsion, MLI.
 % Modulation de Largeur d'Impulsion
-Voici comment elle fonctionne : depuis deux états possibles de tension, haut et bas, une période d'impulsion nommée \tau, et une durée variable de tension haute nommée $t$, le signal respecte la condition suivante : $0 \leq t \leq \tau $, soit $t \div \tau \in [0,1]$.
+Voici comment elle fonctionne : depuis deux états possibles de tension, haut et bas, une période d'impulsion nommée \tau{}, et une durée variable de tension haute nommée $t$, le signal respecte la condition suivante : $0 \leq t \leq \tau $, soit $t \div \tau \in [0,1]$.
 L'information modulée se situe dans le rapport de durée tension haute sur durée d'impulsion.
 La donnée nécessite d'être transposée au préalable dans l'interval entre 0 et 1.
 Cette modulation bénéficie de pouvoir être directement applicable comme commande d'un étage d'amplification en puissance.
@@ -134,10 +132,10 @@ Le modulateur fonctionnera à une fréquence plus élevée, suréchantillonnant 
 % Modulation Sigma-Delta
 La modulation Delta connecte la sortie à l'entrée pour la différentier, c'est une rétro-action.
 Un automaticien y reconnaîtra un contrôle en boucle fermée proportionnel, un régulateur P.
-Cet automaticien saura également que ces régulateurs ont le défaut de toujours avoir un décalage entre la consigne et le signal de sortie désiré, nommé \og écart statique \fg{}.
+Cet automaticien saura également que ces régulateurs ont le défaut de toujours avoir un décalage entre la consigne et le signal de sortie désiré, nommé \og{}écart statique\fg{}.
 Ce problème se résout en ajoutant un intégrateur avant la comparaison ; ce dernier maintient la dernière valeur comparu.
-Cela devient un régulateur PI \og proportional-integral \fg{}.
-Cette nouvelle modulation se nomme \important{Sigma-Delta}, puisqu'elle somme (\Sigma) les différences (\Delta).
+Cela devient un régulateur PI \og{}proportional-integral \fg{}.
+Cette nouvelle modulation se nomme Sigma-Delta, puisqu'elle somme (\Sigma{}) les différences (\Delta{}).
 
 Le schéma fonctionnel d'un circuit sigma-delta est présenté à la figure~\ref{fig:sigmaDelta}.
 Voici son fonctionnement :
@@ -155,15 +153,15 @@ L'information modulée s'encode comme les différences entre cycle tension haute
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{eps/sigma-delta.eps}
-    \caption{Schématique symbolique d'un modulateur \Sigma-\Delta.
-    Le signal d'entrée \og Input \fg{}{} est de nature analogique.
+    \caption{Schématique symbolique d'un modulateur \Sigma{}-\Delta{}.
+    Le signal d'entrée \og{}Input\fg{} est de nature analogique.
     Le circuit agit en boucle fermée pour compenser la différence entre entrée et sortie.}
     \label{fig:sigmaDelta}
 \end{figure}
 
 \subsection{Amplificateur de classe D}
 \label{sec:classeD}
-La famille des amplificateurs contient plusieurs divisions --- dénommées \og classes \fg{} --- selon la nature du signal en sortie.
+La famille des amplificateurs contient plusieurs divisions --- dénommées \og{}classes\fg{} --- selon la nature du signal en sortie.
 Par exemples :
 les amplificateurs de classe A sortent une tension sinusoïdale amplifiée sur les deux crêtes ;
 les amplificateurs de classe B ne laissent sortir qu'une seule crête amplifiée du sinus.
@@ -172,7 +170,7 @@ Les amplificateurs de classe D imposent des tensions aux rails d'alimentation du
 C'est du tout ou rien.
 Ils sont composés de transistor MOSFET.
 Les transistors MOSFET sont les favoris de l'électronique de basse puissance.
-Ils peuvent travailler à haute fréquence (plusieurs dizaines de kHz) et leur résistance à la conduction en saturation \og $\text{R}_{\text{DS,ON}}$ \fg{} est très faible (une centaine de m\Omega{} dans les basses puissances)~\cite{irf2017mosfet}.
+Ils peuvent travailler à haute fréquence (plusieurs dizaines de kHz) et leur résistance à la conduction en saturation \og{}R\textsubscript{DS,ON}\fg{} est très faible (une centaine de m\Omega{} dans les basses puissances)~\cite{irf2017mosfet}.
 Cette propriété donne tout son intérêt à l'amplificateur de classe D.
 En ouvrant ou fermant complètement les transistors pour les faire fonctionner dans leur zone saturée, on minimise la résistance de conduction.
 Sachant que la perte en conduction est dû à l'effet joule, et que la puissance de l'effet joule se formule comme $P=RI^2$~\cite{griffiths1999introduction}.
@@ -244,7 +242,7 @@ La sortie de cet AOP, dénommée par \texttt{OUTINV}, renvoie un signal filtré.
 On peut apercevoir que le montage de filtrage et de pré-amplification n'est autre qu'une simple combinaison d'une implémentation élémentaire d'un filtre passe-haut et filtre passe-bas.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{image/schematique-all.jpg}
+    \includegraphics[width=0.6\textwidth]{image/schematique-all.jpg}
     \caption{Circuit schématique du filtre d'entrée et de préamplification de la partie
              Sigma-Delta.}
     \label{fig:schemaPreAmpli}
@@ -418,8 +416,7 @@ Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1
 % TODO
 
 %%%%%%%%%%%%%%%%%%%%%
-\section*{Conclusion}
-\pdfbookmark[1]{Conclusion}{sec:conclusion}
+\section{Conclusion}
 
 
 %%%%%%%%%%%%%%%%%%
