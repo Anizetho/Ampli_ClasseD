@@ -309,6 +309,9 @@ Pour une raison de facilité, la source de tension \SI{24}{\volt} située au jum
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dimensionnement}
+Cette section aborde nos choix de composant dans la réalisation des filtres et du temps d'intégration du Sigma-Delta.
+Ces choix sont accompagnés de calcules appuyant nos décisions.
+
 \subsection{Filtres d'entrées}
 \label{sec:filtrePreAmpli}
 Pour dimensionner les composants électroniques (résistances et condensateurs) des deux filtres de l'amplificateur classe D, nous avons procédé comme suit :
@@ -355,12 +358,13 @@ Prendre la formule théorique permettant de calculer la fréquence de coupure
 			   fréquence de coupure de 18 Hz.}
     C_1 = \frac{1}{2\pi R_2 f_c} = \frac{1}{2\pi\,8200\times18} = \SI{1}{\micro\farad}
 \end{gather}
-Le tableau ci-dessous reprend les valeurs calculées pour le filtre passe-bas ainsi que pour le filtre passe-haut :
-\begin{figure}[htbp]
+Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtres passe-bas et passe-haut :
+\begin{table}[htbp]
     \centering
     \includegraphics[scale=0.65]{image/tableau-filtres.jpg}
     \caption{Tableau récapitulatif des valeurs calculées pour les filtres de l'amplificateur classe D.}
-\end{figure}
+    \label{tab:recapFiltres}
+\end{table}
 
 \subsection{Constante de temps du Sigma-Delta}
 % TODO
