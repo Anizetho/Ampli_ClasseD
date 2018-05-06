@@ -134,7 +134,7 @@ La modulation Delta connecte la sortie à l'entrée pour la différentier, c'est
 Un automaticien y reconnaîtra un contrôle en boucle fermée proportionnel, un régulateur P.
 Cet automaticien saura également que ces régulateurs ont le défaut de toujours avoir un décalage entre la consigne et le signal de sortie désiré, nommé \og{}écart statique\fg{}.
 Ce problème se résout en ajoutant un intégrateur avant la comparaison ; ce dernier maintient la dernière valeur comparu.
-Cela devient un régulateur PI \og{}proportional-integral \fg{}.
+Cela devient un régulateur PI \og{}proportional-integral\fg{}.
 Cette nouvelle modulation se nomme Sigma-Delta, puisqu'elle somme (\Sigma{}) les différences (\Delta{}).
 
 Le schéma fonctionnel d'un circuit sigma-delta est présenté à la figure~\ref{fig:sigmaDelta}.
@@ -227,8 +227,9 @@ La combinaison de ces deux filtres en série nous permettra d'obtenir une filtre
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Schématique du circuit}
-Depuis une vue d'ensemble, le circuit que nous avons réalisé peut se diviser en quatre parties : le filtre d'entrée et de pré-amplification ; la modulation Sigma-Delta ; le contrôleur MOSFET de puissance, et le filtre de sortie.
+Depuis une vue d'ensemble, le circuit que nous avons réalisé peut se diviser en trois parties : les filtres d'entrées et de pré-amplification ; le comparateur Sigma-Delta, et l'étage de puissance.
 Cette section présente successivement chacune de ces parties.
+Les schémas complets sont disponibles aux annexes.
 
 \subsection{Filtres d'entrées}
 La figure~\ref{fig:schemaPreAmpli} présente les parties de pré-amplification et de filtrage reçues au cours.
@@ -250,13 +251,13 @@ On peut apercevoir que le montage de filtrage et de pré-amplification n'est aut
 
 Afin de mieux distinguer le montage, les figures~\ref{fig:filtreLowpass} et \ref{fig:filtreHighpass} présentent respectivement le circuit d'un filtre élémentaire passe-bas et d'un filtre passe-haut :
 
-\begin{minipage}[t]{.475\textwidth}
+\begin{minipage}[t]{.45\textwidth}
     \centering
     \includegraphics[height=110pt]{eps/active-lowpass-filter-rc.eps}
     \captionof{figure}{Implémentation élémentaire d'un filtre actif passe-bas déséquilibré.}
     \label{fig:filtreLowpass}
 \end{minipage} \hfill
-\begin{minipage}[t]{.475\textwidth}
+\begin{minipage}[t]{.45\textwidth}
     \centering
     \includegraphics[width=\textwidth]{image/active-highpass-filter-rc.png}
     \captionof{figure}{Implémentation élémentaire d'un filtre actif passe-haut déséquilibré.}
@@ -264,24 +265,47 @@ Afin de mieux distinguer le montage, les figures~\ref{fig:filtreLowpass} et \ref
 \end{minipage}
 
 \subsection{Alimentation}
-% TODO
+La figure~\ref{fig:alimDecouplage} présente le circuit de découplage de l'alimentation.
+Cela ne présente que peux d'intérêt mais est énoncé pour montrer son existence.
+
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=7cm]{image/sch-alim.png}
+	\includegraphics[width=6cm]{image/sch-alim.png}
 	\caption{Schématique du circuit découplage d'alimentation.}
+	\label{fig:alimDecouplage}
 \end{figure}
 
 \subsection{Comparateur Sigma-Delta}
-% TODO
+La figure~\ref{fig:sch-ctrl} présente la partie logique du circuit, celle qui analyse le signal analogique et le module en commande d'ouverture de transistor.
+Le signal rentre par la connection \texttt{OUTINV} provenant des filtres d'entrées de pré-amplifications.
+À ce signal est ajouté la sortie actuelle du comparateur \texttt{VMLI} pour différentier l'erreur.
+Comme la sortie du comparateur est bi-state en \SI{\pm15}{\volt}, si le signal à comparer est à \SI{0}{\volt}, la retro-action se placera à \SI{15}{\volt} et il y aura un décalage entre la valeur désiré et la valeur mesuré.
+Pour adresser ce décalage, \SI{15}{\volt} sont directement retiré de la retro-action.
+
+Le premier AOP \texttt{U3A} agit tel un intégrateur et intègre la différence entre la mesure et la consigne.
+Le second AOP \texttt{U5B} réagit en trigger de Schmitt et fixe sa sortie en bi-state \SI{\pm15}{\volt} suivant que l'erreur entre la mesure et la consigne soit positive ou négative.
+
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\textwidth]{image/sch-ctrl.png}
 	\caption{Schématique du circuit de comparaison Sigma-Delta.}
+	\label{fig:sch-ctrl}
 \end{figure}
 
 \subsection{Étage de puissance}
-% TODO
+La commande d'ouverture des transistors arrive par \texttt{CMDMOS}.
+Ce signal est dédoublé dont l'une des sortie est inversée, afin de contrôler les deux transistors alternativement.
+Le circuit intégré \texttt{L6385} se charge de commander les grilles des transistors en y plaçant une tension adaptée grâce à son condensateur de bootstrap.
+Le haut-parleur, charge RL dans le circuit, est connecté à la junction entre le transistor MOS supérieur et l'inférieur au jumper 1.
+Pour une raison de facilité, la source de tension \SI{24}{\volt} située au jumper 5 est relié à la même source que le driver MOS.
 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\textwidth]{image/sch-mos.png}
+	\caption{Schématique de l'étage de puissance, un circuit d'amplification par transistor
+			 MOS.}
+	\label{fig:sch-mos}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dimensionnement}
@@ -297,27 +321,22 @@ dimensionner le filtre passe-bas.
 La fréquence de coupure doit se trouver aux environ de \SI{20}{\kilo\hertz}.
 Prendre les formules théoriques permettant de calculer la fréquence de coupure
 et le gain de l'amplificateur :
-\begin{align}
-    f_c &= \frac{1}{2\pi R_2 C_2} \\[2mm]
-    A_v &= -\frac{R_2}{R_1}
-\end{align}
-Poser comme hypothèse que nous souhaitons un gain unitaire.
-Cela signifie que la valeur de la résistance R1 est égale à la valeur
-de la résistance $R2$.
-\begin{equation}
+\begin{gather}
+    f_c = \frac{1}{2\pi R_2 C_2} \\
+    A_v = -\frac{R_2}{R_1}
+    \intertext{Poser comme hypothèse que nous souhaitons un gain unitaire.
+			   Cela signifie que la valeur de la résistance R1 est égale à la valeur
+			   de la résistance R2.}
     A_v = - \frac{R_2}{R_1} = -1
-\end{equation}
-Fixer une valeur standard pour R2 et réécrire la formule permettant de trouver
-la valeur de C2.
-Nous avons pris une valeur standard de 8200 Ohm pour la résistance R2.
-\begin{gather}
-    R_1 = R_2 = \SI{8200}{\Omega} \\
+	\intertext{Fixer une valeur standard pour R2 et réécrire la formule permettant
+			   de trouver la valeur de C2.
+			   Nous avons pris une valeur standard de \SI{8.2}{\kilo\Omega} pour la résistance R2.}
+    R_1 = R_2 = \SI{8.2}{\kilo\Omega} \\
     C_2 = \frac{1}{2\pi R_2 f_c}
-\end{gather}
-Cherchant une valeur la plus standardisée possible pour le condensateur C2, nous
-devons ajuster la valeur de la fréquence de coupure dans la formule donnée précédemment.
-Ceci nous conduit à ajuster la fréquence de coupure à \SI{19400}{\hertz}.
-\begin{gather}
+    \intertext{Cherchant une valeur la plus standardisée possible pour le condensateur
+    		   C2, nous devons ajuster la valeur de la fréquence de coupure dans la
+		   	   formule donnée précédemment.
+			   Ceci nous conduit à ajuster la fréquence de coupure à \SI{19400}{\hertz}.}
     C_2 = \frac{1}{2\pi\;8200\times19400} = \SI{1}{\nano\farad}
 \end{gather}
 
@@ -326,21 +345,16 @@ de 20 Hz.
 Nous connaissons déjà les valeurs standards des deux résistances R1 et R2 ainsi que
 du condensateur C2.
 Il nous reste donc à calculer la valeur standard du condensateur C1.
-Prendre la formule théorique permettant de calculer la fréquence de coupure :
-\begin{equation}
+Prendre la formule théorique permettant de calculer la fréquence de coupure
+\begin{gather}
     f_c = \frac{1}{2\pi R_2 C_1}
-\end{equation}
-Réécrire la formule permettant de calculer la valeur standard de C1 :
-\begin{equation}
+	\intertext{Réécrire la formule permettant de calculer la valeur standard de C1}
     C_1 = \frac{1}{2\pi R_2 f_c}
-\end{equation}
-Connaissant la valeur de R2, nous trouvons la valeur de C1 en ajustant la valeur
-de la fréquence de coupure.
-Nous trouvons finalement une fréquence de coupure de 18 Hz.
-\begin{equation}
+	\intertext{Connaissant la valeur de R2, nous trouvons la valeur de C1 en ajustant
+			   la valeur de la fréquence de coupure. Nous trouvons finalement une
+			   fréquence de coupure de 18 Hz.}
     C_1 = \frac{1}{2\pi R_2 f_c} = \frac{1}{2\pi\,8200\times18} = \SI{1}{\micro\farad}
-\end{equation}
-
+\end{gather}
 Le tableau ci-dessous reprend les valeurs calculées pour le filtre passe-bas ainsi que pour le filtre passe-haut :
 \begin{figure}[htbp]
     \centering
@@ -348,10 +362,10 @@ Le tableau ci-dessous reprend les valeurs calculées pour le filtre passe-bas ai
     \caption{Tableau récapitulatif des valeurs calculées pour les filtres de l'amplificateur classe D.}
 \end{figure}
 
-\subsection{Filtre RC}
+\subsection{Constante de temps du Sigma-Delta}
 % TODO
 
-\subsection{Constante de temps du Sigma-Delta}
+\subsection{Filtre RC de sortie}
 % TODO
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -370,11 +384,11 @@ Pour cerner le problème, nous avons connecté un ohmmètre entre les bornes d'a
 À ces bornes nous avons mesuré respectivement une résistance de : \SI{33}{\Omega}, \SI{9}{\kilo\Omega} et \SI{9}{\kilo\Omega}.
 C'est désormais déterminé et mesuré, il existe un défaut de connexion entre la borne positive et le neutre.
 
-Une analyse bloc-par-bloc a permis de déterminer que le problème était le circuit intégré \verb|TC4428|, un double inverseur présentant un courant de fuite de \SI{100}{\milli\ampere} pour une tension d'alimentation de seulement \SI{4.3}{\volt};
+Une analyse bloc-par-bloc a permis de déterminer que le problème était le circuit intégré \texttt{TC4428}, un double inverseur présentant un courant de fuite de \SI{100}{\milli\ampere} pour une tension d'alimentation de seulement \SI{4.3}{\volt};
 ce qui est déraisonnable et en opposition avec la fiche technique du produit.
 Nous en avons déduit que le composant était détruit.
 
-Après avoir remplacé le circuit intégré \verb|TC4428|, nous avons observé que la résistance entre la borne d'alimentation positive et le neutre passait de \SI{33}{\Omega} à \SI{200}{\Omega}, ce qui n'est toujours pas acceptable.
+Après avoir remplacé le circuit intégré \texttt{TC4428}, nous avons observé que la résistance entre la borne d'alimentation positive et le neutre passait de \SI{33}{\Omega} à \SI{200}{\Omega}, ce qui n'est toujours pas acceptable.
 Nous avons remplacé un second circuit intégré douteux, le \verb|L6385E|, et la résistance est passée de \SI{200}{\Omega} à \SI{19}{\kilo\Omega}; ce qui est désormais raisonnable.
 Tout cela démontre que deux des circuits imprimés ont été détruits.
 Nous ne savons pas déterminer l'instant auquel cela s'est produit.
@@ -446,6 +460,7 @@ Par Toriicelli (Travail personnel) [Public domain], de Wikimedia Commons
 
 %%%%%%%%%
 \appendix
+\clearpage
 \includepdf[pagecommand=\section{Schéma du circuit DIDACTRL}]{pdf/DIDACTRL.pdf}
 \includepdf[pagecommand=\section{Schéma du circuit DIDAMOS}]{pdf/DIDAMOS.pdf}
 \includepdf[pagecommand=\section{Schéma du circuit DIDAMO2}]{pdf/DIDAMO2.pdf}
