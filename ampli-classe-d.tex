@@ -431,33 +431,42 @@ Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1
 \end{figure}
 
 \subsection{Amplification}
+% TODO
 
-\begin{figure}[!ht]
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-cmdmos.png}
-	\caption{}
-	\label{fig:}
+	\caption{Capture d'écran d'oscilloscope du signal de commande de transistors.
+			 Le signal numérique est la modulation Sigma-Delta du signal analogique.
+			 On peut constater que le plafond du signal numérique n'est pas stable.}
+	\label{fig:osci-cmdmos}
 \end{figure}
 
-\begin{figure}[!ht]
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-compar.png}
-	\caption{}
-	\label{fig:}
+	\caption{Capture d'écran d'oscilloscope à la sortie du comparateur \texttt{U3A}.
+			 On constate que la comparaison change d'amplitude à chaque passage par zéro.}
+	\label{fig:osci-compar}
 \end{figure}
 
-\begin{figure}[!ht]
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-high-low.png}
-	\caption{}
-	\label{fig:}
+	\caption{Capture d'écran d'oscilloscope des signaux dédoublés de grilles.
+			 Le signal supérieur est le signal du transistor MOS supérieur et
+			 réciproquement pour le signal inférieur.
+			 On constate que les signaux sont relativement opposés.}
+	\label{fig:osci-high-low}
 \end{figure}
 
-\begin{figure}[!ht]
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-speaker.png}
-	\caption{}
-	\label{fig:}
+	\caption{Capture d'écran d'oscilloscope de la comparaison entre consigne et modulation.
+			 La modulation ne représente que partiellement la consigne, cette dernière ne
+			 peut pas contenir toute l'information nécessaire à la reconstruction.}
+	\label{fig:osci-speaker}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%
