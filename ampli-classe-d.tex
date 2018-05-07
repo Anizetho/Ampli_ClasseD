@@ -279,8 +279,10 @@ Cela ne présente que peux d'intérêt mais est énoncé pour montrer son existe
 La figure~\ref{fig:sch-ctrl} présente la partie logique du circuit, celle qui analyse le signal analogique et le module en commande d'ouverture de transistor.
 Le signal rentre par la connection \texttt{OUTINV} provenant des filtres d'entrées de pré-amplifications.
 À ce signal est ajouté la sortie actuelle du comparateur \texttt{VMLI} pour différentier l'erreur.
-Comme la sortie du comparateur est bi-state en \SI{\pm15}{\volt}, si le signal à comparer est à \SI{0}{\volt}, la retro-action se placera à \SI{15}{\volt} et il y aura un décalage entre la valeur désiré et la valeur mesuré.
-Pour adresser ce décalage, \SI{15}{\volt} sont directement retiré de la retro-action.
+Comme la sortie du comparateur est bi-state en 0 ou \SI{15}{\volt}, sa valeur moyenne en régime permanent serait de \SI{7.5}{\volt}.
+C'est vers cette valeur \og{}neutre\fg{} que nous voulons tendre si aucun signal n'est amené à l'entrée du comparateur.
+Pour ce faire, nous connectons à la jonction une piste à \SI{-15}{\volt} reliée par une résistance deux fois plus grande que celles des autres connections.
+Cette résistance deux fois plus grande laisse passer la quantité de courant nécessaire à amener la jonction à \SI{7.5}{\volt} au repos.
 
 Le premier AOP \texttt{U3A} agit tel un intégrateur et intègre la différence entre la mesure et la consigne.
 Le second AOP \texttt{U5B} réagit en trigger de Schmitt et fixe sa sortie en bi-state \SI{\pm15}{\volt} suivant que l'erreur entre la mesure et la consigne soit positive ou négative.
