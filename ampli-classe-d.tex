@@ -296,7 +296,7 @@ Le second AOP \texttt{U5B} réagit en trigger de Schmitt et fixe sa sortie en bi
 
 \subsection{Étage de puissance}
 La commande d'ouverture des transistors arrive par \texttt{CMDMOS}.
-Ce signal est dédoublé dont l'une des sortie est inversée, afin de contrôler les deux transistors alternativement.
+Ce signal est dédoublé et l'une des sortie est inversée afin de contrôler les deux transistors alternativement.
 Le circuit intégré \texttt{L6385} se charge de commander les grilles des transistors en y plaçant une tension adaptée grâce à son condensateur de bootstrap.
 Le haut-parleur, charge RL dans le circuit, est connecté à la junction entre le transistor MOS supérieur et l'inférieur au jumper 1.
 Pour une raison de facilité, la source de tension \SI{24}{\volt} située au jumper 5 est relié à la même source que le driver MOS.
@@ -318,7 +318,7 @@ Ces choix sont accompagnés de calcules appuyant nos décisions.
 \label{sec:filtrePreAmpli}
 Pour dimensionner les composants électroniques (résistances et condensateurs) des deux filtres de l'amplificateur classe D, nous avons procédé comme suit :
 
-\textit{N.B.} : Se référer aux figures~\ref{fig:filtreLowpass} et \ref{fig:filtreHighpass} pour les notations.
+\textit{N.B.} Se référer aux figures~\ref{fig:filtreLowpass} et \ref{fig:filtreHighpass} pour les notations.
 Les éléments R1 et C1 sont connectés entre l'entrée et la borne négative de l'AOP, les éléments R2 et C2 sont connectés à la rétro-action de cet AOP.
 
 \noindent\textbf{Pour le filtre passe-bas} : durant le laboratoire, nous avons commencé par
