@@ -276,6 +276,34 @@ Cela ne présente que peux d'intérêt mais est énoncé pour montrer son existe
 \end{figure}
 
 \subsection{Comparateur Sigma-Delta}
+Avant de détailler le développent de la modulation sigma-delta, rappelons le principe de 2 composants essentiels à sa mise en oeuvre : 
+\begin{itemize}
+\item \noindent\textbf{L'intégrateur pur} : Le montage intégrateur pur, présenté à la figure 7 ci-dessous, est un montage électronique dont le signal de sortie $V_{out}$ correspond à l'intégrale du signal d'entrée $V_{in}$. L'équation suivante traduit la relation d'intégration entre sortie et entrée : 
+\begin{gather}
+    V_{out} = \frac{-1}{R_1.C_2}.\int V_{in}.dt 
+\end{gather}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=6cm]{image/sch-alim.png}
+	\caption{Schématique d'un montage intégrateur pur.}
+	\label{fig:IntegPur}
+\end{figure}
+
+\item \noindent\textbf{Le comparateur} : Le comparateur, présenté à la figure 8 ci-dessous, n'est ni plus ni moins qu'un amplificateur opérationnel dont le fonctionnement est le suivant : Si la tension appliquée sur l'entrée non inverseuse $V_{in}$ dépasse la tension appliquée sur l'entrée inverseuse $0V$, la sortie se retrouve à 1. Dans le cas contraire, la sortie se trouve à 0. L'équation suivante traduit cette relation entre l'entrée et la sortie du comparateur : 
+\begin{gather}
+\begin{cases}
+ V_{out} = V^{+} \text{ si } V_{in} > 0\\ 
+ V_{out} = 0  \text{ si } V_{in} < 0
+\end{cases}
+\end{gather}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=6cm]{image/sch-alim.png}
+	\caption{Schématique d'un comparateur.}
+	\label{fig:Comparateur}
+\end{figure}
+
+\end{itemize}
 La figure~\ref{fig:sch-ctrl} présente la partie logique du circuit, celle qui analyse le signal analogique et le module en commande d'ouverture de transistor.
 Le signal rentre par la connection \texttt{OUTINV} provenant des filtres d'entrées de pré-amplifications.
 À ce signal est ajouté la sortie actuelle du comparateur \texttt{VMLI} pour différentier l'erreur.
