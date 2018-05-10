@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.0.4 (TeX Live 2017)  (format=lualatex 2018.3.15)  10 MAY 2018 00:37
+This is LuaTeX, Version 1.0.4 (TeX Live 2017)  (format=lualatex 2018.3.15)  11 MAY 2018 01:45
  restricted system commands enabled.
  file:line:error style messages enabled.
 **ampli-classe-d.tex
@@ -36,7 +36,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.210 seconds
+luaotfload | main : initialization completed in 0.107 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
@@ -1174,9 +1174,9 @@ Package hyperref Info: Option `breaklinks' set `true' on input line 36.
 Package hyperref Info: Option `bookmarksopen' set `true' on input line 36.
 Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 36.
 
-No file ampli-classe-d.aux.
-
+(./ampli-classe-d.aux)
 \openout1 = ampli-classe-d.aux
+
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
@@ -1195,6 +1195,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
+
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count307
@@ -1308,6 +1309,8 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 42.
 LaTeX Info: Redefining \pageref on input line 42.
 LaTeX Info: Redefining \nameref on input line 42.
+
+(./ampli-classe-d.out) (./ampli-classe-d.out)
 \@outlinefile=\write3
 
 \openout3 = ampli-classe-d.out
@@ -1361,7 +1364,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<image/logo-ecam.png, id=4, 1089.06876pt x 801.99625pt>
+<image/logo-ecam.png, id=104, 1089.06876pt x 801.99625pt>
 File: image/logo-ecam.png Graphic file (type png)
 <use image/logo-ecam.png>
 Package luatex.def Info: image/logo-ecam.png  used on input line 46.
@@ -1376,33 +1379,13 @@ e/2017/texmf-var/luatex-cache/generic/fonts/otl/lmromancaps10-regular.luc) [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}<./image/l
 ogo-ecam.png>](load luc: /Users/AnizetThomas/Library/texlive/2017/texmf-var/luat
-ex-cache/generic/fonts/otl/lmroman12-bold.luc)
+ex-cache/generic/fonts/otl/lmroman12-bold.luc) (./ampli-classe-d.toc)
 \tf@toc=\write4
 
 \openout4 = ampli-classe-d.toc
 
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
-[1]
-
-LaTeX Warning: Citation `heffner2007hearing' on page 2 undefined on input line 1
-01.
-
-
-LaTeX Warning: Reference `sec:sigmaDelta' on page 2 undefined on input line 110.
-
-
-
-LaTeX Warning: Reference `sec:classeD' on page 2 undefined on input line 110.
-
-
-LaTeX Warning: Citation `gray1998quantization' on page 2 undefined on input line
- 130.
-
-
-LaTeX Warning: Reference `fig:sigmaDelta' on page 2 undefined on input line 140.
-
-
-[2]
+[1] [2]
 Package epstopdf Info: Source file: <eps/sigma-delta.eps>
 (epstopdf)                    date: 2018-05-07 21:50:12
 (epstopdf)                    size: 11470 bytes
@@ -1413,7 +1396,7 @@ Package epstopdf Info: Source file: <eps/sigma-delta.eps>
 ed-to.pdf eps/sigma-delta.eps>
 (epstopdf)             \includegraphics on input line 155.
 Package epstopdf Info: Output file is already uptodate.
-<eps/sigma-delta-eps-converted-to.pdf, id=34, 2993.1825pt x 1042.89626pt>
+<eps/sigma-delta-eps-converted-to.pdf, id=163, 2993.1825pt x 1042.89626pt>
 File: eps/sigma-delta-eps-converted-to.pdf Graphic file (type pdf)
 <use eps/sigma-delta-eps-converted-to.pdf>
 Package luatex.def Info: eps/sigma-delta-eps-converted-to.pdf  used on input lin
@@ -1421,23 +1404,6 @@ e 155.
 (luatex.def)             Requested size: 313.69026pt x 109.29251pt.
 (load luc: /Users/AnizetThomas/Library/texlive/2017/texmf-var/luatex-cache/gener
 ic/fonts/otl/lmroman7-regular.luc)
-
-LaTeX Warning: Citation `irf2017mosfet' on page 3 undefined on input line 173.
-
-
-LaTeX Warning: Citation `griffiths1999introduction' on page 3 undefined on input
- line 176.
-
-
-LaTeX Warning: Citation `sente2017elec' on page 3 undefined on input line 177.
-
-
-LaTeX Warning: Reference `fig:classeD' on page 3 undefined on input line 178.
-
-
-LaTeX Warning: Citation `wildi2005electrotech' on page 3 undefined on input line
- 179.
-
 Package epstopdf Info: Source file: <eps/classe-d.eps>
 (epstopdf)                    date: 2018-05-07 21:50:12
 (epstopdf)                    size: 41153 bytes
@@ -1448,7 +1414,7 @@ Package epstopdf Info: Source file: <eps/classe-d.eps>
 to.pdf eps/classe-d.eps>
 (epstopdf)             \includegraphics on input line 184.
 Package epstopdf Info: Output file is already uptodate.
-<eps/classe-d-eps-converted-to.pdf, id=35, 534.99875pt x 326.21875pt>
+<eps/classe-d-eps-converted-to.pdf, id=169, 534.99875pt x 326.21875pt>
 File: eps/classe-d-eps-converted-to.pdf Graphic file (type pdf)
 <use eps/classe-d-eps-converted-to.pdf>
 Package luatex.def Info: eps/classe-d-eps-converted-to.pdf  used on input line 1
@@ -1456,34 +1422,16 @@ Package luatex.def Info: eps/classe-d-eps-converted-to.pdf  used on input line 1
 (luatex.def)             Requested size: 224.06544pt x 136.62766pt.
 (load luc: /Users/AnizetThomas/Library/texlive/2017/texmf-var/luatex-cache/gener
 ic/fonts/otl/lmroman5-regular.luc)
-
-LaTeX Warning: Reference `sec:hypothese' on page 3 undefined on input line 198.
-
-[3<./eps/sigma-delta-eps-converted-to.pdf><./eps/classe-d-eps-converted-to.pdf>]
-
-LaTeX Warning: Reference `fig:schemaPreAmpli' on page 4 undefined on input line 
-235.
-
-(load luc: /Users/AnizetThomas/Library/texlive/2017/texmf-var/luatex-cache/gener
-ic/fonts/otl/lmmono10-regular.luc)
+[3<./eps/sigma-delta-eps-converted-to.pdf><./eps/classe-d-eps-converted-to.pdf>](load luc: /Users/AnizetThomas/Library/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmmono10-regular.luc)
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<image/schematique-all.jpg, id=58, 376.40625pt x 164.615pt>
+<image/schematique-all.jpg, id=197, 376.40625pt x 164.615pt>
 File: image/schematique-all.jpg Graphic file (type jpg)
 <use image/schematique-all.jpg>
 Package luatex.def Info: image/schematique-all.jpg  used on input line 246.
 (luatex.def)             Requested size: 268.88127pt x 117.59836pt.
-
-
-LaTeX Warning: Reference `fig:filtreLowpass' on page 4 undefined on input line 2
-52.
-
-
-LaTeX Warning: Reference `fig:filtreHighpass' on page 4 undefined on input line 
-252.
-
 Package epstopdf Info: Source file: <eps/active-lowpass-filter-rc.eps>
 (epstopdf)                    date: 2018-05-07 21:50:12
 (epstopdf)                    size: 23925 bytes
@@ -1495,19 +1443,20 @@ to.pdf>
 c-eps-converted-to.pdf eps/active-lowpass-filter-rc.eps>
 (epstopdf)             \includegraphics on input line 256.
 Package epstopdf Info: Output file is already uptodate.
-<eps/active-lowpass-filter-rc-eps-converted-to.pdf, id=59, 242.9075pt x 166.6225
-pt>
+<eps/active-lowpass-filter-rc-eps-converted-to.pdf, id=200, 242.9075pt x 166.622
+5pt>
 File: eps/active-lowpass-filter-rc-eps-converted-to.pdf Graphic file (type pdf)
 <use eps/active-lowpass-filter-rc-eps-converted-to.pdf>
 Package luatex.def Info: eps/active-lowpass-filter-rc-eps-converted-to.pdf  used
  on input line 256.
 (luatex.def)             Requested size: 160.3639pt x 110.0pt.
 
+
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 257.
 See the caption package documentation for explanation.
 
-<image/active-highpass-filter-rc.png, id=60, 278.54062pt x 140.02313pt>
+<image/active-highpass-filter-rc.png, id=201, 278.54062pt x 140.02313pt>
 File: image/active-highpass-filter-rc.png Graphic file (type png)
 <use image/active-highpass-filter-rc.png>
 Package luatex.def Info: image/active-highpass-filter-rc.png  used on input line
@@ -1519,86 +1468,55 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 [4<./image/schematique-all.jpg>]
-
-LaTeX Warning: Reference `fig:alimDecouplage' on page 5 undefined on input line 
-268.
-
-<image/sch-alim.png, id=71, 768.8725pt x 351.3125pt>
+<image/sch-alim.png, id=214, 768.8725pt x 351.3125pt>
 File: image/sch-alim.png Graphic file (type png)
 <use image/sch-alim.png>
 Package luatex.def Info: image/sch-alim.png  used on input line 273.
 (luatex.def)             Requested size: 170.71652pt x 78.00194pt.
-File: image/sch-alim.png Graphic file (type png)
-<use image/sch-alim.png>
-Package luatex.def Info: image/sch-alim.png  used on input line 287.
-(luatex.def)             Requested size: 170.71652pt x 78.00194pt.
-File: image/sch-alim.png Graphic file (type png)
-<use image/sch-alim.png>
-Package luatex.def Info: image/sch-alim.png  used on input line 301.
-(luatex.def)             Requested size: 170.71652pt x 78.00194pt.
-
-LaTeX Warning: Reference `fig:sch-ctrl' on page 5 undefined on input line 307.
-
-[5<./eps/active-lowpass-filter-rc-eps-converted-to.pdf><./image/active-highpass-
-filter-rc.png><./image/sch-alim.png>]
-<image/sch-ctrl.png, id=104, 2190.1825pt x 507.8975pt>
+<image/integrateur.png, id=216, 298.11375pt x 154.5775pt>
+File: image/integrateur.png Graphic file (type png)
+<use image/integrateur.png>
+Package luatex.def Info: image/integrateur.png  used on input line 287.
+(luatex.def)             Requested size: 170.71652pt x 88.52048pt.
+<image/comparateur.png, id=219, 247.92625pt x 76.285pt>
+File: image/comparateur.png Graphic file (type png)
+<use image/comparateur.png>
+Package luatex.def Info: image/comparateur.png  used on input line 301.
+(luatex.def)             Requested size: 170.71652pt x 52.52844pt.
+<image/Graphe_Comparateur.png, id=220, 419.5675pt x 250.9375pt>
+File: image/Graphe_Comparateur.png Graphic file (type png)
+<use image/Graphe_Comparateur.png>
+Package luatex.def Info: image/Graphe_Comparateur.png  used on input line 305.
+(luatex.def)             Requested size: 170.71652pt x 102.10391pt.
+ [5<./eps/active-lowpass-filter-rc-eps-converted-to.pdf><./image/active-highpass
+-filter-rc.png><./image/sch-alim.png><./image/integrateur.png>]
+<image/sch-ctrl.png, id=253, 2190.1825pt x 507.8975pt>
 File: image/sch-ctrl.png Graphic file (type png)
 <use image/sch-ctrl.png>
-Package luatex.def Info: image/sch-ctrl.png  used on input line 318.
+Package luatex.def Info: image/sch-ctrl.png  used on input line 325.
 (luatex.def)             Requested size: 448.1309pt x 103.91817pt.
-<image/sch-mos.png, id=105, 2524.43124pt x 954.56625pt>
+<image/sch-mos.png, id=254, 2524.43124pt x 954.56625pt>
 File: image/sch-mos.png Graphic file (type png)
 <use image/sch-mos.png>
-Package luatex.def Info: image/sch-mos.png  used on input line 332.
+Package luatex.def Info: image/sch-mos.png  used on input line 339.
 (luatex.def)             Requested size: 448.1309pt x 169.44034pt.
- [6<./image/sch-ctrl.png><./image/sch-mos.png>]
-
-LaTeX Warning: Reference `fig:filtreLowpass' on page 7 undefined on input line 3
-47.
-
-
-LaTeX Warning: Reference `fig:filtreHighpass' on page 7 undefined on input line 
-347.
-
-
-LaTeX Warning: Reference `tab:recapFiltres' on page 7 undefined on input line 38
-9.
-
-<image/tableau-filtres.jpg, id=116, 667.49374pt x 77.28876pt>
+ [6<./image/comparateur.png><./image/Graphe_Comparateur.png><./image/sch-ctrl.pn
+g>] [7<./image/sch-mos.png>]
+<image/tableau-filtres.jpg, id=281, 667.49374pt x 77.28876pt>
 File: image/tableau-filtres.jpg Graphic file (type jpg)
 <use image/tableau-filtres.jpg>
-Package luatex.def Info: image/tableau-filtres.jpg  used on input line 392.
+Package luatex.def Info: image/tableau-filtres.jpg  used on input line 399.
 (luatex.def)             Requested size: 433.8658pt x 50.23709pt.
-[7]
-
-LaTeX Warning: Reference `sec:filtrePreAmpli' on page 8 undefined on input line 
-429.
-
-
-LaTeX Warning: Reference `tab:gainFiltresEntrees' on page 8 undefined on input l
-ine 442.
-
-<image/resultat-filtres.jpg, id=132, 798.985pt x 446.66875pt>
+ [8<./image/tableau-filtres.jpg>]
+<image/resultat-filtres.jpg, id=293, 798.985pt x 446.66875pt>
 File: image/resultat-filtres.jpg Graphic file (type jpg)
 <use image/resultat-filtres.jpg>
-Package luatex.def Info: image/resultat-filtres.jpg  used on input line 445.
+Package luatex.def Info: image/resultat-filtres.jpg  used on input line 452.
 (luatex.def)             Requested size: 455.42618pt x 254.60382pt.
 
-Overfull \hbox (7.29527pt too wide) in paragraph at lines 445--446
+Overfull \hbox (7.29527pt too wide) in paragraph at lines 452--453
  [][] 
  []
-
-
-LaTeX Warning: Reference `tab:gainFiltresEntrees' on page 8 undefined on input l
-ine 450.
-
-
-LaTeX Warning: Reference `fig:resultatRepFreq' on page 8 undefined on input line
- 451.
-
-
-LaTeX Warning: Citation `Horowitz:2015aa' on page 8 undefined on input line 452.
-
 
 Package epstopdf Info: Source file: <eps/bode-filtres.eps>
 (epstopdf)                    date: 2018-05-07 21:50:12
@@ -1608,218 +1526,180 @@ Package epstopdf Info: Source file: <eps/bode-filtres.eps>
 (epstopdf)                    size: 14142 bytes
 (epstopdf)             Command: <repstopdf --outfile=eps/bode-filtres-eps-conver
 ted-to.pdf eps/bode-filtres.eps>
-(epstopdf)             \includegraphics on input line 455.
+(epstopdf)             \includegraphics on input line 462.
 Package epstopdf Info: Output file is already uptodate.
-<eps/bode-filtres-eps-converted-to.pdf, id=133, 1166.3575pt x 650.43pt>
+<eps/bode-filtres-eps-converted-to.pdf, id=297, 1166.3575pt x 650.43pt>
 File: eps/bode-filtres-eps-converted-to.pdf Graphic file (type pdf)
 <use eps/bode-filtres-eps-converted-to.pdf>
 Package luatex.def Info: eps/bode-filtres-eps-converted-to.pdf  used on input li
-ne 455.
+ne 462.
 (luatex.def)             Requested size: 448.1309pt x 249.9052pt.
-<image/osci-cmdmos.png, id=134, 321.2pt x 240.9pt>
-File: image/osci-cmdmos.png Graphic file (type png)
-<use image/osci-cmdmos.png>
-Package luatex.def Info: image/osci-cmdmos.png  used on input line 466.
+<image/osci-post-filters.png, id=298, 321.2pt x 240.9pt>
+File: image/osci-post-filters.png Graphic file (type png)
+<use image/osci-post-filters.png>
+Package luatex.def Info: image/osci-post-filters.png  used on input line 473.
 (luatex.def)             Requested size: 291.28235pt x 218.46945pt.
-[8<./image/tableau-filtres.jpg>]
-<image/osci-compar.png, id=148, 321.2pt x 240.9pt>
+<image/osci-compar.png, id=299, 321.2pt x 240.9pt>
 File: image/osci-compar.png Graphic file (type png)
 <use image/osci-compar.png>
-Package luatex.def Info: image/osci-compar.png  used on input line 475.
+Package luatex.def Info: image/osci-compar.png  used on input line 484.
 (luatex.def)             Requested size: 291.28235pt x 218.46945pt.
-<image/osci-high-low.png, id=149, 321.2pt x 240.9pt>
+<image/osci-cmdmos.png, id=300, 321.2pt x 240.9pt>
+File: image/osci-cmdmos.png Graphic file (type png)
+<use image/osci-cmdmos.png>
+Package luatex.def Info: image/osci-cmdmos.png  used on input line 493.
+(luatex.def)             Requested size: 291.28235pt x 218.46945pt.
+<image/osci-high-low.png, id=301, 321.2pt x 240.9pt>
 File: image/osci-high-low.png Graphic file (type png)
 <use image/osci-high-low.png>
-Package luatex.def Info: image/osci-high-low.png  used on input line 483.
+Package luatex.def Info: image/osci-high-low.png  used on input line 504.
 (luatex.def)             Requested size: 291.28235pt x 218.46945pt.
-<image/osci-speaker.png, id=150, 321.2pt x 240.9pt>
-File: image/osci-speaker.png Graphic file (type png)
-<use image/osci-speaker.png>
-Package luatex.def Info: image/osci-speaker.png  used on input line 493.
-(luatex.def)             Requested size: 291.28235pt x 218.46945pt.
-
-
-LaTeX Warning: Reference `fig:sigmaDelta' on page 9 undefined on input line 509.
-
-
 (load luc: /Users/AnizetThomas/Library/texlive/2017/texmf-var/luatex-cache/gener
 ic/fonts/otl/lmroman9-regular.luc)
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 511.
+(Font)              <9> on input line 523.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 511.
-
-
-LaTeX Warning: Reference `fig:classeD' on page 9 undefined on input line 513.
-
-[9<./image/resultat-filtres.jpg><./eps/bode-filtres-eps-converted-to.pdf>]
-[10<./image/osci-cmdmos.png><./image/osci-compar.png>] [11<./image/osci-high-low
-.png><./image/osci-speaker.png>]
-
-LaTeX Warning: Reference `fig:filtreLowpass' on page 12 undefined on input line 
-517.
-
-
-LaTeX Warning: Reference `fig:filtreHighpass' on page 12 undefined on input line
- 520.
-
-(./ampli-classe-d.bbl
-No file ampli-classe-d.brf.
+(Font)              <6> on input line 523.
+ (./ampli-classe-d.bbl (./ampli-classe-d.brf)
 \tf@brf=\write5
 
 \openout5 = ampli-classe-d.brf
-
+ [9<./image/resultat-filtres.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 18--18
 [][][]$\TU/lmr/m/n/9 https://www.infineon.com/cms/en/product/power/mosfet/20v-[
 ]300v-[]n-[]channel-[]power-[]mosfet/
  []
 
-) [12]
-<pdf/DIDACTRL.pdf, id=210, 597.23125pt x 845.1575pt>
+) [10<./eps/bode-filtres-eps-converted-to.pdf>] [11<./image/osci-post-filters.pn
+g><./image/osci-compar.png>] [12<./image/osci-cmdmos.png><./image/osci-high-low.
+png>]
+<pdf/DIDACTRL.pdf, id=363, 597.23125pt x 845.1575pt>
 File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 <use pdf/DIDACTRL.pdf>
-Package luatex.def Info: pdf/DIDACTRL.pdf  used on input line 532.
+Package luatex.def Info: pdf/DIDACTRL.pdf  used on input line 544.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 <use pdf/DIDACTRL.pdf>
-Package luatex.def Info: pdf/DIDACTRL.pdf  used on input line 532.
+Package luatex.def Info: pdf/DIDACTRL.pdf  used on input line 544.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
-<pdf/DIDACTRL.pdf, id=213, page=1, 597.23125pt x 845.1575pt>
+<pdf/DIDACTRL.pdf, id=366, page=1, 597.23125pt x 845.1575pt>
 File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 <use pdf/DIDACTRL.pdf, page 1>
-Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 532.
+Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 544.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 <use pdf/DIDACTRL.pdf, page 1>
-Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 532.
+Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 544.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 <use pdf/DIDACTRL.pdf, page 1>
-Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 532.
+Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 544.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 <use pdf/DIDACTRL.pdf, page 1>
-Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 532.
+Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 544.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: pdf/DIDACTRL.pdf Graphic file (type pdf)
 <use pdf/DIDACTRL.pdf, page 1>
-Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 532.
+Package luatex.def Info: pdf/DIDACTRL.pdf , page1 used on input line 544.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
  [13
 
 <./pdf/DIDACTRL.pdf>]
-<pdf/DIDAMOS.pdf, id=224, 597.23125pt x 845.1575pt>
+<pdf/DIDAMOS.pdf, id=376, 597.23125pt x 845.1575pt>
 File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 <use pdf/DIDAMOS.pdf>
-Package luatex.def Info: pdf/DIDAMOS.pdf  used on input line 533.
+Package luatex.def Info: pdf/DIDAMOS.pdf  used on input line 545.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 <use pdf/DIDAMOS.pdf>
-Package luatex.def Info: pdf/DIDAMOS.pdf  used on input line 533.
+Package luatex.def Info: pdf/DIDAMOS.pdf  used on input line 545.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
-<pdf/DIDAMOS.pdf, id=227, page=1, 597.23125pt x 845.1575pt>
+<pdf/DIDAMOS.pdf, id=379, page=1, 597.23125pt x 845.1575pt>
 File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 <use pdf/DIDAMOS.pdf, page 1>
-Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 533.
+Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 545.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 <use pdf/DIDAMOS.pdf, page 1>
-Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 533.
+Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 545.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 <use pdf/DIDAMOS.pdf, page 1>
-Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 533.
+Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 545.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 <use pdf/DIDAMOS.pdf, page 1>
-Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 533.
+Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 545.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: pdf/DIDAMOS.pdf Graphic file (type pdf)
 <use pdf/DIDAMOS.pdf, page 1>
-Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 533.
+Package luatex.def Info: pdf/DIDAMOS.pdf , page1 used on input line 545.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
  [14<./pdf/DIDAMOS.pdf>]
-<pdf/DIDAMO2.pdf, id=238, 597.23125pt x 845.1575pt>
+<pdf/DIDAMO2.pdf, id=389, 597.23125pt x 845.1575pt>
 File: pdf/DIDAMO2.pdf Graphic file (type pdf)
 <use pdf/DIDAMO2.pdf>
-Package luatex.def Info: pdf/DIDAMO2.pdf  used on input line 534.
+Package luatex.def Info: pdf/DIDAMO2.pdf  used on input line 546.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: pdf/DIDAMO2.pdf Graphic file (type pdf)
 <use pdf/DIDAMO2.pdf>
-Package luatex.def Info: pdf/DIDAMO2.pdf  used on input line 534.
+Package luatex.def Info: pdf/DIDAMO2.pdf  used on input line 546.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
-<pdf/DIDAMO2.pdf, id=241, page=1, 597.23125pt x 845.1575pt>
+<pdf/DIDAMO2.pdf, id=392, page=1, 597.23125pt x 845.1575pt>
 File: pdf/DIDAMO2.pdf Graphic file (type pdf)
 <use pdf/DIDAMO2.pdf, page 1>
-Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 534.
+Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 546.
 (luatex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: pdf/DIDAMO2.pdf Graphic file (type pdf)
 <use pdf/DIDAMO2.pdf, page 1>
-Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 534.
+Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 546.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: pdf/DIDAMO2.pdf Graphic file (type pdf)
 <use pdf/DIDAMO2.pdf, page 1>
-Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 534.
+Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 546.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: pdf/DIDAMO2.pdf Graphic file (type pdf)
 <use pdf/DIDAMO2.pdf, page 1>
-Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 534.
+Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 546.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: pdf/DIDAMO2.pdf Graphic file (type pdf)
 <use pdf/DIDAMO2.pdf, page 1>
-Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 534.
+Package luatex.def Info: pdf/DIDAMO2.pdf , page1 used on input line 546.
 (luatex.def)             Requested size: 597.25711pt x 845.19412pt.
  [15<./pdf/DIDAMO2.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 536.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 536.
-(./ampli-classe-d.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 536.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 536.
-
-
-Package rerunfilecheck Warning: File `ampli-classe-d.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `ampli-classe-d.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  09BBF75E6C46144F3CB087C681B86748;4160.
-
-Package rerunfilecheck Warning: File `ampli-classe-d.brf' has changed.
-(rerunfilecheck)                Rerun to get bibliographical references right.
-
-Package rerunfilecheck Info: Checksums for `ampli-classe-d.brf':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  60F294889390A80E7EB26DB64B59D221;392.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 536.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 548.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 548.
+ (./ampli-classe-d.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 548.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 548.
+Package rerunfilecheck Info: File `ampli-classe-d.out' has not changed.
+(rerunfilecheck)             Checksum: 09BBF75E6C46144F3CB087C681B86748;4160.
+Package rerunfilecheck Info: File `ampli-classe-d.brf' has not changed.
+(rerunfilecheck)             Checksum: AED5427D6D624F46768EFC5E41CD08A5;392.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 548.
 )
 
 Here is how much of LuaTeX's memory you used:
- 27808 strings out of 494480
- 195335,794899 words of node,token memory allocated
- 130741 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 168 glue, 1 kern, 1 penalty, 20545 glyph, 2474 attr
-ibute, 67 glue_spec, 414 attribute_list, 1 write, 2 pdf_action nodes
-   avail lists: 2:1675,3:270,4:91,5:250,6:1163,7:825,8:186,9:353,10:15,11:474
- 30889 multiletter control sequences out of 65536+600000
+ 27878 strings out of 494480
+ 195339,794899 words of node,token memory allocated
+ 136842 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 119 glue, 1 kern, 1 penalty, 21521 glyph, 2726 attr
+ibute, 67 glue_spec, 456 attribute_list, 1 write, 2 pdf_action nodes
+   avail lists: 2:2078,3:306,4:124,5:251,6:2162,7:757,8:193,9:338,10:15,11:477
+ 30928 multiletter control sequences out of 65536+600000
  69 fonts using 13495839 bytes
- 39i,18n,67p,516b,941s stack positions out of 5000i,500n,10000p,200000b,100000s
-</usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.ot
-f>{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/loc
-al/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf>{/usr/l
-ocal/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</usr/local/texliv
-e/2017/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf>{/usr/local/texl
-ive/2017/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</usr/local/texlive/2017/texmf-
-dist/fonts/opentype/public/lm/lmroman7-regular.otf>{/usr/local/texlive/2017/texm
-f-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/local/texlive/2017/texmf-dist/font
-s/opentype/public/lm/lmroman10-bold.otf></usr/local/texlive/2017/texmf-dist/font
+ 42i,18n,67p,664b,1072s stack positions out of 5000i,500n,10000p,200000b,100000s
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/local
+/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf>{/usr/loc
+al/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/local/texlive/
+2017/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf>{/usr/local/texliv
+e/2017/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</usr/local/texlive/2017/texm
+f-dist/fonts/opentype/public/lm/lmroman10-italic.otf>{/usr/local/texlive/2017/te
+xmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</usr/local/texlive/2017/texmf-dist/fonts/
+opentype/public/lm/lmroman7-regular.otf></usr/local/texlive/2017/texmf-dist/font
 s/opentype/public/lm/lmroman10-regular.otf></usr/local/texlive/2017/texmf-dist/f
+onts/opentype/public/lm/lmroman10-bold.otf></usr/local/texlive/2017/texmf-dist/f
 onts/opentype/public/lm/lmromancaps10-regular.otf></usr/local/texlive/2017/texmf
 -dist/fonts/opentype/public/lm/lmroman12-regular.otf></Library/Fonts/Microsoft/A
 rial Bold.ttf></Library/Fonts/Microsoft/Arial.ttf></usr/local/texlive/2017/texmf
@@ -1827,11 +1707,12 @@ rial Bold.ttf></Library/Fonts/Microsoft/Arial.ttf></usr/local/texlive/2017/texmf
 /type1/public/lm/lmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
 ic/lm/lmmi7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr10.
 pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on ampli-classe-d.pdf (16 pages, 829308 bytes).
+al/texlive/2017/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/
+2017/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on ampli-classe-d.pdf (16 pages, 1076575 bytes).
 
-PDF statistics: 343 PDF objects out of 1000 (max. 8388607)
- 236 compressed objects within 3 object streams
+PDF statistics: 497 PDF objects out of 1000 (max. 8388607)
+ 384 compressed objects within 4 object streams
  78 named destinations out of 1000 (max. 131072)
- 1 words of extra memory for PDF output out of 10000 (max. 100000000)
+ 201 words of extra memory for PDF output out of 10000 (max. 100000000)
 

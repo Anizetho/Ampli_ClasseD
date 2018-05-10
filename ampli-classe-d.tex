@@ -278,37 +278,44 @@ Cela ne présente que peux d'intérêt mais est énoncé pour montrer son existe
 \subsection{Comparateur Sigma-Delta}
 Avant de détailler le développent de la modulation sigma-delta, rappelons le principe de 2 composants essentiels à sa mise en oeuvre : 
 \begin{itemize}
-\item \noindent\textbf{L'intégrateur pur} : Le montage intégrateur pur, présenté à la figure 7 ci-dessous, est un montage électronique dont le signal de sortie $V_{out}$ correspond à l'intégrale du signal d'entrée $V_{in}$. L'équation suivante traduit la relation d'intégration entre sortie et entrée : 
+\item \noindent\textbf{L'intégrateur pur} : Le montage intégrateur pur, présenté à la figure~\ref{fig:IntegPur} ci-dessous, est un montage électronique dont le signal de sortie $V_{s}$ correspond à l'intégrale du signal d'entrée $V_{e}$. L'équation suivante traduit la relation d'intégration entre sortie et entrée : 
 \begin{gather}
-    V_{out} = \frac{-1}{R_1.C_2}.\int V_{in}.dt 
+    V_{s} = \frac{-1}{R.C}.\int V_{e}.dt 
 \end{gather}
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=6cm]{image/sch-alim.png}
+	\includegraphics[width=6cm]{image/integrateur.png}
 	\caption{Schématique d'un montage intégrateur pur.}
 	\label{fig:IntegPur}
 \end{figure}
 
-\item \noindent\textbf{Le comparateur} : Le comparateur, présenté à la figure 8 ci-dessous, n'est ni plus ni moins qu'un amplificateur opérationnel dont le fonctionnement est le suivant : Si la tension appliquée sur l'entrée non inverseuse $V_{in}$ dépasse la tension appliquée sur l'entrée inverseuse $0V$, la sortie se retrouve à 1. Dans le cas contraire, la sortie se trouve à 0. L'équation suivante traduit cette relation entre l'entrée et la sortie du comparateur : 
+\item \noindent\textbf{Le comparateur} : Le comparateur, présenté à la figure~\ref{fig:Comparateur} ci-dessous, n'est ni plus ni moins qu'un amplificateur opérationnel dont le fonctionnement est le suivant : Si la tension appliquée sur l'entrée non inverseuse $V_{1}$ dépasse la tension appliquée sur l'entrée inverseuse $V_{2}$, la sortie se retrouve à 1. Dans le cas contraire, la sortie se trouve à 0. Le figure~\ref{fig:Comparateur_Graphe} présente la sortie du comparateur (signal vert) en fonction de ses deux entrées. L'équation suivante traduit cette relation entre l'entrée et la sortie du comparateur : 
 \begin{gather}
 \begin{cases}
- V_{out} = V^{+} \text{ si } V_{in} > 0\\ 
- V_{out} = 0  \text{ si } V_{in} < 0
+ V_{s} = V^{+} \text{ si } V_{1} > V_{2}\\ 
+ V_{s} = 0  \text{ si } V_{1} < V_{2}
 \end{cases}
 \end{gather}
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=6cm]{image/sch-alim.png}
+	\includegraphics[width=6cm]{image/comparateur.png}
 	\caption{Schématique d'un comparateur.}
 	\label{fig:Comparateur}
+	\centering
+	\includegraphics[width=6cm]{image/Graphe_Comparateur.png}
+	\caption{Schématique d'un comparateur.}
+	\label{fig:Comparateur_Graphe}
 \end{figure}
+
 
 \end{itemize}
 La figure~\ref{fig:sch-ctrl} présente la partie logique du circuit, celle qui analyse le signal analogique et le module en commande d'ouverture de transistor.
 Le signal rentre par la connection \texttt{OUTINV} provenant des filtres d'entrées de pré-amplifications.
 À ce signal est ajouté la sortie actuelle du comparateur \texttt{VMLI} pour différentier l'erreur.
-Comme la sortie du comparateur est bi-state en \SI{\pm15}{\volt}, si le signal à comparer est à \SI{0}{\volt}, la retro-action se placera à \SI{15}{\volt} et il y aura un décalage entre la valeur désiré et la valeur mesuré.
-Pour adresser ce décalage, \SI{15}{\volt} sont directement retiré de la retro-action.
+Comme la sortie du comparateur est bi-state en 0 ou \SI{15}{\volt}, sa valeur moyenne en régime permanent serait de \SI{7.5}{\volt}.
+C'est vers cette valeur \og{}neutre\fg{} que nous voulons tendre si aucun signal n'est amené à l'entrée du comparateur.
+Pour ce faire, nous connectons à la jonction une piste à \SI{-15}{\volt} reliée par une résistance deux fois plus grande que celles des autres connections.
+Cette résistance deux fois plus grande laisse passer la quantité de courant nécessaire à amener la jonction à \SI{7.5}{\volt} au repos.
 
 Le premier AOP \texttt{U3A} agit tel un intégrateur et intègre la différence entre la mesure et la consigne.
 Le second AOP \texttt{U5B} réagit en trigger de Schmitt et fixe sa sortie en bi-state \SI{\pm15}{\volt} suivant que l'erreur entre la mesure et la consigne soit positive ou négative.
@@ -322,7 +329,7 @@ Le second AOP \texttt{U5B} réagit en trigger de Schmitt et fixe sa sortie en bi
 
 \subsection{Étage de puissance}
 La commande d'ouverture des transistors arrive par \texttt{CMDMOS}.
-Ce signal est dédoublé dont l'une des sortie est inversée, afin de contrôler les deux transistors alternativement.
+Ce signal est dédoublé et l'une des sortie est inversée afin de contrôler les deux transistors alternativement.
 Le circuit intégré \texttt{L6385} se charge de commander les grilles des transistors en y plaçant une tension adaptée grâce à son condensateur de bootstrap.
 Le haut-parleur, charge RL dans le circuit, est connecté à la junction entre le transistor MOS supérieur et l'inférieur au jumper 1.
 Pour une raison de facilité, la source de tension \SI{24}{\volt} située au jumper 5 est relié à la même source que le driver MOS.
@@ -344,7 +351,7 @@ Ces choix sont accompagnés de calcules appuyant nos décisions.
 \label{sec:filtrePreAmpli}
 Pour dimensionner les composants électroniques (résistances et condensateurs) des deux filtres de l'amplificateur classe D, nous avons procédé comme suit :
 
-\textit{N.B.} : Se référer aux figures~\ref{fig:filtreLowpass} et \ref{fig:filtreHighpass} pour les notations.
+\textit{N.B.} Se référer aux figures~\ref{fig:filtreLowpass} et \ref{fig:filtreHighpass} pour les notations.
 Les éléments R1 et C1 sont connectés entre l'entrée et la borne négative de l'AOP, les éléments R2 et C2 sont connectés à la rétro-action de cet AOP.
 
 \noindent\textbf{Pour le filtre passe-bas} : durant le laboratoire, nous avons commencé par
@@ -463,38 +470,43 @@ Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{image/osci-cmdmos.png}
-	\caption{Capture d'écran d'oscilloscope du signal de commande de transistors.
-			 Le signal numérique est la modulation Sigma-Delta du signal analogique.
-			 On peut constater que le plafond du signal numérique n'est pas stable.}
-	\label{fig:osci-cmdmos}
+	\includegraphics[width=0.65\textwidth]{image/osci-post-filters.png}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal capturé avant les
+			 filtres d'entrées et le signal capturé après.
+			 Au travers du filtre le signal garde son amplitude, est déphasé de
+			 \SI{\pi}{\radian\per\second}, et son offset disparait pour se centrer autour
+			 de 0.}
+	\label{fig:osci-speaker}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-compar.png}
-	\caption{Capture d'écran d'oscilloscope à la sortie du comparateur \texttt{U3A}.
-			 On constate que la comparaison change d'amplitude à chaque passage par zéro.}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal capturé à l'entrée
+			 de l'amplificateur (avant filtrage) et la rétro-action perçue au
+			 \Sigma{}-\Delta{}.}
 	\label{fig:osci-compar}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{image/osci-high-low.png}
-	\caption{Capture d'écran d'oscilloscope des signaux dédoublés de grilles.
-			 Le signal supérieur est le signal du transistor MOS supérieur et
-			 réciproquement pour le signal inférieur.
-			 On constate que les signaux sont relativement opposés.}
-	\label{fig:osci-high-low}
+	\includegraphics[width=0.65\textwidth]{image/osci-cmdmos.png}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal \texttt{CMDMOS}
+			 capturé à la sortie du \Sigma{}-\Delta{} pour un signal d'entrée à
+			 l'amplificateur sinusoïdale.
+			 Le délai d'ouverture à la commande pour éviter la double conduction à
+			 l'étage de puissance est la raison de l'affaissement du flanc montant.}
+	\label{fig:osci-cmdmos}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{image/osci-speaker.png}
-	\caption{Capture d'écran d'oscilloscope de la comparaison entre consigne et modulation.
-			 La modulation ne représente que partiellement la consigne, cette dernière ne
-			 peut pas contenir toute l'information nécessaire à la reconstruction.}
-	\label{fig:osci-speaker}
+	\includegraphics[width=0.65\textwidth]{image/osci-high-low.png}
+	\caption{Capture d'écran d'un oscilloscope affichant les signaux de grille des
+			 transistors MOS supérieur et inférieur à l'étage d'amplification.
+			 Ces commandes sont propres à un signal d'entrée de l'amplificateur
+			 sinusoïdale.}
+	\label{fig:osci-high-low}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%
