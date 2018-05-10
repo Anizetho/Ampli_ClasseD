@@ -438,28 +438,41 @@ Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-post-filters.png}
-	\caption{}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal capturé avant les
+			 filtres d'entrées et le signal capturé après.
+			 Au travers du filtre le signal garde son amplitude, est déphasé de
+			 \SI{\pi}{\radian\per\second}, et son offset disparait pour se centrer autour
+			 de 0.}
 	\label{fig:osci-speaker}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-compar.png}
-	\caption{}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal capturé à l'entrée
+			 de l'amplificateur (avant filtrage) et la rétro-action perçue au
+			 \Sigma{}-\Delta{}.}
 	\label{fig:osci-compar}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-cmdmos.png}
-	\caption{}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal \texttt{CMDMOS}
+			 capturé à la sortie du \Sigma{}-\Delta{} pour un signal d'entrée à
+			 l'amplificateur sinusoïdale.
+			 Le délai d'ouverture à la commande pour éviter la double conduction à
+			 l'étage de puissance est la raison de l'affaissement du flanc montant.}
 	\label{fig:osci-cmdmos}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-high-low.png}
-	\caption{}
+	\caption{Capture d'écran d'un oscilloscope affichant les signaux de grille des
+			 transistors MOS supérieur et inférieur à l'étage d'amplification.
+			 Ces commandes sont propres à un signal d'entrée de l'amplificateur
+			 sinusoïdale.}
 	\label{fig:osci-high-low}
 \end{figure}
 
