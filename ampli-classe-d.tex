@@ -278,10 +278,11 @@ Cela ne présente que peux d'intérêt mais est énoncé pour montrer son existe
 \subsection{Comparateur Sigma-Delta}
 Avant de détailler le développent de la modulation sigma-delta, rappelons le principe de 2 composants essentiels à sa mise en oeuvre : 
 \begin{itemize}
-\item \noindent\textbf{L'intégrateur pur} : Le montage intégrateur pur, présenté à la figure~\ref{fig:IntegPur} ci-dessous, est un montage électronique dont le signal de sortie $V_{s}$ correspond à l'intégrale du signal d'entrée $V_{e}$. L'équation suivante traduit la relation d'intégration entre sortie et entrée : 
-\begin{gather}
-    V_{s} = \frac{-1}{R.C}.\int V_{e}.dt 
-\end{gather}
+\item \noindent\textbf{L'intégrateur pur} : le montage intégrateur pur, présenté à la figure~\ref{fig:IntegPur} ci-dessous, est un montage électronique dont le signal de sortie $V_{s}$ correspond à l'intégrale du signal d'entrée $V_{e}$.
+L'équation suivante traduit la relation d'intégration entre sortie et entrée : 
+\begin{equation}
+    V_{s} = -\frac{1}{RC}\int V_{e}\,dt 
+\end{equation}
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=6cm]{image/integrateur.png}
@@ -289,13 +290,16 @@ Avant de détailler le développent de la modulation sigma-delta, rappelons le p
 	\label{fig:IntegPur}
 \end{figure}
 
-\item \noindent\textbf{Le comparateur} : Le comparateur, présenté à la figure~\ref{fig:Comparateur} ci-dessous, n'est ni plus ni moins qu'un amplificateur opérationnel dont le fonctionnement est le suivant : Si la tension appliquée sur l'entrée non inverseuse $V_{1}$ dépasse la tension appliquée sur l'entrée inverseuse $V_{2}$, la sortie se retrouve à 1. Dans le cas contraire, la sortie se trouve à 0. Le figure~\ref{fig:Comparateur_Graphe} présente la sortie du comparateur (signal vert) en fonction de ses deux entrées. L'équation suivante traduit cette relation entre l'entrée et la sortie du comparateur : 
-\begin{gather}
+\item \noindent\textbf{Le comparateur} : le comparateur, présenté à la figure~\ref{fig:Comparateur} ci-dessous, n'est ni plus ni moins qu'un amplificateur opérationnel dont le fonctionnement est le suivant : si la tension appliquée sur l'entrée non inverseuse $V_{1}$ dépasse la tension appliquée sur l'entrée inverseuse $V_{2}$, la sortie se retrouve à 1.
+Dans le cas contraire, la sortie se trouve à 0.
+Le figure~\ref{fig:Comparateur_Graphe} présente la sortie du comparateur (signal vert) en fonction de ses deux entrées.
+L'équation suivante traduit cette relation entre l'entrée et la sortie du comparateur : 
+\begin{align}
 \begin{cases}
- V_{s} = V^{+} \text{ si } V_{1} > V_{2}\\ 
- V_{s} = 0  \text{ si } V_{1} < V_{2}
+ V_{s} = V^{+} &\text{si } V_{1} > V_{2} \\ 
+ V_{s} = 0     &\text{si } V_{1} < V_{2}
 \end{cases}
-\end{gather}
+\end{align}
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=6cm]{image/comparateur.png}
@@ -306,8 +310,6 @@ Avant de détailler le développent de la modulation sigma-delta, rappelons le p
 	\caption{Schématique d'un comparateur.}
 	\label{fig:Comparateur_Graphe}
 \end{figure}
-
-
 \end{itemize}
 La figure~\ref{fig:sch-ctrl} présente la partie logique du circuit, celle qui analyse le signal analogique et le module en commande d'ouverture de transistor.
 Le signal rentre par la connection \texttt{OUTINV} provenant des filtres d'entrées de pré-amplifications.
