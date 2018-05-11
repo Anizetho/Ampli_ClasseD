@@ -379,7 +379,7 @@ Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtre
 Après que les éléments aient été dimensionnée, nous avons opté pour analyser le circuit en le faisant fonctionner en régime normal et en prenant des mesures en différents points.
 Ces mesures sont toujours, sauf si cité explicitement, en tension par rapport à la masse, elle même mise à la terre.
 
-\subsection{Défaut de fabrication}
+\subsection{Problèmes rencontrés}
 Dés le premier branchement de la carte en tension symétrique \pm\SI{25}{\volt}DC,
 nous avons observé un appel de courant de \SI{200}{\milli\ampere} sur le circuit.
 Cette valeur était le maximum parametré sur l'alimentation de laboratoire à notre portée.
@@ -398,6 +398,13 @@ Après avoir remplacé le circuit intégré \texttt{TC4428}, nous avons observé
 Nous avons remplacé un second circuit intégré douteux, le \verb|L6385E|, et la résistance est passée de \SI{200}{\Omega} à \SI{19}{\kilo\Omega}; ce qui est désormais raisonnable.
 Tout cela démontre que deux des circuits imprimés ont été détruits.
 Nous ne savons pas déterminer l'instant auquel cela s'est produit.
+
+Un autre problème rencontré a été le court-circuit à chaque mesure.
+Cela nous a semblé surprenant mais à chaque fois que la sonde passive de l'oscilloscope avec une résistance interne de \SI{10}{\mega\Omega} touchait une piste, l'alimentation de laboratoire se bloquait à la limite de courant.
+Secouer la carte entrainait également ce phénomène.
+Nous avons remplacé les soudures direct fil-à-carte en soudant des connecteurs femelles dans les jonctions mais cela n'a pas réglé le soucis.
+Néanmoins cela l'a rendu plus reproductible car désormais on pouvait dire que c'était dès que le jumper J6 était connecté que le court-circuit apparaissait.
+Ce jumper relie la masse du circuit comparateur et celle de l'étage de puissance.
 
 \subsection{Filtres d'entrées}
 Voulant savoir si les valeurs théoriques calculées au point~\ref{sec:filtrePreAmpli}
