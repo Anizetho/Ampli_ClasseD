@@ -597,7 +597,7 @@ Nous terminons néanmoins satisfait des signaux capturés tout au long du systè
 	\includegraphics[width=0.65\textwidth]{image/osci-compar.png}
 	\caption{Capture d'écran d'un oscilloscope affichant le signal capturé à l'entrée
 			 de l'amplificateur (avant filtrage) et la comparaison perçue par le
-			 \Sigma{}-\Delta{}.}
+			 Sigma-Delta.}
 	\label{fig:osci-compar}
 \end{figure}
 
@@ -607,8 +607,9 @@ Nous terminons néanmoins satisfait des signaux capturés tout au long du systè
 	\caption{Capture d'écran d'un oscilloscope affichant le signal \texttt{CMDMOS}
 			 capturé à la sortie du \Sigma{}-\Delta{} pour un signal d'entrée à
 			 l'amplificateur sinusoïdale.
-			 Le délai d'ouverture à la commande pour éviter la double conduction à
-			 l'étage de puissance est la raison de l'affaissement du flanc montant.}
+			 Un affaissement du flanc montant résultant d'un délai d'ouverture est
+			 volontairement introduit dans les commandes pour éviter la double conduction
+			 à l'étage de puissance.}
 	\label{fig:osci-cmdmos}
 \end{figure}
 
@@ -617,8 +618,7 @@ Nous terminons néanmoins satisfait des signaux capturés tout au long du systè
 	\includegraphics[width=0.65\textwidth]{image/osci-high-low.png}
 	\caption{Capture d'écran d'un oscilloscope affichant les signaux de grille des
 			 transistors MOS supérieur et inférieur à l'étage d'amplification.
-			 Ces commandes sont propres à un signal d'entrée de l'amplificateur
-			 sinusoïdale.}
+			 Ces commandes sont propres à un signal d'entrée sinusoïdale.}
 	\label{fig:osci-high-low}
 \end{figure}
 
@@ -652,7 +652,7 @@ Nous terminons néanmoins satisfait des signaux capturés tout au long du systè
 	\caption{Capture d'écran d'un oscilloscope affichant la différence entre le signal
 			 modulé CMDMOS et la commande de grille du transistor supérieur.
 			 On constate que cette dernière a un léger \og{}skew\fg{}, un décalage
-			 temporel et une  variation de l'amplitude.}
+			 temporel et une variation d'amplitude.}
 	\label{fig:scope-5}
 \end{figure}
 
@@ -685,7 +685,7 @@ Nous terminons néanmoins satisfait des signaux capturés tout au long du systè
 	\includegraphics[width=0.65\textwidth]{image/12-05/scope_10.png}
 	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et les
 			 connections du condensateur de bootstrap sans que celui-ci ne soit présent.
-			 Les deux connections sont mélangés et indiscernable.
+			 Les deux connections sont mélangées et indiscernables.
 			 Le condensateur ne voit pas donc de différence de tension.}
 	\label{fig:scope-10}
 \end{figure}
