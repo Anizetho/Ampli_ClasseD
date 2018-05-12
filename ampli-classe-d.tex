@@ -493,10 +493,10 @@ Avec son duty cycle de \pm50\%, la sortie du comparateur représente bien un sig
 Ceci nous amènes à regarder le signal \texttt{CMDMOS} à la sortie du Sigma-Delta, la figure~\ref{fig:osci-cmdmos} présente la sortie obtenue pour le signal sinusoïdale présenté précédemment.
 Nous y voyons un signal avec une flanc montant adouci et un duty cycle de \num{51.8}\% au moment de la capture.
 Encore une fois tout cela semble correcte, nous regardons à la suite au signal dédoublé au travers de l'inverseur \texttt{TC4428}.
-Nous y trouvons les commandes d'ouvertes des transistors qui seront transmises aux drivers.
+Nous y trouvons les commandes d'ouvertes des transistors qui seront transmises au driver.
 La figure~\ref{fig:osci-high-low} présente ces commandes.
 Elles y apparaissent complémentaires avec chacun cet adoucissement du flanc montant évoqué précédemment.
-Cet adoucissement est un effet volontaire introduit avant l'entrée des commandes dans le drivers MOS.
+Cet adoucissement est un effet volontaire introduit avant l'entrée des commandes dans le driver MOS.
 Elles ont pour but d'éviter l'ouverture simultanée des deux transistors, ce qui provoquerait un court-circuit.
 
 De l'analyse effectuée jusqu'à présent, le circuit Sigma-Delta semble fonctionner comme désiré pour un signal sinusoïdale.
@@ -504,6 +504,74 @@ Nous avons utilisé cette nature de signal car elle est de la même nature que c
 Mise à part que leurs fréquences et amplitudes varient.
 Nous en décidons que le problème rencontré énoncé dans la sous-section~\ref{sec:problems} ne vient pas du circuit Sigma-Delta, mais de l'étage de puissance à sa suite.
 
+\subsection{Performance de l'étage d'amplification}
+Supposant le bon fonctionnement du Sigma-Delta, que nous allons encore cependant vérifier, nous nous sommes mis à prendre des mesures autours du driver MOS et des transistors.
+Nous avons voulu vérifier la capacité de l'étage d'amplification à reproduire une tension DC à la sortie de la carte.
+Pourquoi une composante DC ?
+Parce que sa propriété statique rend l'interprétation des signaux mesurés très aisée.
+
+Premièrement nous devons contourner les filtres d'entrées ; ils contiennent un passe-haut à la fréquence de \SI{20}{\hertz}, bloquant ainsi la composante continue.
+Nous en profitons pour évaluer une nouvelle fois le fonctionnement du Sigma-Delta.
+Les figures~\ref{fig:scope-2}~\ref{fig:scope-3}~\ref{fig:scope-4} présentent le signal \texttt{CMDMOS} selon la tension DC appliquée en entrée du comparateur.
+Nous y distinguons facilement l'échelle et les limites de comparaisons que nous reprenons dans le tableau~\ref{tab:dutyCycleDC}.
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|r|r|}
+	\hline
+	Tension & Duty+ \\
+	\hline
+	\SI{7}{\volt}  & \num{3.764}\% \\
+	\SI{0}{\volt}  & \num{48.80}\% \\
+	\SI{-7}{\volt} & \num{96.477}\% \\
+	\hline
+	\end{tabular}
+	\caption{Échelle de modulation MLI du Sigma-Delta pour un signal DC.}
+	\label{tab:dutyCycleDC}
+\end{table}
+Nous sommes étonnés que le duty cycle positif diminue quand la tension DC augmente, mais dans le cas de signaux audios sinusoïdaux, inverser la tension n'influencera guère le son car cette dernière est symétrique autour de 0.
+
+Nous en profitons pour mesurer la fréquence de comparaison du Sigma-Delta.
+Elle est de \SI{171.7}{\kilo\hertz}.
+C'est bien supérieur au \SI{44}{\kilo\hertz} nécessaire pour échantillonner du son, cela est parfait.
+
+Nous pouvons donc en conclure une fois de plus que le modulateur Sigma-Delta fonctionne comme attendu.
+Si nous continuons sur le trajet du signal, nous arrivons à l'inverseur \texttt{TC4428} dédoublant le signal et inversant une sortie.
+La figure~\ref{fig:scope-5} présente notre capture entre le signal \texttt{CMDMOS} d'entrée et la commande de transistor supérieur en sortie.
+Mise à part une légère modification d'amplitude, nous ne ne constatons pas de problème.
+
+Nous partons donc mesurer les signaux de grilles des transistors supérieur et inférieur à la sortie du driver MOS.
+Les figures~\ref{fig:scope-7} et~\ref{fig:scope-8} présentent ces mesures.
+Bingo, nous avons trouvé un problème.
+La commande du transistor inférieur fonctionne comme attendue : de l'état bas à \SI{0}{\volt}, elle saute à \SI{24.25}{\volt} lorsque \texttt{CMDMOS} tombe à 0.
+
+La commande du transistor supérieur est, par contre, totalement absurde.
+C'est une copie de la commande inférieur, avec l'ajout d'un offset de \SI{24}{\volt}.
+La commande passe donc de \SI{24}{\volt} quand \texttt{CMDMOS} est haut, à \SI{30}{\volt} quand \texttt{CMDMOS} retombe à 0.
+Non seulement ses états sont l'inverse de ce qui est désiré, mais en plus son offet de \SI{24}{\volt} est supérieur à la tension requise d'ouverture des transistors, rendant le transistor supérieur constamment ouvert.
+
+Voilà donc où se trouve le problème entrainant le court-circuit cité à la section~\ref{sec:problems}.
+Le transistor supérieur étant constamment ouvert, il amène une tension de la masse virtuelle du circuit de puissance \texttt{VPGND}.
+Quand le jumper JP6 est placé, la masse du circuit logique \texttt{VDGND}, qui est directement connecté au neutre de l'alimentation, se retrouve connectée à \texttt{VPGND} où se trouve une tension élevée du au défaut du transistor.
+Ceci court-circuitant l'alimentation.
+
+Nous nous sommes dès lors intéressé au driver MOS, et en particulier à au condensateur de bootstrap.
+La figure~\ref{fig:scope-10} présente une capture des deux connecteurs du condensateur de bootstrap, sans que ce dernier ne soit connecté.
+Le signal \texttt{CMDMOS} est encore présenté pour donner une référence.
+On ne remarque que deux signaux malgré que trois sont affichés, les deux connections du condensateur de bootstrap sont indiscernables.
+À noter qu'elles sont également un offset de \SI{24.25}{\volt}.
+C'est à dire que le condensateur ne voit jamais une différence de tension apparaître entre 
+ses broches.
+Il est inutile.
+
+Évidement cela n'est pas normal, et après avoir vérifié minutieusement les pistes et soudures de la carte, nous suspectons le driver MOS \texttt{L6385E} d'être non fonctionnel.
+Celui même qui avait déjà été remplacé une fois précédemment.
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+
+
+%%%%%%%%%%%%%%%%% GROS BAZARD DE FIGURE À LA FIN %%%%%%%%%%%%%%%%%
+\pagebreak
 \begin{figure}[p]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-post-filters.png}
@@ -545,7 +613,6 @@ Nous en décidons que le problème rencontré énoncé dans la sous-section~\ref
 	\label{fig:osci-high-low}
 \end{figure}
 
-\subsection{Performance de l'étage d'amplification}
 \begin{figure}[p]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/12-05/scope_2.png}
@@ -585,7 +652,7 @@ Nous en décidons que le problème rencontré énoncé dans la sous-section~\ref
 	\includegraphics[width=0.65\textwidth]{image/12-05/scope_7.png}
 	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et la
 			 commande d'ouverture du transistor supérieur.}
-	\label{fig:scope_7}
+	\label{fig:scope-7}
 \end{figure}
 
 \begin{figure}[p]
@@ -613,9 +680,6 @@ Nous en décidons que le problème rencontré énoncé dans la sous-section~\ref
 			 Le condensateur ne voit pas donc de différence de tension.}
 	\label{fig:scope-10}
 \end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
 
 
 %%%%%%%%%%%%%%%%%%
