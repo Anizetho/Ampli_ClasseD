@@ -403,11 +403,6 @@ Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtre
     \label{tab:recapFiltres}
 \end{table}
 
-\subsection{Constante de temps du Sigma-Delta}
-% TODO
-
-\subsection{Filtre RC de sortie}
-% TODO
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analyse du circuit}
@@ -415,6 +410,7 @@ Après que les éléments aient été dimensionnée, nous avons opté pour analy
 Ces mesures sont toujours, sauf si cité explicitement, en tension par rapport à la masse, elle même mise à la terre.
 
 \subsection{Problèmes rencontrés}
+\label{sec:problems}
 Dés le premier branchement de la carte en tension symétrique \pm\SI{25}{\volt}DC,
 nous avons observé un appel de courant de \SI{200}{\milli\ampere} sur le circuit.
 Cette valeur était le maximum parametré sur l'alimentation de laboratoire à notre portée.
@@ -438,8 +434,9 @@ Un autre problème rencontré a été le court-circuit à chaque mesure.
 Cela nous a semblé surprenant mais à chaque fois que la sonde passive de l'oscilloscope avec une résistance interne de \SI{10}{\mega\Omega} touchait une piste, l'alimentation de laboratoire se bloquait à la limite de courant.
 Secouer la carte entrainait également ce phénomène.
 Nous avons remplacé les soudures direct fil-à-carte en soudant des connecteurs femelles dans les jonctions mais cela n'a pas réglé le soucis.
-Néanmoins cela l'a rendu plus reproductible car désormais on pouvait dire que c'était dès que le jumper J6 était connecté que le court-circuit apparaissait.
+Néanmoins cela l'a rendu plus reproductible car désormais nous pouvions dire que c'était dès que le jumper J6 était connecté que le court-circuit apparaissait.
 Ce jumper relie la masse du circuit comparateur et celle de l'étage de puissance.
+Nous discutons de ce souci par la suite.
 
 \subsection{Filtres d'entrées}
 Voulant savoir si les valeurs théoriques calculées au point~\ref{sec:filtrePreAmpli}
@@ -474,10 +471,40 @@ Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1
     \label{fig:resultatRepFreq}
 \end{figure}
 
-\subsection{Amplification}
-% TODO
+\subsection{Performance du Sigma-Delta}
+Malgré que dans son ensemble le circuit ne désire pas fonctionner, nous l'avons dument analyser afin d'en resortir la cause.
+Nous abordons dans cette section les mesures effectuées sur la partie Sigma-Delta de la carte.
 
-\begin{figure}[htbp]
+Avant même d'arrivée dans le comparateur, le signal est filtré par les filtres d'entrées.
+La figure~\ref{fig:osci-post-filters} présente la capture d'un signal avant et après son passage au travers du filtre.
+Pour une signal sinusoïdale d'amplitude \SI{5}{\volt}pp avec un offtset à \SI{2.5}{\volt} à \SI{1}{\kilo\hertz}, le filtre :
+\begin{enumerate}
+	\item Retire l'offset (centre le signal autour de \SI{0}{\volt});
+	\item Ne modifie pas l'amplitude ni la fréquence;
+	\item Retarde la phase de \SI{\pi}{\radian\per\sec}.
+\end{enumerate}
+Ceci est exactement ce que nous attendons et désirons.
+
+Après filtrage, le circuit arrive dans le comparateur.
+La figure~\ref{fig:osci-compar} présente la comparaison entre le signal avant filtrage et l'effet de la retro-action.
+Nous constatons que la sortie du comparateur varie à chaque fois que le signal d'entrée atteint sa valeur moyenne.
+Avec son duty cycle de \pm50\%, la sortie du comparateur représente bien un signal sinusoïdale.
+
+Ceci nous amènes à regarder le signal \texttt{CMDMOS} à la sortie du Sigma-Delta, la figure~\ref{fig:osci-cmdmos} présente la sortie obtenue pour le signal sinusoïdale présenté précédemment.
+Nous y voyons un signal avec une flanc montant adouci et un duty cycle de \num{51.8}\% au moment de la capture.
+Encore une fois tout cela semble correcte, nous regardons à la suite au signal dédoublé au travers de l'inverseur \texttt{TC4428}.
+Nous y trouvons les commandes d'ouvertes des transistors qui seront transmises aux drivers.
+La figure~\ref{fig:osci-high-low} présente ces commandes.
+Elles y apparaissent complémentaires avec chacun cet adoucissement du flanc montant évoqué précédemment.
+Cet adoucissement est un effet volontaire introduit avant l'entrée des commandes dans le drivers MOS.
+Elles ont pour but d'éviter l'ouverture simultanée des deux transistors, ce qui provoquerait un court-circuit.
+
+De l'analyse effectuée jusqu'à présent, le circuit Sigma-Delta semble fonctionner comme désiré pour un signal sinusoïdale.
+Nous avons utilisé cette nature de signal car elle est de la même nature que ceux présents dans un signal audio.
+Mise à part que leurs fréquences et amplitudes varient.
+Nous en décidons que le problème rencontré énoncé dans la sous-section~\ref{sec:problems} ne vient pas du circuit Sigma-Delta, mais de l'étage de puissance à sa suite.
+
+\begin{figure}[p]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-post-filters.png}
 	\caption{Capture d'écran d'un oscilloscope affichant le signal capturé avant les
@@ -485,19 +512,19 @@ Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1
 			 Au travers du filtre le signal garde son amplitude, est déphasé de
 			 \SI{\pi}{\radian\per\second}, et son offset disparait pour se centrer autour
 			 de 0.}
-	\label{fig:osci-speaker}
+	\label{fig:osci-post-filters}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[p]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-compar.png}
 	\caption{Capture d'écran d'un oscilloscope affichant le signal capturé à l'entrée
-			 de l'amplificateur (avant filtrage) et la rétro-action perçue au
+			 de l'amplificateur (avant filtrage) et la comparaison perçue par le
 			 \Sigma{}-\Delta{}.}
 	\label{fig:osci-compar}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[p]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-cmdmos.png}
 	\caption{Capture d'écran d'un oscilloscope affichant le signal \texttt{CMDMOS}
@@ -508,7 +535,7 @@ Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1
 	\label{fig:osci-cmdmos}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[p]
 	\centering
 	\includegraphics[width=0.65\textwidth]{image/osci-high-low.png}
 	\caption{Capture d'écran d'un oscilloscope affichant les signaux de grille des
@@ -516,6 +543,75 @@ Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1
 			 Ces commandes sont propres à un signal d'entrée de l'amplificateur
 			 sinusoïdale.}
 	\label{fig:osci-high-low}
+\end{figure}
+
+\subsection{Performance de l'étage d'amplification}
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.65\textwidth]{image/12-05/scope_2.png}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS pour une
+			 tension d'entrée continue de \SI{7}{\volt}. Le duty cycle est de \num{3.7}\%.}
+	\label{fig:scope-2}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.65\textwidth]{image/12-05/scope_3.png}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS pour une
+			 tension d'entrée continue de \SI{0}{\volt}. Le duty cycle est de \num{48.8}\%.}
+	\label{fig:scope-3}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.65\textwidth]{image/12-05/scope_4.png}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS pour une
+			 tension d'entrée continue de \SI{-7}{\volt}. Le duty cycle est de \num{96.5}\%.}
+	\label{fig:scope-4}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.65\textwidth]{image/12-05/scope_5.png}
+	\caption{Capture d'écran d'un oscilloscope affichant la différence entre le signal
+			 modulé CMDMOS et la commande de grille du transistor supérieur.
+			 On constate que cette dernière a un léger \og{}skew\fg{}, un décalage
+			 temporel et une  variation de l'amplitude.}
+	\label{fig:scope-5}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.65\textwidth]{image/12-05/scope_7.png}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et la
+			 commande d'ouverture du transistor supérieur.}
+	\label{fig:scope_7}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.65\textwidth]{image/12-05/scope_8.png}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et la
+			 commande d'ouverture du transistor inférieur.}
+	\label{fig:scope-8}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.65\textwidth]{image/12-05/scope_9.png}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et de
+			 la pollution constatable sur la masse.}
+	\label{fig:scope-9}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.65\textwidth]{image/12-05/scope_10.png}
+	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et les
+			 connections du condensateur de bootstrap sans que celui-ci ne soit présent.
+			 Les deux connections sont mélangés et indiscernable.
+			 Le condensateur ne voit pas donc de différence de tension.}
+	\label{fig:scope-10}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -554,5 +650,10 @@ Par Toriicelli (Travail personnel) [Public domain], de Wikimedia Commons
 \includepdf[pagecommand=\section{Schéma du circuit DIDACTRL}]{pdf/DIDACTRL.pdf}
 \includepdf[pagecommand=\section{Schéma du circuit DIDAMOS}]{pdf/DIDAMOS.pdf}
 \includepdf[pagecommand=\section{Schéma du circuit DIDAMO2}]{pdf/DIDAMO2.pdf}
+\section{Photographie}
+\begin{figure}[!ht]
+	\includegraphics[width=\linewidth]{image/carte.jpg}
+	\caption{Photographie prise par le dessus de la carte réalisée.}
+\end{figure}
 
 \end{document}
