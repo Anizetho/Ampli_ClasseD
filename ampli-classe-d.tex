@@ -85,7 +85,9 @@
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
+\phantomsection
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
 Après avoir étudié la théorie derrière le transfert de puissance en électronique,
 nous avons mis à l'épreuve nos acquis théoriques dans un cas pratique en réalisant un circuit d'amplification de signaux audio analogiques.
 Ce circuit d'amplification appartient à la classe D, une classe exploitant la connaissance de l'électronique de puissance, pour minimiser les pertes d'énergies aux étages d'amplification.
@@ -411,14 +413,18 @@ Le dimensionnement des composants du sigma-delta étant assez complexe, nous all
 \noindent\textbf{Hypothèses :}
 \begin{enumerate}
 \item Premièrement, nous posons comme hypothèse que le signal reçu sur la pin INREGC, soit la signal à la sortie des filtres d'entrées, est de valeur nulle.
-\item Deuxièmement, nous posons comme seconde hypothèse que le signal doit osciller autour de $7,5V$. En effet, le signal doit obligatoirement rester positif pour le bon fonctionnement des MOS dans la suite du circuit. Cela oblige d'avoir un rapport de 2 entre les résistances $R_{17}$ et $R_{18}$ sur le circuit, soit $R_{18} = 2*R_{17}$. Nous avons pris comme valeurs : 1000 ohm pour $R_{17}$ et par conséquent 2000 ohm pour $R_{18}$.
-\item Troisièmement, nous posons comme hypothèse que nous souhaitons une fréquence de basculement à 170 kHz. Ceci implique que ...
+\item Deuxièmement, nous posons comme seconde hypothèse que le signal doit osciller autour de \SI{7.5}{\volt}.
+	En effet, le signal doit obligatoirement rester positif pour le bon fonctionnement des MOS dans la suite du circuit.
+	Cela oblige d'avoir un rapport de 2 entre les résistances $R_{17}$ et $R_{18}$ sur le circuit, soit $R_{18} = 2R_{17}$.
+	Nous avons pris comme valeurs : \SI{10}{\kilo\Omega} pour $R_{17}$ et par conséquent \SI{20}{\kilo\Omega} pour $R_{18}$.
+\item Troisièmement, nous posons comme hypothèse que nous souhaitons une fréquence de basculement à \SI{170}{\kilo\hertz}.
+	Ceci implique que ...
 \end{enumerate}
 
 \noindent\textbf{Concernant le dimensionnement} du sigma-delta, nous devons analyser 2 cas de figure : 
 \begin{enumerate}
-\item Lorsque la sortie du comparateur délivre un état logique haut, soit $15V$.
-\item Lorsque la sortie du comparateur délivre un état logique bas, soit $0V$.
+\item Lorsque la sortie du comparateur délivre un état logique haut, soit \SI{15}{\volt}.
+\item Lorsque la sortie du comparateur délivre un état logique bas, soit \SI{0}{\volt}.
 \end{enumerate}
 
 
@@ -430,19 +436,19 @@ Dans la section 5.3, nous avons rappelé les notions théoriques d'intégrateur 
 	\label{fig:notation}
 \end{figure}
 
-\noindent\textbf{CAS 1} : la sortie du comparateur est à 15V. \\
-Cela signifie que $V_1 = 15V$. Dès lors, sachant que l'entrée non inverseuse de l'intégrateur est à la masse, on peut calculer les courants $I_1$, $I_2$, $I_3$ comme suit : 
+\noindent\textbf{CAS 1} : la sortie du comparateur est à \SI{15}{\volt}. \\
+Cela signifie que $V_1 = \SI{15}{\volt}$. Dès lors, sachant que l'entrée non inverseuse de l'intégrateur est à la masse, on peut calculer les courants $I_1$, $I_2$ et $I_3$ comme suit : 
 \begin{gather}
-    I_1 = \frac{V_1}{R_{17}} = \frac{15}{1000} = 1,5 mA\\
-    I_2 = \frac{15V}{R_{18}} = \frac{15}{2*R_{17}} = \frac{15}{2000} = 0,75 mA \\
-    I_3 = I_1 - I_2 = \frac{I_1}{2} = 0,75 mA
+    I_1 = \frac{V_1}{R_{17}} = \frac{15}{1000} = \SI{1.5}{\milli\ampere}\\
+    I_2 = \frac{15V}{R_{18}} = \frac{15}{2R_{17}} = \frac{15}{2000} = \SI{0.75}{\milli\ampere} \\
+    I_3 = I_1 - I_2 = \frac{I_1}{2} = \SI{0.75}{\milli\ampere}
     \intertext{Ensuite, reprenant le 3ème hypothèse formulée précédemment et se rappelant de la relation caractéristique d'un condensateur idéal, on peut calculer la valeur du condensateur $C_{19}$ :} 
-     C_{19} = \frac{I_3*d_u}{d_t} = \frac{0,75*}{1/170} = ... \\
+     C_{19} = \frac{I_3 \cdot d_u}{d_t} = \frac{\num{0.75} \cdot d_u}{1/170} = ... \\
      \intertext{Finalement, nous pouvons présenter l'allure dans un graphique de la tension $V_2$ en fonction de $V_1$ et $V_0$. En effet, en résolvant l'équation différentielle (15) ci-dessus, nous constatons que nous obtenons la formule théorique établie à la section 5.3 pour un intégrateur pur, soit : } 
-     V_{0} = \frac{-1*...}{R_{18}*C_{19}} = \frac{-V^{+} . t}{R_{18}*C_{19}} \\
+     V_{0} = \frac{-1 \cdot ...}{R_{18} C_{19}} = \frac{-V^{+} \cdot t}{R_{18}C_{19}} \\
      \intertext{On connait les équation de $V_0$ et $V_1$. Dès lors, on peut également calculer celle de $V_2$ :} 
-     V_{2} = \frac{(V_1 - V_0) * R{20}}{R_{21}+R_{20}} + V_0 
-     \intertext{Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons conclure que : $V_0$ est toujours constant ($15V$), que $V_1$ décroit linéairement avec une pente m égale à $\frac{-V^{+}}{R_{18}*C_{19}}$ et enfin que $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque ... . La figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous présente l'allure de ces 3 équations.}
+     V_{2} = \frac{(V_1 - V_0) R_{20}}{R_{21}+R_{20}} + V_0
+     \intertext{Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons conclure que : $V_0$ est toujours constant (\SI{15}{\volt}), que $V_1$ décroit linéairement avec une pente m égale à $\frac{-V^{+}}{R_{18}C_{19}}$ et enfin que $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque ... . La figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous présente l'allure de ces 3 équations.}
 \end{gather}
 
 \begin{figure}[!ht]
@@ -452,8 +458,8 @@ Cela signifie que $V_1 = 15V$. Dès lors, sachant que l'entrée non inverseuse d
 	\label{fig:Graphe_Sigma_Delta}
 \end{figure}
 
-\noindent\textbf{CAS 2} : la sortie du comparateur est à 0V. \\
-Le raisonnement est identique au CAS 1 à l'exception que $V_1$ ne vaut plus $15V$ mais plutôt $0V$.
+\noindent\textbf{CAS 2} : la sortie du comparateur est à \SI{0}{\volt}. \\
+Le raisonnement est identique au CAS 1 à l'exception que $V_1$ ne vaut plus \SI{15}{\volt} mais plutôt 0.
 
 
 
@@ -621,7 +627,9 @@ Celui même qui avait déjà été remplacé une fois précédemment à notre gr
 
 
 %%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
+\phantomsection
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
 Bien que dans son ensemble le circuit ne satisfait pas comme amplificateur de signaux audios, d'après les hypothèses énoncées à la section~\ref{sec:hypothese}, nous affirmons que le circuit est majoritairement fonctionnel.
 De nos nombreuses séances de mesure, nous avons déterminé que les filtres d'entrées ont étés correctement dimensionnés.
 Le circuit de modulation Sigma-Delta accomplit parfaitement sa tâche en mesurant son écart sur la consigne à \SI{171}{\kilo\hertz}, bien suffisant pour des signaux audios.
@@ -746,9 +754,10 @@ Nous terminons néanmoins satisfait des signaux capturés tout au long du systè
 
 %%%%%%%%%%%%%%%%%%
 \pagebreak
+\phantomsection
 \section*{Crédits}
-\pdfbookmark[1]{Crédits}{sec:credits}
-    
+\addcontentsline{toc}{section}{Crédits}
+
 \begin{itemize}
 \item Figure~\ref{fig:sigmaDelta} provenant de :\\*
 Le blog officiel de Texas Instrument :
@@ -766,7 +775,9 @@ Par Toriicelli (Travail personnel) [Public domain], de Wikimedia Commons
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pdfbookmark[1]{Références}{sec:references}
+\phantomsection
+\addcontentsline{toc}{section}{Références}
+
 \bibliographystyle{unsrt}
 \bibliography{ampli-classe-d}
 
@@ -776,6 +787,7 @@ Par Toriicelli (Travail personnel) [Public domain], de Wikimedia Commons
 \includepdf[pagecommand=\section{Schéma du circuit DIDACTRL}]{pdf/DIDACTRL.pdf}
 \includepdf[pagecommand=\section{Schéma du circuit DIDAMOS}]{pdf/DIDAMOS.pdf}
 \includepdf[pagecommand=\section{Schéma du circuit DIDAMO2}]{pdf/DIDAMO2.pdf}
+
 \section{Photographie}
 \begin{figure}[!ht]
 	\includegraphics[width=\linewidth]{image/carte.jpg}
