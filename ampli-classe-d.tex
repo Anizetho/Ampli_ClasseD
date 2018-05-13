@@ -97,7 +97,7 @@ Ce document reprend notre réalisation et notre analyse du circuit.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hypothèses de départ}
 \label{sec:hypothese}
-Avant de s'attaquer au problème, définissons l'environnement dans lequel nous allons travailler tel que la nature du signal reçu en entré.
+Avant de s'attaquer au problème, définissons l'environnement dans lequel nous allons travailler tel que la nature du signal reçu en entrée.
 Notre amplificateur doit être conçu pour les signaux audio ;
 les signaux audio sont produit par un module convertisseur analogique-numérique (sigle CAN, ou DAC en anglais).
 Leur tension est asymétrique entre \num{0} et une référence observée habituellement à \SI{1024}{\milli\volt} et leur fréquence varie entre \num{20} et \SI{22000}{\hertz}~\cite{heffner2007hearing}.
@@ -106,7 +106,7 @@ Nous supprimerons donc les composantes fréquentielles hors de ces bornes par de
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Circuit amplificateur}
-Le circuit réalisé repose sur deux modules pour amplifier le signal d'entré :
+Le circuit réalisé repose sur deux modules pour amplifier le signal d'entrée :
 un convertisseur analogique-numérique de type Sigma-Delta, et un contrôleur de transistor MOSFET.
 La mise en série de ces deux modules permet de créer un amplificateur de classe D.
 Les sous-sections \ref{sec:sigmaDelta} et \ref{sec:classeD} définissent le principe derrière chaque module et évoquent leur raison d'être.
@@ -135,7 +135,7 @@ Le modulateur fonctionnera à une fréquence plus élevée, suréchantillonnant 
 La modulation Delta connecte la sortie à l'entrée pour la différentier, c'est une rétro-action.
 Un automaticien y reconnaîtra un contrôle en boucle fermée proportionnel, un régulateur P.
 Cet automaticien saura également que ces régulateurs ont le défaut de toujours avoir un décalage entre la consigne et le signal de sortie désiré, nommé \og{}écart statique\fg{}.
-Ce problème se résout en ajoutant un intégrateur avant la comparaison ; ce dernier maintient la dernière valeur comparu.
+Ce problème se résout en ajoutant un intégrateur avant la comparaison ; ce dernier maintient la dernière valeur comparue.
 Cela devient un régulateur PI \og{}proportional-integral\fg{}.
 Cette nouvelle modulation se nomme Sigma-Delta, puisqu'elle somme (\Sigma{}) les différences (\Delta{}).
 
@@ -148,7 +148,7 @@ le signal à la sortie de l'intégrateur grimpe progressivement de manière mono
 Ce signal arrive à l'entrée d'un comparateur qui retourne une tension soit maximale, soit minimale.
 C'est ce signal binaire qui est réutilisé en rétro-action.
 Le système va tenter de compenser le signal d'entrée avec la tension haute ou la tension basse.
-Cette tension n'ayant pas de valeur intermédiaire, le système ne parviendra jamais à compenser le signal d'entré si celui-ci se trouve entre les bornes.
+Cette tension n'ayant pas de valeur intermédiaire, le système ne parviendra jamais à compenser le signal d'entrée si celui-ci se trouve entre les bornes.
 Le système est oscillant.
 L'information modulée s'encode comme les différences entre cycle tension haute--basse.
 
@@ -212,13 +212,13 @@ Nous nous intéressons uniquement aux filtres passes-bas et passe-haut étant do
 \begin{itemize}
     \item\textbf{Les filtre passe-bas} laissent passer toutes les fréquences depuis
         la fréquence nulle jusqu'à la fréquence de coupure et atténue toutes les
-        fréquences supérieures qui lui sont supérieures.
+        fréquences qui lui sont supérieures.
     \item\textbf{Les filtre passe-haut} atténuent toutes les fréquences depuis la
         fréquence nulle jusqu'à la fréquence de coupure et laisse passer toutes
         celles qui lui sont supérieures.
 \end{itemize}
 Pour rappel, la fréquence de coupure d'un filtre, notée par la suite $f_c$, est la fréquence limite de fonctionnement utile de ce filtre.
-Elle est défini à \SI{-3}{\decibel}, là où le signal perd la moitié de sa puissance.
+Elle est définie à \SI{-3}{\decibel}, là où le signal perd la moitié de sa puissance.
 Ainsi, nous définissions deux fréquences de coupures :
 \begin{itemize}
     \item la $f_c$ du filtre passe-bas à \SI{22000}{\hertz}
@@ -268,7 +268,7 @@ Afin de mieux distinguer le montage, les figures~\ref{fig:filtreLowpass} et \ref
 
 \subsection{Alimentation}
 La figure~\ref{fig:alimDecouplage} présente le circuit de découplage de l'alimentation.
-Cela ne présente que peux d'intérêt mais est énoncé pour montrer son existence.
+Cela ne présente que peu d'intérêt mais est énoncé pour montrer son existence.
 
 \begin{figure}[!ht]
 	\centering
@@ -323,7 +323,7 @@ Cette résistance deux fois plus grande laisse passer la quantité de courant n�
 
 \begin{description}
 \item[Le premier AOP \texttt{U3A} ] agit tel un intégrateur pur et intègre la différence entre la mesure et la consigne selon l'équation (1) donnée ci-avant.
-\item[Le second AOP \texttt{U5B} ] réagit en trigger de Schmitt et fixe sa sortie en bi-state \SI{\pm15}{\volt} suivant que l'erreur entre la mesure et la consigne soit positive ou négative. \\
+\item[Le second AOP \texttt{U5B} ] réagit en trigger de Schmitt et fixe sa sortie en bi-state (\SI{0}{\volt} ou \SI{15}{\volt}) suivant que l'erreur entre la mesure et la consigne soit positive ou négative. \\
 \end{description}
 
 \begin{figure}[!ht]
@@ -338,7 +338,7 @@ La commande d'ouverture des transistors arrive par \texttt{CMDMOS}.
 Ce signal est dédoublé et l'une des sortie est inversée afin de contrôler les deux transistors alternativement.
 Le circuit intégré \texttt{L6385} se charge de commander les grilles des transistors en y plaçant une tension adaptée grâce à son condensateur de bootstrap.
 Le haut-parleur, charge RL dans le circuit, est connecté à la junction entre le transistor MOS supérieur et l'inférieur au jumper 1.
-Pour une raison de facilité, la source de tension \SI{24}{\volt} située au jumper 5 est relié à la même source que le driver MOS.
+Pour une raison de facilité, la source de tension \SI{24}{\volt} située au jumper 5 est reliée à la même source que le driver MOS.
 
 \begin{figure}[!ht]
 	\centering
@@ -351,13 +351,13 @@ Pour une raison de facilité, la source de tension \SI{24}{\volt} située au jum
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dimensionnement}
 Cette section aborde nos choix de composant dans la réalisation des filtres et du temps d'intégration du Sigma-Delta.
-Ces choix sont accompagnés de calcules appuyant nos décisions.
+Ces choix sont accompagnés de calculs appuyant nos décisions.
 
 \subsection{Filtres d'entrées}
 \label{sec:filtrePreAmpli}
-Pour dimensionner les composants électroniques (résistances et condensateurs) des deux filtres de l'amplificateur classe D, nous avons procédé comme suit :
+Pour dimensionner les composants électroniques (résistances et condensateurs) des deux filtres d'entrée de l'amplificateur classe D, nous avons procédé comme suit :
 
-\textit{N.B.} Se référer aux figures~\ref{fig:filtreLowpass} et \ref{fig:filtreHighpass} pour les notations.
+\textit{N.B.} Se référer aux figures~\ref{fig:filtreLowpass} et \ref{fig:filtreHighpass} de la section 4.1 pour les notations.
 Les éléments R1 et C1 sont connectés entre l'entrée et la borne négative de l'AOP, les éléments R2 et C2 sont connectés à la rétro-action de cet AOP.
 
 \noindent\textbf{Pour le filtre passe-bas} : durant le laboratoire, nous avons commencé par
@@ -379,7 +379,7 @@ et le gain de l'amplificateur :
     C_2 = \frac{1}{2\pi R_2 f_c}
     \intertext{Cherchant une valeur la plus standardisée possible pour le condensateur
     		   C2, nous devons ajuster la valeur de la fréquence de coupure dans la
-		   	   formule donnée précédemment.
+		   	   formule donnée précédemment (7).
 			   Ceci nous conduit à ajuster la fréquence de coupure à \SI{19400}{\hertz}.}
     C_2 = \frac{1}{2\pi\;8200\times19400} = \SI{1}{\nano\farad}
 \end{gather}
@@ -403,7 +403,7 @@ Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtre
 \begin{table}[htbp]
     \centering
     \includegraphics[scale=0.65]{image/tableau-filtres.jpg}
-    \caption{Tableau récapitulatif des valeurs calculées pour les filtres de l'amplificateur classe D.}
+    \caption{Tableau récapitulatif des valeurs calculées théoriquement pour les filtres de l'amplificateur classe D.}
     \label{tab:recapFiltres}
 \end{table}
 
@@ -412,8 +412,8 @@ Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtre
 Le dimensionnement des composants du sigma-delta étant assez complexe, nous allons dans un premier temps énoncer les hypothèses posées ; ensuite, nous détaillerons les différentes étapes nécessaires afin d'obtenir les signaux désirés en sortie du comparateur. \\
 \noindent\textbf{Hypothèses :}
 \begin{enumerate}
-\item Premièrement, nous posons comme hypothèse que le signal reçu sur la pin INREGC, soit la signal à la sortie des filtres d'entrées, est de valeur nulle.
-\item Deuxièmement, nous posons comme seconde hypothèse que le signal doit osciller autour de \SI{7.5}{\volt}.
+\item Premièrement, nous posons comme hypothèse que nous n'envoyons pas de signaux analogiques à l'entrée de l'amplificateur classe D. Ainsi, le signal reçu sur la pin OUTINV, soit la signal à la sortie des filtres d'entrées, est de valeur nulle.
+\item Deuxièmement, nous posons comme hypothèse que le signal doit osciller autour de \SI{7.5}{\volt}.
 	En effet, le signal doit obligatoirement rester positif pour le bon fonctionnement des MOS dans la suite du circuit.
 	Cela oblige d'avoir un rapport de 2 entre les résistances $R_{17}$ et $R_{18}$ sur le circuit, soit $R_{18} = 2R_{17}$.
 	Nous avons pris comme valeurs : \SI{10}{\kilo\Omega} pour $R_{17}$ et par conséquent \SI{20}{\kilo\Omega} pour $R_{18}$.
@@ -428,7 +428,7 @@ Le dimensionnement des composants du sigma-delta étant assez complexe, nous all
 \end{enumerate}
 
 
-Dans la section 5.3, nous avons rappelé les notions théoriques d'intégrateur pur et de comparateur indispensables pour la compréhension de ce qui va suivre. Avant de continuer, nous allons nous mettre d'accord sur la notation des différents courants, tensions, capacité et résistance qui entrent en jeux. Pour ce faire, référons-nous à la figure~\ref{fig:notation}. \\
+Dans la section 5.3, nous avons rappelé les notions théoriques d'intégrateur pur et de comparateur indispensables pour la compréhension de ce qui va suivre. Avant de continuer, nous allons nous mettre d'accord sur la notation des différents courants, tensions, capacité et résistances qui entrent en jeux. Pour ce faire, référons-nous à la figure~\ref{fig:notation}. \\
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=\textwidth]{image/Sigma_Delta_Notation.png}
@@ -446,9 +446,13 @@ Cela signifie que $V_1 = \SI{15}{\volt}$. Dès lors, sachant que l'entrée non i
      C_{19} = \frac{I_3 \cdot d_u}{d_t} = \frac{\num{0.75} \cdot d_u}{1/170} = ... \\
      \intertext{Finalement, nous pouvons présenter l'allure dans un graphique de la tension $V_2$ en fonction de $V_1$ et $V_0$. En effet, en résolvant l'équation différentielle (15) ci-dessus, nous constatons que nous obtenons la formule théorique établie à la section 5.3 pour un intégrateur pur, soit : } 
      V_{0} = \frac{-1 \cdot ...}{R_{18} C_{19}} = \frac{-V^{+} \cdot t}{R_{18}C_{19}} \\
-     \intertext{On connait les équation de $V_0$ et $V_1$. Dès lors, on peut également calculer celle de $V_2$ :} 
+     \intertext{On connait les équation de $V_0$ et $V_1$. Dès lors, on peut calculer celle pour $V_2$ :} 
+     \left\{\begin{matrix}
+     V_{0} = \frac{-V^{+} \cdot t}{R_{18}C_{19}} \\
+     V_1 = \SI{15}{\volt}
+     \end{matrix}\right. \\
      V_{2} = \frac{(V_1 - V_0) R_{20}}{R_{21}+R_{20}} + V_0
-     \intertext{Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons conclure que : $V_0$ est toujours constant (\SI{15}{\volt}), que $V_1$ décroit linéairement avec une pente m égale à $\frac{-V^{+}}{R_{18}C_{19}}$ et enfin que $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque ... . La figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous présente l'allure de ces 3 équations.}
+     \intertext{Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons conclure que : $V_1$ est toujours constant (\SI{15}{\volt}), que $V_0$ décroit linéairement avec une pente m égale à $\frac{-V^{+}}{R_{18}C_{19}}$ et enfin que $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque ... . La figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous a été réalisée à l'aide d'un script MATLAB et présente l'allure de ces 3 équations.}
 \end{gather}
 
 \begin{figure}[!ht]
@@ -465,7 +469,7 @@ Le raisonnement est identique au CAS 1 à l'exception que $V_1$ ne vaut plus \SI
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analyse du circuit}
-Après que les éléments aient été dimensionnée, nous avons opté pour analyser le circuit en le faisant fonctionner en régime normal et en prenant des mesures en différents points.
+Après que les éléments aient été dimensionnés, nous avons opté pour analyser le circuit en le faisant fonctionner en régime normal et en prenant des mesures en différents points.
 Ces mesures sont toujours, sauf si cité explicitement, en tension par rapport à la masse, elle même mise à la terre.
 
 \subsection{Problèmes rencontrés}
@@ -506,7 +510,7 @@ Pour ce faire, nous avons utilisé :
     \item\textbf{Un générateur de signaux} pour générer un signal analogique
         d'amplitude et fréquence connue.
         L'objectif est de faire varier la fréquence du signal d'entrée et d'observer les
-        conséquences que cela a sur l'amplitude du signal de sortie.
+        conséquences que cela apporte sur l'amplitude du signal de sortie.
     \item\textbf{Un oscilloscope} pour mesurer les amplitudes des signaux à l'entrée du
         filtre et à la sortie de ce dernier.
 \end{enumerate}
@@ -531,10 +535,10 @@ Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1
 \end{figure}
 
 \subsection{Performance du Sigma-Delta}
-Malgré que dans son ensemble le circuit ne désire pas fonctionner, nous l'avons dument analyser afin d'en resortir la cause.
+Malgré que, dans son ensemble, le circuit ne désire pas fonctionner, nous l'avons dument analysé afin d'en resortir la cause.
 Nous abordons dans cette section les mesures effectuées sur la partie Sigma-Delta de la carte.
 
-Avant même d'arrivée dans le comparateur, le signal est filtré par les filtres d'entrées.
+Avant même d'arriver dans le comparateur, le signal est filtré par les filtres d'entrées.
 La figure~\ref{fig:osci-post-filters} présente la capture d'un signal avant et après son passage au travers du filtre.
 Pour une signal sinusoïdale d'amplitude \SI{5}{\volt}pp avec un offtset à \SI{2.5}{\volt} à \SI{1}{\kilo\hertz}, le filtre :
 \begin{enumerate}
@@ -545,7 +549,7 @@ Pour une signal sinusoïdale d'amplitude \SI{5}{\volt}pp avec un offtset à \SI{
 Ceci est exactement ce que nous attendons et désirons.
 
 Après filtrage, le signal arrive dans le comparateur.
-La figure~\ref{fig:osci-compar} présente la comparaison entre le signal avant filtrage et l'effet de la retro-action.
+La figure~\ref{fig:osci-compar} présente la comparaison entre le signal avant filtrage et l'effet de la rétro-action.
 Nous constatons que la sortie du comparateur varie à chaque fois que le signal d'entrée atteint sa valeur moyenne.
 Avec son duty cycle de \pm50\%, la sortie du comparateur représente bien un signal sinusoïdale.
 
@@ -561,7 +565,7 @@ Elles ont pour but d'éviter l'ouverture simultanée des deux transistors, ce qu
 De l'analyse effectuée jusqu'à présent, le circuit Sigma-Delta semble fonctionner comme désiré pour un signal sinusoïdale.
 Nous avons utilisé cette nature de signal car elle est de la même nature que ceux présents dans un signal audio.
 Mise à part que leurs fréquences et amplitudes varient.
-Nous en décidons que le problème rencontré énoncé dans la sous-section~\ref{sec:problems} ne vient pas du circuit Sigma-Delta, mais de l'étage de puissance à sa suite.
+Nous en déduisons que le problème rencontré, énoncé dans la sous-section~\ref{sec:problems}, ne vient pas du circuit Sigma-Delta, mais de l'étage de puissance à sa suite.
 
 \subsection{Performance de l'étage d'amplification}
 Supposant le bon fonctionnement du Sigma-Delta, que nous allons encore cependant vérifier, nous nous sommes mis à prendre des mesures autours du driver MOS et des transistors.
@@ -593,7 +597,7 @@ Nous en profitons pour mesurer la fréquence de comparaison du Sigma-Delta.
 Elle est de \SI{171.7}{\kilo\hertz}.
 C'est bien supérieur au \SI{44}{\kilo\hertz} nécessaire pour échantillonner du son, cela est parfait.
 
-Nous pouvons donc en conclure une fois de plus que le modulateur Sigma-Delta fonctionne comme attendu.
+Nous pouvons donc conclure une fois de plus que le modulateur Sigma-Delta fonctionne comme attendu.
 Si nous continuons sur le trajet du signal, nous arrivons à l'inverseur \texttt{TC4428} dédoublant le signal et inversant une sortie.
 La figure~\ref{fig:scope-5} présente notre capture entre le signal \texttt{CMDMOS} d'entrée et la commande de transistor supérieur en sortie.
 Mise à part une légère modification d'amplitude, nous ne ne constatons pas de problème.
@@ -613,17 +617,17 @@ Le transistor supérieur étant constamment ouvert, il amène une tension à la 
 Quand le jumper JP6 est placé, la masse du circuit logique \texttt{VDGND}, qui est directement connectée d'un côté au neutre de l'alimentation, se retrouve connectée de l'autre coté à \texttt{VPGND} où se trouve une tension élevée du au défaut du transistor.
 Ceci court-circuitant l'alimentation.
 
-Nous nous sommes dès lors intéressé au driver MOS, et en particulier à au condensateur de bootstrap.
+Nous nous sommes dès lors intéressé au driver MOS, et en particulier au condensateur de bootstrap.
 La figure~\ref{fig:scope-10} présente une capture des deux connecteurs du condensateur de bootstrap, sans que ce dernier ne soit connecté.
 Le signal \texttt{CMDMOS} est encore présenté pour donner une référence.
-On ne remarque que deux signaux malgré que trois sont affichés, les deux connections du condensateur de bootstrap sont indiscernables.
+On ne remarque que deux signaux malgré que trois soient affichés, les deux connections du condensateur de bootstrap sont indiscernables.
 À noter qu'elles ont également un offset de \SI{24.25}{\volt}.
 C'est à dire que le condensateur ne voit jamais une différence de tension apparaître entre 
 ses broches.
 Il est inutile.
 
-Évidement cela n'est pas normal, et après avoir vérifié minutieusement les pistes et soudures de la carte, nous suspectons le driver MOS \texttt{L6385E} d'être non fonctionnel.
-Celui même qui avait déjà été remplacé une fois précédemment à notre grand malheur.
+Évidemment cela n'est pas normal, et après avoir vérifié minutieusement les pistes et soudures de la carte, nous suspectons le driver MOS \texttt{L6385E} d'être non fonctionnel.
+Ce même driver qui avait déjà été remplacé une fois à notre plus grand malheur.
 
 
 %%%%%%%%%%%%%%%%%%%%%
