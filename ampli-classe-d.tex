@@ -322,8 +322,11 @@ Pour ce faire, nous connectons à la jonction une piste à \SI{-15}{\volt} reli�
 Cette résistance deux fois plus grande laisse passer la quantité de courant nécessaire à amener la jonction à \SI{7.5}{\volt} au repos.
 
 \begin{description}
-\item[Le premier AOP \texttt{U3A} ] agit tel un intégrateur pur et intègre la différence entre la mesure et la consigne selon l'équation (1) donnée ci-avant.
-\item[Le second AOP \texttt{U5B} ] réagit en trigger de Schmitt et fixe sa sortie en bi-state (\SI{0}{\volt} ou \SI{15}{\volt}) suivant que l'erreur entre la mesure et la consigne soit positive ou négative. \\
+    \item[Le premier AOP \texttt{U3A}] agit tel un intégrateur pur et intègre la différence
+        entre la mesure et la consigne selon l'équation (1) donnée ci-avant.
+    \item[Le second AOP \texttt{U5B}] réagit en trigger de Schmitt et fixe sa sortie en
+        bi-state (\SI{0}{\volt} ou \SI{15}{\volt}) suivant que l'erreur entre la mesure et
+        la consigne soit positive ou négative.
 \end{description}
 
 \begin{figure}[!ht]
@@ -408,7 +411,6 @@ Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtre
 \end{table}
 
 \subsection{Comparateur Sigma-Delta}
-
 Le dimensionnement des composants du sigma-delta étant assez complexe, nous allons dans un premier temps énoncer les hypothèses posées ; ensuite, nous détaillerons les différentes étapes nécessaires afin d'obtenir les signaux désirés en sortie du comparateur. \\[1ex]
 \textbf{Hypothèses :}
 \begin{enumerate}
@@ -431,12 +433,12 @@ Le dimensionnement des composants du sigma-delta étant assez complexe, nous all
 
 \noindent\textbf{Concernant le dimensionnement} du sigma-delta, nous devons analyser 2 cas de figure : 
 \begin{enumerate}
-\item Lorsque la sortie du comparateur délivre un état logique haut, soit \SI{15}{\volt}.
-\item Lorsque la sortie du comparateur délivre un état logique bas, soit \SI{0}{\volt}.
+    \item Lorsque la sortie du comparateur délivre un état logique haut, soit \SI{15}{\volt}.
+    \item Lorsque la sortie du comparateur délivre un état logique bas, soit \SI{0}{\volt}.
 \end{enumerate}
-
-
-Dans la section 5.3, nous avons rappelé les notions théoriques d'intégrateur pur et de comparateur indispensables pour la compréhension de ce qui va suivre. Avant de continuer, nous allons nous mettre d'accord sur la notation des différents courants, tensions, capacité et résistances qui entrent en jeux. Pour ce faire, référons-nous à la figure~\ref{fig:notation}. \\
+Dans la section 5.3, nous avons rappelé les notions théoriques d'intégrateur pur et de comparateur indispensables pour la compréhension de ce qui va suivre.
+Avant de continuer, nous allons nous mettre d'accord sur la notation des différents courants, tensions, capacité et résistances qui entrent en jeux.
+Pour ce faire, référons-nous à la figure~\ref{fig:notation}. 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{image/Sigma_Delta_Notation.png}
@@ -450,17 +452,29 @@ Cela signifie que $V_1 = \SI{15}{\volt}$. Dès lors, sachant que l'entrée non i
     I_1 = \frac{V_1}{R_{17}} = \frac{15}{1000} = \SI{1.5}{\milli\ampere} \\
     I_2 = \frac{15V}{R_{18}} = \frac{15}{2R_{17}} = \frac{15}{2000} = \SI{0.75}{\milli\ampere} \\
     I_3 = I_1 - I_2 = \frac{I_1}{2} = \SI{0.75}{\milli\ampere}
-    \intertext{Ensuite, reprenant le 3ème hypothèse formulée précédemment et se rappelant de la relation caractéristique d'un condensateur idéal, on peut calculer la valeur du condensateur $C_{19}$ :} 
-     C_{19} = \frac{I_3 \cdot d_u}{d_t} = \frac{\num{0.75} \cdot d_u}{1/170} = ... \\
-     \intertext{Finalement, nous pouvons présenter l'allure dans un graphique de la tension $V_2$ en fonction de $V_1$ et $V_0$. En effet, en résolvant l'équation différentielle (15) ci-dessus, nous constatons que nous obtenons la formule théorique établie à la section 5.3 pour un intégrateur pur, soit : } 
-     V_{0} = \frac{-1 \cdot ...}{R_{18} C_{19}} = \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
-     \intertext{On connait les équation de $V_0$ et $V_1$. Dès lors, on peut calculer celle pour $V_2$ :} 
+    \intertext{Ensuite, reprenant le 3ème hypothèse formulée précédemment et se rappelant
+               de la relation caractéristique d'un condensateur idéal, on peut calculer la
+               valeur du condensateur $C_{19}$ :} 
+    C_{19} = \frac{I_3 \cdot d_u}{d_t} = \frac{\num{0.75} \cdot d_u}{1/170} = ... \\
+    \intertext{Finalement, nous pouvons présenter l'allure dans un graphique de la tension
+               $V_2$ en fonction de $V_1$ et $V_0$. En effet, en résolvant l'équation
+               différentielle (15) ci-dessus, nous constatons que nous obtenons la formule
+               théorique établie à la section 5.3 pour un intégrateur pur, soit :} 
+    V_{0} = \frac{-1 \cdot ...}{R_{18} C_{19}} = \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
+    \intertext{On connait les équation de $V_0$ et $V_1$. Dès lors, on peut calculer
+               celle pour $V_2$ :} 
     \begin{cases}
         V_0 = \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
         V_1 = \SI{15}{\volt}
-    \end{cases}\ \
-     V_{2} = \frac{(V_1 - V_0) R_{20}}{R_{21}+R_{20}} + V_0
-     \intertext{Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons conclure que : $V_1$ est toujours constant (\SI{15}{\volt}), que $V_0$ décroit linéairement avec une pente m égale à $-V_+ \div \left(R_{18}C_{19}\right)$ et enfin que $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque ... . La figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous a été réalisée à l'aide d'un script MATLAB et présente l'allure de ces 3 équations.}
+    \end{cases}
+    V_{2} = \frac{(V_1 - V_0) R_{20}}{R_{21}+R_{20}} + V_0
+    \intertext{Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons
+               conclure que : $V_1$ est toujours constant (\SI{15}{\volt}), que $V_0$
+               décroit linéairement avec une pente m égale à $-V_+ \div \left(R_{18}
+               C_{19}\right)$ et enfin que $V_2$ dépend de $V_0$ et $V_1$ et décroit
+               lorsque ... .
+               La figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous a été réalisée à l'aide
+               d'un script MATLAB et présente l'allure de ces 3 équations.}
 \end{gather}
 
 \begin{figure}[!ht]
@@ -470,9 +484,8 @@ Cela signifie que $V_1 = \SI{15}{\volt}$. Dès lors, sachant que l'entrée non i
     \label{fig:Graphe_Sigma_Delta}
 \end{figure}
 
-\noindent\textbf{CAS 2} : la sortie du comparateur est à \SI{0}{\volt}. \\
+\noindent\textbf{CAS 2} : la sortie du comparateur est à \SI{0}{\volt}.
 Le raisonnement est identique au CAS 1 à l'exception que $V_1$ ne vaut plus \SI{15}{\volt} mais plutôt 0.
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
