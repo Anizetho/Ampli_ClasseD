@@ -271,10 +271,10 @@ La figure~\ref{fig:alimDecouplage} présente le circuit de découplage de l'alim
 Cela ne présente que peu d'intérêt mais est énoncé pour montrer son existence.
 
 \begin{figure}[!ht]
-	\centering
-	\includegraphics[width=6cm]{image/sch-alim.png}
-	\caption{Schématique du circuit découplage d'alimentation.}
-	\label{fig:alimDecouplage}
+    \centering
+    \includegraphics[width=6cm]{image/sch-alim.png}
+    \caption{Schématique du circuit découplage d'alimentation.}
+    \label{fig:alimDecouplage}
 \end{figure}
 
 \subsection{Comparateur Sigma-Delta}
@@ -286,10 +286,10 @@ L'équation suivante traduit la relation d'intégration entre sortie et entrée 
     V_{S} = -\frac{1}{RC}\int V_{E}\,dt
 \end{equation}
 \begin{figure}[!ht]
-	\centering
-	\includegraphics[width=6cm]{image/integrateur.png}
-	\caption{Schématique d'un montage intégrateur pur.}
-	\label{fig:IntegPur}
+    \centering
+    \includegraphics[width=6cm]{image/integrateur.png}
+    \caption{Schématique d'un montage intégrateur pur.}
+    \label{fig:IntegPur}
 \end{figure}
 
 \item \noindent\textbf{Le comparateur} présenté à la figure~\ref{fig:Comparateur} ci-dessous, n'est ni plus ni moins qu'un amplificateur opérationnel dont le fonctionnement est le suivant : si la tension appliquée sur l'entrée non inverseuse $V_{1}$ dépasse la tension appliquée sur l'entrée inverseuse $V_{2}$, la sortie se retrouve à 1.
@@ -303,14 +303,14 @@ L'équation suivante traduit cette relation entre l'entrée et la sortie du comp
 \end{cases}
 \end{align}
 \begin{figure}[!ht]
-	\centering
-	\includegraphics[width=6cm]{image/comparateur.png}
-	\caption{Schématique d'un comparateur.}
-	\label{fig:Comparateur}
-	\centering
-	\includegraphics[width=6cm]{image/Graphe_Comparateur.png}
-	\caption{Signaux en entrée ($U_1$, $U_2$) et en sortie ($U_S$) d'un comparateur.}
-	\label{fig:Comparateur_Graphe}
+    \centering
+    \includegraphics[width=6cm]{image/comparateur.png}
+    \caption{Schématique d'un comparateur.}
+    \label{fig:Comparateur}
+    \centering
+    \includegraphics[width=6cm]{image/Graphe_Comparateur.png}
+    \caption{Signaux en entrée ($U_1$, $U_2$) et en sortie ($U_S$) d'un comparateur.}
+    \label{fig:Comparateur_Graphe}
 \end{figure}
 \end{itemize}
 La figure~\ref{fig:sch-ctrl} présente la partie logique du circuit, celle qui analyse le signal analogique et le module en commande d'ouverture de transistor.
@@ -327,10 +327,10 @@ Cette résistance deux fois plus grande laisse passer la quantité de courant n�
 \end{description}
 
 \begin{figure}[!ht]
-	\centering
-	\includegraphics[width=\textwidth]{image/sch-ctrl.png}
-	\caption{Schématique du circuit de comparaison Sigma-Delta.}
-	\label{fig:sch-ctrl}
+    \centering
+    \includegraphics[width=\textwidth]{image/sch-ctrl.png}
+    \caption{Schématique du circuit de comparaison Sigma-Delta.}
+    \label{fig:sch-ctrl}
 \end{figure}
 
 \subsection{Étage de puissance}
@@ -341,11 +341,11 @@ Le haut-parleur, charge RL dans le circuit, est connecté à la junction entre l
 Pour une raison de facilité, la source de tension \SI{24}{\volt} située au jumper 5 est reliée à la même source que le driver MOS.
 
 \begin{figure}[!ht]
-	\centering
-	\includegraphics[width=\textwidth]{image/sch-mos.png}
-	\caption{Schématique de l'étage de puissance, un circuit d'amplification par transistor
-			 MOS.}
-	\label{fig:sch-mos}
+    \centering
+    \includegraphics[width=\textwidth]{image/sch-mos.png}
+    \caption{Schématique de l'étage de puissance, un circuit d'amplification par transistor
+             MOS.}
+    \label{fig:sch-mos}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -369,18 +369,18 @@ et le gain de l'amplificateur :
     f_c = \frac{1}{2\pi R_2 C_2} \\
     A_v = -\frac{R_2}{R_1}
     \intertext{Poser comme hypothèse que nous souhaitons un gain unitaire.
-			   Cela signifie que la valeur de la résistance R1 est égale à la valeur
-			   de la résistance R2.}
+               Cela signifie que la valeur de la résistance R1 est égale à la valeur
+               de la résistance R2.}
     A_v = - \frac{R_2}{R_1} = -1
-	\intertext{Fixer une valeur standard pour R2 et réécrire la formule permettant
-			   de trouver la valeur de C2.
-			   Nous avons pris une valeur standard de \SI{8.2}{\kilo\Omega} pour la résistance R2.}
+    \intertext{Fixer une valeur standard pour R2 et réécrire la formule permettant
+               de trouver la valeur de C2.
+               Nous avons pris une valeur standard de \SI{8.2}{\kilo\Omega} pour la résistance R2.}
     R_1 = R_2 = \SI{8.2}{\kilo\Omega} \\
     C_2 = \frac{1}{2\pi R_2 f_c}
     \intertext{Cherchant une valeur la plus standardisée possible pour le condensateur
-    		   C2, nous devons ajuster la valeur de la fréquence de coupure dans la
-		   	   formule donnée précédemment (7).
-			   Ceci nous conduit à ajuster la fréquence de coupure à \SI{19400}{\hertz}.}
+               C2, nous devons ajuster la valeur de la fréquence de coupure dans la
+               formule donnée précédemment (7).
+               Ceci nous conduit à ajuster la fréquence de coupure à \SI{19400}{\hertz}.}
     C_2 = \frac{1}{2\pi\;8200\times19400} = \SI{1}{\nano\farad}
 \end{gather}
 
@@ -392,11 +392,11 @@ Il nous reste donc à calculer la valeur standard du condensateur C1.
 Prendre la formule théorique permettant de calculer la fréquence de coupure
 \begin{gather}
     f_c = \frac{1}{2\pi R_2 C_1}
-	\intertext{Réécrire la formule permettant de calculer la valeur standard de C1}
+    \intertext{Réécrire la formule permettant de calculer la valeur standard de C1}
     C_1 = \frac{1}{2\pi R_2 f_c}
-	\intertext{Connaissant la valeur de R2, nous trouvons la valeur de C1 en ajustant
-			   la valeur de la fréquence de coupure. Nous trouvons finalement une
-			   fréquence de coupure de 18 Hz.}
+    \intertext{Connaissant la valeur de R2, nous trouvons la valeur de C1 en ajustant
+               la valeur de la fréquence de coupure. Nous trouvons finalement une
+               fréquence de coupure de 18 Hz.}
     C_1 = \frac{1}{2\pi R_2 f_c} = \frac{1}{2\pi\,8200\times18} = \SI{1}{\micro\farad}
 \end{gather}
 Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtres passe-bas et passe-haut :
@@ -409,16 +409,24 @@ Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtre
 
 \subsection{Comparateur Sigma-Delta}
 
-Le dimensionnement des composants du sigma-delta étant assez complexe, nous allons dans un premier temps énoncer les hypothèses posées ; ensuite, nous détaillerons les différentes étapes nécessaires afin d'obtenir les signaux désirés en sortie du comparateur. \\
-\noindent\textbf{Hypothèses :}
+Le dimensionnement des composants du sigma-delta étant assez complexe, nous allons dans un premier temps énoncer les hypothèses posées ; ensuite, nous détaillerons les différentes étapes nécessaires afin d'obtenir les signaux désirés en sortie du comparateur. \\[1ex]
+\textbf{Hypothèses :}
 \begin{enumerate}
-\item Premièrement, nous posons comme hypothèse que nous n'envoyons pas de signaux analogiques à l'entrée de l'amplificateur classe D. Ainsi, le signal reçu sur la pin OUTINV, soit la signal à la sortie des filtres d'entrées, est de valeur nulle.
-\item Deuxièmement, nous posons comme hypothèse que le signal doit osciller autour de \SI{7.5}{\volt}.
-	En effet, le signal doit obligatoirement rester positif pour le bon fonctionnement des MOS dans la suite du circuit.
-	Cela oblige d'avoir un rapport de 2 entre les résistances $R_{17}$ et $R_{18}$ sur le circuit, soit $R_{18} = 2R_{17}$.
-	Nous avons pris comme valeurs : \SI{10}{\kilo\Omega} pour $R_{17}$ et par conséquent \SI{20}{\kilo\Omega} pour $R_{18}$.
-\item Troisièmement, nous posons comme hypothèse que nous souhaitons une fréquence de basculement à \SI{170}{\kilo\hertz}.
-	Ceci implique que ...
+    \item Premièrement, nous posons comme hypothèse que nous n'envoyons pas de signaux
+        analogiques à l'entrée de l'amplificateur classe D.
+        Ainsi, le signal reçu sur la pin OUTINV, soit la signal à la sortie des filtres
+        d'entrées, est de valeur nulle.
+    \item Deuxièmement, nous posons comme hypothèse que le signal doit osciller autour
+        de \SI{7.5}{\volt}.
+        En effet, le signal doit obligatoirement rester positif pour le bon fonctionnement
+        des MOS dans la suite du circuit.
+        Cela oblige d'avoir un rapport de 2 entre les résistances $R_{17}$ et $R_{18}$ sur
+        le circuit, soit $R_{18} = 2R_{17}$.
+        Nous avons pris comme valeurs : \SI{10}{\kilo\Omega} pour $R_{17}$ et par
+        conséquent \SI{20}{\kilo\Omega} pour $R_{18}$.
+    \item Troisièmement, nous posons comme hypothèse que nous souhaitons une fréquence de
+        basculement à \SI{170}{\kilo\hertz}.
+        Ceci implique que ...
 \end{enumerate}
 
 \noindent\textbf{Concernant le dimensionnement} du sigma-delta, nous devons analyser 2 cas de figure : 
@@ -430,36 +438,36 @@ Le dimensionnement des composants du sigma-delta étant assez complexe, nous all
 
 Dans la section 5.3, nous avons rappelé les notions théoriques d'intégrateur pur et de comparateur indispensables pour la compréhension de ce qui va suivre. Avant de continuer, nous allons nous mettre d'accord sur la notation des différents courants, tensions, capacité et résistances qui entrent en jeux. Pour ce faire, référons-nous à la figure~\ref{fig:notation}. \\
 \begin{figure}[!ht]
-	\centering
-	\includegraphics[width=\textwidth]{image/Sigma_Delta_Notation.png}
-	\caption{Schématique du Sigma-Delta avec les notations utilisées pour les calculs de dimensionnement.}
-	\label{fig:notation}
+    \centering
+    \includegraphics[width=\textwidth]{image/Sigma_Delta_Notation.png}
+    \caption{Schématique du Sigma-Delta avec les notations utilisées pour les calculs de dimensionnement.}
+    \label{fig:notation}
 \end{figure}
 
 \noindent\textbf{CAS 1} : la sortie du comparateur est à \SI{15}{\volt}. \\
 Cela signifie que $V_1 = \SI{15}{\volt}$. Dès lors, sachant que l'entrée non inverseuse de l'intégrateur est à la masse, on peut calculer les courants $I_1$, $I_2$ et $I_3$ comme suit : 
 \begin{gather}
-    I_1 = \frac{V_1}{R_{17}} = \frac{15}{1000} = \SI{1.5}{\milli\ampere}\\
+    I_1 = \frac{V_1}{R_{17}} = \frac{15}{1000} = \SI{1.5}{\milli\ampere} \\
     I_2 = \frac{15V}{R_{18}} = \frac{15}{2R_{17}} = \frac{15}{2000} = \SI{0.75}{\milli\ampere} \\
     I_3 = I_1 - I_2 = \frac{I_1}{2} = \SI{0.75}{\milli\ampere}
     \intertext{Ensuite, reprenant le 3ème hypothèse formulée précédemment et se rappelant de la relation caractéristique d'un condensateur idéal, on peut calculer la valeur du condensateur $C_{19}$ :} 
      C_{19} = \frac{I_3 \cdot d_u}{d_t} = \frac{\num{0.75} \cdot d_u}{1/170} = ... \\
      \intertext{Finalement, nous pouvons présenter l'allure dans un graphique de la tension $V_2$ en fonction de $V_1$ et $V_0$. En effet, en résolvant l'équation différentielle (15) ci-dessus, nous constatons que nous obtenons la formule théorique établie à la section 5.3 pour un intégrateur pur, soit : } 
-     V_{0} = \frac{-1 \cdot ...}{R_{18} C_{19}} = \frac{-V^{+} \cdot t}{R_{18}C_{19}} \\
+     V_{0} = \frac{-1 \cdot ...}{R_{18} C_{19}} = \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
      \intertext{On connait les équation de $V_0$ et $V_1$. Dès lors, on peut calculer celle pour $V_2$ :} 
-     \left\{\begin{matrix}
-     V_{0} = \frac{-V^{+} \cdot t}{R_{18}C_{19}} \\
-     V_1 = \SI{15}{\volt}
-     \end{matrix}\right. \\
+    \begin{cases}
+        V_0 = \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
+        V_1 = \SI{15}{\volt}
+    \end{cases}\ \
      V_{2} = \frac{(V_1 - V_0) R_{20}}{R_{21}+R_{20}} + V_0
-     \intertext{Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons conclure que : $V_1$ est toujours constant (\SI{15}{\volt}), que $V_0$ décroit linéairement avec une pente m égale à $\frac{-V^{+}}{R_{18}C_{19}}$ et enfin que $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque ... . La figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous a été réalisée à l'aide d'un script MATLAB et présente l'allure de ces 3 équations.}
+     \intertext{Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons conclure que : $V_1$ est toujours constant (\SI{15}{\volt}), que $V_0$ décroit linéairement avec une pente m égale à $-V_+ \div \left(R_{18}C_{19}\right)$ et enfin que $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque ... . La figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous a été réalisée à l'aide d'un script MATLAB et présente l'allure de ces 3 équations.}
 \end{gather}
 
 \begin{figure}[!ht]
-	\centering
-	\includegraphics[width=\textwidth]{image/Sigma_Delta_Notation.png}
-	\caption{Graphique traduisant les équations pour $V_0$, $V_1$ et $V_2$.}
-	\label{fig:Graphe_Sigma_Delta}
+    \centering
+    \includegraphics[width=\textwidth]{image/Sigma_Delta_Notation.png}
+    \caption{Graphique traduisant les équations pour $V_0$, $V_1$ et $V_2$.}
+    \label{fig:Graphe_Sigma_Delta}
 \end{figure}
 
 \noindent\textbf{CAS 2} : la sortie du comparateur est à \SI{0}{\volt}. \\
@@ -542,9 +550,9 @@ Avant même d'arriver dans le comparateur, le signal est filtré par les filtres
 La figure~\ref{fig:osci-post-filters} présente la capture d'un signal avant et après son passage au travers du filtre.
 Pour une signal sinusoïdale d'amplitude \SI{5}{\volt}pp avec un offtset à \SI{2.5}{\volt} à \SI{1}{\kilo\hertz}, le filtre :
 \begin{enumerate}
-	\item Retire l'offset (centre le signal autour de \SI{0}{\volt});
-	\item Ne modifie pas l'amplitude ni la fréquence;
-	\item Retarde la phase de \SI{\pi}{\radian\per\sec}.
+    \item Retire l'offset (centre le signal autour de \SI{0}{\volt});
+    \item Ne modifie pas l'amplitude ni la fréquence;
+    \item Retarde la phase de \SI{\pi}{\radian\per\sec}.
 \end{enumerate}
 Ceci est exactement ce que nous attendons et désirons.
 
@@ -578,18 +586,18 @@ Nous en profitons pour évaluer une nouvelle fois le fonctionnement du Sigma-Del
 Les figures~\ref{fig:scope-2}~\ref{fig:scope-3}~\ref{fig:scope-4} présentent le signal \texttt{CMDMOS} selon la tension DC appliquée en entrée du comparateur.
 Nous y distinguons facilement l'échelle et les limites de comparaisons que nous reprenons dans le tableau~\ref{tab:dutyCycleDC}.
 \begin{table}[!ht]
-	\centering
-	\begin{tabular}{|r|r|}
-	\hline
-	Tension & Duty+ \\
-	\hline
-	\SI{7}{\volt}  & \num{3.764}\% \\
-	\SI{0}{\volt}  & \num{48.80}\% \\
-	\SI{-7}{\volt} & \num{96.477}\% \\
-	\hline
-	\end{tabular}
-	\caption{Échelle de modulation MLI du Sigma-Delta pour un signal DC.}
-	\label{tab:dutyCycleDC}
+    \centering
+    \begin{tabular}{|r|r|}
+    \hline
+    Tension & Duty+ \\
+    \hline
+    \SI{7}{\volt}  & \num{3.764}\% \\
+    \SI{0}{\volt}  & \num{48.80}\% \\
+    \SI{-7}{\volt} & \num{96.477}\% \\
+    \hline
+    \end{tabular}
+    \caption{Échelle de modulation MLI du Sigma-Delta pour un signal DC.}
+    \label{tab:dutyCycleDC}
 \end{table}
 Nous sommes étonnés que le duty cycle positif diminue quand la tension DC augmente, mais dans le cas de signaux audios sinusoïdaux, inverser la tension n'influencera guère le son car cette dernière est symétrique autour de 0.
 
@@ -647,112 +655,112 @@ Nous terminons néanmoins satisfait des signaux capturés tout au long du systè
 %%%%%%%%%%%%%%%%% GROS BAZARD DE FIGURE À LA FIN %%%%%%%%%%%%%%%%%
 \pagebreak
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/osci-post-filters.png}
-	\caption{Capture d'écran d'un oscilloscope affichant le signal capturé avant les
-			 filtres d'entrées et le signal capturé après.
-			 Au travers du filtre le signal garde son amplitude, est déphasé de
-			 \SI{\pi}{\radian\per\second}, et son offset disparait pour se centrer autour
-			 de 0.}
-	\label{fig:osci-post-filters}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/osci-post-filters.png}
+    \caption{Capture d'écran d'un oscilloscope affichant le signal capturé avant les
+             filtres d'entrées et le signal capturé après.
+             Au travers du filtre le signal garde son amplitude, est déphasé de
+             \SI{\pi}{\radian\per\second}, et son offset disparait pour se centrer autour
+             de 0.}
+    \label{fig:osci-post-filters}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/osci-compar.png}
-	\caption{Capture d'écran d'un oscilloscope affichant le signal capturé à l'entrée
-			 de l'amplificateur (avant filtrage) et la comparaison perçue par le
-			 Sigma-Delta.}
-	\label{fig:osci-compar}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/osci-compar.png}
+    \caption{Capture d'écran d'un oscilloscope affichant le signal capturé à l'entrée
+             de l'amplificateur (avant filtrage) et la comparaison perçue par le
+             Sigma-Delta.}
+    \label{fig:osci-compar}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/osci-cmdmos.png}
-	\caption{Capture d'écran d'un oscilloscope affichant le signal \texttt{CMDMOS}
-			 capturé à la sortie du \Sigma{}-\Delta{} pour un signal d'entrée à
-			 l'amplificateur sinusoïdale.
-			 Un affaissement du flanc montant résultant d'un délai d'ouverture est
-			 volontairement introduit dans les commandes pour éviter la double conduction
-			 à l'étage de puissance.}
-	\label{fig:osci-cmdmos}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/osci-cmdmos.png}
+    \caption{Capture d'écran d'un oscilloscope affichant le signal \texttt{CMDMOS}
+             capturé à la sortie du \Sigma{}-\Delta{} pour un signal d'entrée à
+             l'amplificateur sinusoïdale.
+             Un affaissement du flanc montant résultant d'un délai d'ouverture est
+             volontairement introduit dans les commandes pour éviter la double conduction
+             à l'étage de puissance.}
+    \label{fig:osci-cmdmos}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/osci-high-low.png}
-	\caption{Capture d'écran d'un oscilloscope affichant les signaux de grille des
-			 transistors MOS supérieur et inférieur à l'étage d'amplification.
-			 Ces commandes sont propres à un signal d'entrée sinusoïdale.}
-	\label{fig:osci-high-low}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/osci-high-low.png}
+    \caption{Capture d'écran d'un oscilloscope affichant les signaux de grille des
+             transistors MOS supérieur et inférieur à l'étage d'amplification.
+             Ces commandes sont propres à un signal d'entrée sinusoïdale.}
+    \label{fig:osci-high-low}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/12-05/scope_2.png}
-	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS pour une
-			 tension d'entrée continue de \SI{7}{\volt}. Le duty cycle est de \num{3.7}\%.}
-	\label{fig:scope-2}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/12-05/scope_2.png}
+    \caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS pour une
+             tension d'entrée continue de \SI{7}{\volt}. Le duty cycle est de \num{3.7}\%.}
+    \label{fig:scope-2}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/12-05/scope_3.png}
-	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS pour une
-			 tension d'entrée continue de \SI{0}{\volt}. Le duty cycle est de \num{48.8}\%.}
-	\label{fig:scope-3}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/12-05/scope_3.png}
+    \caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS pour une
+             tension d'entrée continue de \SI{0}{\volt}. Le duty cycle est de \num{48.8}\%.}
+    \label{fig:scope-3}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/12-05/scope_4.png}
-	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS pour une
-			 tension d'entrée continue de \SI{-7}{\volt}. Le duty cycle est de \num{96.5}\%.}
-	\label{fig:scope-4}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/12-05/scope_4.png}
+    \caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS pour une
+             tension d'entrée continue de \SI{-7}{\volt}. Le duty cycle est de \num{96.5}\%.}
+    \label{fig:scope-4}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/12-05/scope_5.png}
-	\caption{Capture d'écran d'un oscilloscope affichant la différence entre le signal
-			 modulé CMDMOS et la commande de grille du transistor supérieur.
-			 On constate que cette dernière a un léger \og{}skew\fg{}, un décalage
-			 temporel et une variation d'amplitude.}
-	\label{fig:scope-5}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/12-05/scope_5.png}
+    \caption{Capture d'écran d'un oscilloscope affichant la différence entre le signal
+             modulé CMDMOS et la commande de grille du transistor supérieur.
+             On constate que cette dernière a un léger \og{}skew\fg{}, un décalage
+             temporel et une variation d'amplitude.}
+    \label{fig:scope-5}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/12-05/scope_7.png}
-	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et la
-			 commande d'ouverture du transistor supérieur.}
-	\label{fig:scope-7}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/12-05/scope_7.png}
+    \caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et la
+             commande d'ouverture du transistor supérieur.}
+    \label{fig:scope-7}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/12-05/scope_8.png}
-	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et la
-			 commande d'ouverture du transistor inférieur.}
-	\label{fig:scope-8}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/12-05/scope_8.png}
+    \caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et la
+             commande d'ouverture du transistor inférieur.}
+    \label{fig:scope-8}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/12-05/scope_9.png}
-	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et de
-			 la pollution constatable sur la masse.}
-	\label{fig:scope-9}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/12-05/scope_9.png}
+    \caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et de
+             la pollution constatable sur la masse.}
+    \label{fig:scope-9}
 \end{figure}
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[width=0.65\textwidth]{image/12-05/scope_10.png}
-	\caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et les
-			 connections du condensateur de bootstrap sans que celui-ci ne soit présent.
-			 Les deux connections sont mélangées et indiscernables.
-			 Le condensateur ne voit pas donc de différence de tension.}
-	\label{fig:scope-10}
+    \centering
+    \includegraphics[width=0.65\textwidth]{image/12-05/scope_10.png}
+    \caption{Capture d'écran d'un oscilloscope affichant le signal modulé CMDMOS et les
+             connections du condensateur de bootstrap sans que celui-ci ne soit présent.
+             Les deux connections sont mélangées et indiscernables.
+             Le condensateur ne voit pas donc de différence de tension.}
+    \label{fig:scope-10}
 \end{figure}
 
 
@@ -794,8 +802,8 @@ Par Toriicelli (Travail personnel) [Public domain], de Wikimedia Commons
 
 \section{Photographie}
 \begin{figure}[!ht]
-	\includegraphics[width=\linewidth]{image/carte.jpg}
-	\caption{Photographie prise par le dessus de la carte réalisée.}
+    \includegraphics[width=\linewidth]{image/carte.jpg}
+    \caption{Photographie prise par le dessus de la carte réalisée.}
 \end{figure}
 
 \end{document}
