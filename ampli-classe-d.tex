@@ -307,7 +307,7 @@ L'équation suivante traduit cette relation entre l'entrée et la sortie du comp
 	\label{fig:Comparateur}
 	\centering
 	\includegraphics[width=6cm]{image/Graphe_Comparateur.png}
-	\caption{Schématique d'un comparateur.}
+	\caption{Signaux en entrée ($U_1$, $U_2$) et en sortie ($U_S$) d'un comparateur.}
 	\label{fig:Comparateur_Graphe}
 \end{figure}
 \end{itemize}
@@ -316,11 +316,13 @@ Le signal rentre par la connection \texttt{OUTINV} provenant des filtres d'entr�
 À ce signal est ajouté la sortie actuelle du comparateur \texttt{VMLI} pour différentier l'erreur.
 Comme la sortie du comparateur est bi-state en 0 ou \SI{15}{\volt}, sa valeur moyenne en régime permanent serait de \SI{7.5}{\volt}.
 C'est vers cette valeur \og{}neutre\fg{} que nous voulons tendre si aucun signal n'est amené à l'entrée du comparateur.
-Pour ce faire, nous connectons à la jonction une piste à \SI{-15}{\volt} reliée par une résistance deux fois plus grande que celles des autres connections.
+Pour ce faire, nous connectons à la jonction une piste à \SI{-15}{\volt} reliée par une résistance deux fois plus grande que celle connectée à VLMI ($R_{17}$).
 Cette résistance deux fois plus grande laisse passer la quantité de courant nécessaire à amener la jonction à \SI{7.5}{\volt} au repos.
 
-Le premier AOP \texttt{U3A} agit tel un intégrateur et intègre la différence entre la mesure et la consigne.
-Le second AOP \texttt{U5B} réagit en trigger de Schmitt et fixe sa sortie en bi-state \SI{\pm15}{\volt} suivant que l'erreur entre la mesure et la consigne soit positive ou négative.
+\begin{description}
+\item[Le premier AOP \texttt{U3A} ] agit tel un intégrateur pur et intègre la différence entre la mesure et la consigne selon l'équation (1) donnée ci-avant.
+\item[Le second AOP \texttt{U5B} ] réagit en trigger de Schmitt et fixe sa sortie en bi-state \SI{\pm15}{\volt} suivant que l'erreur entre la mesure et la consigne soit positive ou négative. \\
+\end{description}
 
 \begin{figure}[!ht]
 	\centering
@@ -402,6 +404,57 @@ Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtre
     \caption{Tableau récapitulatif des valeurs calculées pour les filtres de l'amplificateur classe D.}
     \label{tab:recapFiltres}
 \end{table}
+
+\subsection{Comparateur Sigma-Delta}
+
+Le dimensionnement des composants du sigma-delta étant assez complexe, nous allons dans un premier temps énoncer les hypothèses posées ; ensuite, nous détaillerons les différentes étapes nécessaires afin d'obtenir les signaux désirés en sortie du comparateur. \\
+\noindent\textbf{Hypothèses :}
+\begin{enumerate}
+\item Premièrement, nous posons comme hypothèse que le signal reçu sur la pin INREGC, soit la signal à la sortie des filtres d'entrées, est de valeur nulle.
+\item Deuxièmement, nous posons comme seconde hypothèse que le signal doit osciller autour de $7,5V$. En effet, le signal doit obligatoirement rester positif pour le bon fonctionnement des MOS dans la suite du circuit. Cela oblige d'avoir un rapport de 2 entre les résistances $R_{17}$ et $R_{18}$ sur le circuit, soit $R_{18} = 2*R_{17}$. Nous avons pris comme valeurs : 1000 ohm pour $R_{17}$ et par conséquent 2000 ohm pour $R_{18}$.
+\item Troisièmement, nous posons comme hypothèse que nous souhaitons une fréquence de basculement à 170 kHz. Ceci implique que ...
+\end{enumerate}
+
+\noindent\textbf{Concernant le dimensionnement} du sigma-delta, nous devons analyser 2 cas de figure : 
+\begin{enumerate}
+\item Lorsque la sortie du comparateur délivre un état logique haut, soit $15V$.
+\item Lorsque la sortie du comparateur délivre un état logique bas, soit $0V$.
+\end{enumerate}
+
+
+Dans la section 5.3, nous avons rappelé les notions théoriques d'intégrateur pur et de comparateur indispensables pour la compréhension de ce qui va suivre. Avant de continuer, nous allons nous mettre d'accord sur la notation des différents courants, tensions, capacité et résistance qui entrent en jeux. Pour ce faire, référons-nous à la figure~\ref{fig:notation}. \\
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\textwidth]{image/Sigma_Delta_Notation.png}
+	\caption{Schématique du Sigma-Delta avec les notations utilisées pour les calculs de dimensionnement.}
+	\label{fig:notation}
+\end{figure}
+
+\noindent\textbf{CAS 1} : la sortie du comparateur est à 15V. \\
+Cela signifie que $V_1 = 15V$. Dès lors, sachant que l'entrée non inverseuse de l'intégrateur est à la masse, on peut calculer les courants $I_1$, $I_2$, $I_3$ comme suit : 
+\begin{gather}
+    I_1 = \frac{V_1}{R_{17}} = \frac{15}{1000} = 1,5 mA\\
+    I_2 = \frac{15V}{R_{18}} = \frac{15}{2*R_{17}} = \frac{15}{2000} = 0,75 mA \\
+    I_3 = I_1 - I_2 = \frac{I_1}{2} = 0,75 mA
+    \intertext{Ensuite, reprenant le 3ème hypothèse formulée précédemment et se rappelant de la relation caractéristique d'un condensateur idéal, on peut calculer la valeur du condensateur $C_{19}$ :} 
+     C_{19} = \frac{I_3*d_u}{d_t} = \frac{0,75*}{1/170} = ... \\
+     \intertext{Finalement, nous pouvons présenter l'allure dans un graphique de la tension $V_2$ en fonction de $V_1$ et $V_0$. En effet, en résolvant l'équation différentielle (15) ci-dessus, nous constatons que nous obtenons la formule théorique établie à la section 5.3 pour un intégrateur pur, soit : } 
+     V_{0} = \frac{-1*...}{R_{18}*C_{19}} = \frac{-V^{+} . t}{R_{18}*C_{19}} \\
+     \intertext{On connait les équation de $V_0$ et $V_1$. Dès lors, on peut également calculer celle de $V_2$ :} 
+     V_{2} = \frac{(V_1 - V_0) * R{20}}{R_{21}+R_{20}} + V_0 
+     \intertext{Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons conclure que : $V_0$ est toujours constant ($15V$), que $V_1$ décroit linéairement avec une pente m égale à $\frac{-V^{+}}{R_{18}*C_{19}}$ et enfin que $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque ... . La figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous présente l'allure de ces 3 équations.}
+\end{gather}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\textwidth]{image/Sigma_Delta_Notation.png}
+	\caption{Graphique traduisant les équations pour $V_0$, $V_1$ et $V_2$.}
+	\label{fig:Graphe_Sigma_Delta}
+\end{figure}
+
+\noindent\textbf{CAS 2} : la sortie du comparateur est à 0V. \\
+Le raisonnement est identique au CAS 1 à l'exception que $V_1$ ne vaut plus $15V$ mais plutôt $0V$.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -485,7 +538,7 @@ Pour une signal sinusoïdale d'amplitude \SI{5}{\volt}pp avec un offtset à \SI{
 \end{enumerate}
 Ceci est exactement ce que nous attendons et désirons.
 
-Après filtrage, le circuit arrive dans le comparateur.
+Après filtrage, le signal arrive dans le comparateur.
 La figure~\ref{fig:osci-compar} présente la comparaison entre le signal avant filtrage et l'effet de la retro-action.
 Nous constatons que la sortie du comparateur varie à chaque fois que le signal d'entrée atteint sa valeur moyenne.
 Avec son duty cycle de \pm50\%, la sortie du comparateur représente bien un signal sinusoïdale.
