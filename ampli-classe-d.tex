@@ -300,8 +300,8 @@ Le figure~\ref{fig:Comparateur_Graphe} présente la sortie du comparateur (signa
 L'équation suivante traduit cette relation entre l'entrée et la sortie du comparateur : 
 \begin{align}
 \begin{cases}
- V_{S} = V^{+} &\text{si } V_{1} > V_{2} \\
- V_{S} = 0     &\text{si } V_{1} < V_{2}
+ V_{S} = V_+ &\text{si } V_{1} > V_{2} \\
+ V_{S} = 0   &\text{si } V_{1} < V_{2}
 \end{cases}
 \end{align}
 \begin{figure}[!ht]
@@ -443,16 +443,20 @@ Pour ce faire, référons-nous à la figure~\ref{fig:notation}.
         conséquent \SI{20}{\kilo\Omega} pour $R_{18}$.
     \item Troisièmement, nous posons comme hypothèse que nous souhaitons une fréquence de
         basculement à \SI{170}{\kilo\hertz}.
-        En imposant cette fréquence, nous obtenons une valeur standardisée de capacité (à savoir \SI{1}{\nano\farad}) comme 		nous le verrons par la suite dans nos calculs.
-    \item Enfin, quatrièmement, nous posons comme hypothèse que la différence d'amplitude \textit{peak to peak} du signal 		$V_0$ vaut \SI{2}{\volt}. Ce signal oscillera donc entre \SI{0}{\volt} et \SI{-2}{\volt} comme le montre la 					figure~\ref{fig:Graphe_Sigma_Delta} un peu plus bas. \\
+        En imposant cette fréquence, nous obtenons une valeur standardisée de capacité
+        (à savoir \SI{1}{\nano\farad}) comme nous le verrons par la suite dans nos calculs.
+    \item Enfin, quatrièmement, nous posons comme hypothèse que la différence d'amplitude
+        \textit{peak to peak} du signal $V_0$ vaut \SI{2}{\volt}. Ce signal oscillera donc
+        entre \SI{0}{\volt} et \SI{-2}{\volt} comme le montre la
+        figure~\ref{fig:Graphe_Sigma_Delta} un peu plus bas.
 \end{enumerate}
 
 \noindent\textbf{Dimensionnement :} Concernant le dimensionnement du sigma-delta, nous devons analyser 2 cas de figure : 
 \begin{enumerate}
     \item Lorsque la sortie du comparateur délivre un état logique haut, soit \SI{15}{\volt}.
-    \item Lorsque la sortie du comparateur délivre un état logique bas, soit \SI{0}{\volt}. \\
+    \item Lorsque la sortie du comparateur délivre un état logique bas, soit \SI{0}{\volt}.
 \end{enumerate}
-
+\vspace{1ex}
 \noindent\textbf{CAS 1} : la sortie du comparateur est à \SI{15}{\volt}. \\
 Cela signifie que $V_1 = V_+ = \SI{15}{\volt}$. Dès lors, sachant que l'entrée non inverseuse de l'intégrateur est à la masse, on peut calculer les courants $I_1$, $I_2$ et $I_3$ comme suit : 
 \begin{gather}
@@ -465,28 +469,35 @@ Cela signifie que $V_1 = V_+ = \SI{15}{\volt}$. Dès lors, sachant que l'entrée
     C_{19} = \frac{I_3 \cdot d_t}{d_u} = \frac{\num{0.75} \cdot d_t}{d_{V_{0}}} \\
     \intertext{Où, selon la 3ème et la 4ème hypothèse, nous obtenons respectivement :} 
     \begin{cases}
-    d_{t} = \frac{1}{2 \cdot frequence} = \frac{1}{2 \cdot 170.000} = \SI{2.94}{\micro\second}     \\
-    d_{V_{0}}= \SI{2}{\volt}  
+        d_{t} = \frac{1}{2 \cdot frequence} = \frac{1}{2 \cdot 170.000} = \SI{2.94}
+            {\micro\second} \\
+        d_{V_0}= \SI{2}{\volt}  
     \end{cases}
     \intertext{On obtient donc pour $C_{19}$ :} 
     C_{19} = \frac{0.00075 \cdot \frac{1}{340.000}}{2} = \frac{0.00075}{340.000 \cdot 2} = \SI{1}{\nano\farad} \\
     \intertext{Finalement, nous pouvons présenter l'allure dans un graphique de la tension
                $V_2$ en fonction de $V_1$ et $V_0$. En effet, en résolvant l'équation
                différentielle (15) ci-dessus, nous constatons que nous obtenons la formule
-               théorique établie à la section~\ref{subsec:sigma_delta} pour un intégrateur pur, soit :} 
-    V_{0} = \frac{\int -I_3 \cdot d_t}{C_{19}} = \frac{-1 \cdot \int \frac{V_{+} dt}{2 \cdot R_{17}}}{C_{19}} = \frac{-1 \cdot \int V_{+}	                      dt}{2 \cdot R_{17} C_{19}} = 
-    \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
+               théorique établie à la section~\ref{subsec:sigma_delta} pour un intégrateur
+               pur, soit :} 
+    V_{0} = \frac{\int -I_3 \cdot d_t}{C_{19}} = \frac{-1 \cdot \int
+        \frac{V_{+} dt}{2 \cdot R_{17}}}{C_{19}} =
+        \frac{-1 \cdot \int V_+ dt}{2 \cdot R_{17} C_{19}} = 
+        \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
     \intertext{On connait les équations de $V_0$ et $V_1$ :} 
      \begin{cases}
-     V_0 = \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
-     V_1 = \SI{15}{\volt}
+        V_0 = \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
+        V_1 = \SI{15}{\volt}
     \end{cases}
     \intertext{Dès lors, on peut calculer celle pour $V_2$ :}
     V_{2} = \frac{(V_1 - V_0) R_{20}}{R_{21}+R_{20}} + V_0
-    \intertext{Il nous reste à calculer les valeurs des 2 résistances $R_{20}$ et $R_{21}$. Connaissant les équations de $V_0$, $V_1$ et $V_2$, il est aisé de les trouver. En effet, au temps $t = 0$, on trouve pour $V_0$ et $V_1$ :}
+    \intertext{Il nous reste à calculer les valeurs des 2 résistances $R_{20}$ et $R_{21}$.
+               Connaissant les équations de $V_0$, $V_1$ et $V_2$, il est aisé de les
+               trouver.
+               En effet, au temps $t = 0$, on trouve pour $V_0$ et $V_1$ :}
      \begin{cases}
-     V_0 = \SI{0}{\volt} \\
-     V_1 = \SI{15}{\volt}
+        V_0 = \SI{0}{\volt} \\
+        V_1 = \SI{15}{\volt}
     \end{cases}
     \intertext{De plus, on sait que $V_2$ oscille autour de \SI{7.5}{\volt} (hypothèse 2) :}
     V_2 =  \SI{7.5}{\volt} (t = 0)
@@ -496,33 +507,33 @@ Cela signifie que $V_1 = V_+ = \SI{15}{\volt}$. Dès lors, sachant que l'entrée
 \end{gather}
 Nous avons pris \SI{68.2}{\Omega} comme valeur de résistance pour $R_{20}$ et $R_{21}$. \\
 Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons conclure que : 
-               \begin{enumerate}
-	       \item $V_0$ décroit linéairement avec une pente égale à $-V_+ \div \left(R_{18} C_{19}\right)$ ;
-	       \item $V_1$ est toujours constant (\SI{15}{\volt}) ;
-	       \item $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque $V_0$ décroit.
-	      \end{enumerate}
-Ces 3 points de conclusion sont repérables dans l'encadré bleu présenté sur la figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous. Cette figure a été réalisée à l'aide d'un script MATLAB et présente l'allure de ces 3 équations. \\
+\begin{enumerate}
+    \item $V_0$ décroit linéairement avec une pente égale à $-V_+ \div \left(R_{18} C_{19}\right)$ ;
+    \item $V_1$ est toujours constant (\SI{15}{\volt}) ;
+    \item $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque $V_0$ décroit.
+\end{enumerate}
+Ces 3 points de conclusion sont repérables dans l'encadré bleu présenté sur la figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous.
+Cette figure a été réalisée à l'aide d'un script MATLAB et présente l'allure de ces 3 équations.
 
 \noindent\textbf{CAS 2} : la sortie du comparateur est à \SI{0}{\volt}. \\
-Le raisonnement est identique au CAS 1 à l'exception que $V_1$ ne vaut plus \SI{15}{\volt} mais plutôt \SI{0}{\volt} .
+Le raisonnement est identique au CAS 1 à l'exception que $V_1$ ne vaut plus \SI{15}{\volt} mais plutôt \SI{0}{\volt}.
 Cela va avoir pour conséquence d'inverser le signe de $I_3$ selon le sens de la flèche dessinée sur la figure~\ref{fig:notation}.
 Dès lors, on obtient comme équation pour $V_0$, $V_1$ et $V_2$ :
 \begin{gather}
     \begin{cases}
-        V_0 = \frac{V_+ \cdot t}{R_{18}C_{19}} \\
-        V_1 = \SI{0}{\volt} \\
-        V_{2} = \frac{(V_1 - V_0) R_{20}}{R_{21}+R_{20}} + V_0
+        V_0 = \frac{V_+ \cdot t}{R_{18}C_{19}} \\[2mm]
+        V_1 = \SI{0}{\volt} \\[2mm]
+        V_2 = \frac{(V_1 - V_0) R_{20}}{R_{21}+R_{20}} + V_0
     \end{cases}
 \end{gather}
 On peut tirer comme conclusion que :
 \begin{enumerate}
-\item $V_0$ croit linéairement avec une pente égale à $V_+ \div \left(R_{18} C_{19}\right)$ ;
-\item $V_1$ est toujours constant (\SI{0}{\volt}) ;
-\item $V_2$ dépend de $V_0$ et $V_1$ et croit lorsque $V_0$ croit.
+    \item $V_0$ croit linéairement avec une pente égale à $V_+ \div \left(R_{18}
+        C_{19}\right)$ ;
+    \item $V_1$ est toujours constant (\SI{0}{\volt}) ;
+    \item $V_2$ dépend de $V_0$ et $V_1$ et croit lorsque $V_0$ croit.
 \end{enumerate}
-Ces 3 points de conclusion sont repérables dans l'encadré orange présenté sur la figure~\ref{fig:Graphe_Sigma_Delta}                ci-dessous. \\
-
-
+Ces 3 points de conclusion sont repérables dans l'encadré orange présenté sur la figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous.
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{image/Sigma_Delta_Graphe.png}
@@ -530,6 +541,7 @@ Ces 3 points de conclusion sont repérables dans l'encadré orange présenté su
     \label{fig:Graphe_Sigma_Delta}
 \end{figure}
 \newpage
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analyse du circuit}
