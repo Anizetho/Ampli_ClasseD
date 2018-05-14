@@ -284,7 +284,7 @@ Cela ne présente que peu d'intérêt mais est énoncé pour montrer son existen
 Avant de détailler le développent de la modulation Sigma-Delta, rappelons le principe de 2 composants essentiels à sa mise en œuvre : 
 \begin{itemize}
 \item \noindent\textbf{L'intégrateur pur} présenté à la figure~\ref{fig:IntegPur} ci-dessous, est un montage électronique dont le signal de sortie $V_{S}$ correspond à l'intégrale du signal d'entrée $V_{E}$.
-Le système d'équations suivant traduit la relation d'intégration entre sortie et entrée : 
+L'équation suivante traduit la relation d'intégration entre sortie et entrée :
 \begin{equation}
     V_{S} = -\frac{1}{RC}\int V_{E}\,dt
     \label{eqn:integrator}
@@ -299,7 +299,7 @@ Le système d'équations suivant traduit la relation d'intégration entre sortie
 \item \noindent\textbf{Le comparateur} présenté à la figure~\ref{fig:Comparateur} ci-dessous, n'est ni plus ni moins qu'un amplificateur opérationnel dont le fonctionnement est le suivant : si la tension appliquée sur l'entrée non-inverseuse $V_1$ dépasse la tension appliquée sur l'entrée inverseuse $V_2$, la sortie se retrouve à $V_+$.
 Dans le cas contraire, la sortie se trouve à $V_-$.
 Le figure~\ref{fig:Comparateur_Graphe} présente la sortie du comparateur (signal vert) en fonction de ses deux entrées.
-L'équation suivante traduit cette relation entre l'entrée et la sortie du comparateur : 
+Le systèmes d'équation suivant traduit cette relation entre l'entrée et la sortie du comparateur :
 \begin{align}
 \begin{cases}
     V_S = V_+ &\text{si } V_{1} > V_2 \\
@@ -446,7 +446,7 @@ Pour ce faire, référons-nous à la figure~\ref{fig:notation}.
         En imposant cette fréquence, nous obtenons une valeur standardisée de capacité
         (à savoir \SI{1}{\nano\farad}) comme nous le verrons par la suite dans nos calculs.
     \item Enfin, quatrièmement, nous posons comme hypothèse que la différence d'amplitude
-        \textit{peak to peak} du signal $V_0$ vaut \SI{2}{\volt}. Ce signal oscillera donc
+        \textit{peak-to-peak} du signal $V_0$ vaut \SI{2}{\volt}. Ce signal oscillera donc
         entre \SI{0}{\volt} et \SI{-2}{\volt} comme le montre la
         figure~\ref{fig:Graphe_Sigma_Delta} un peu plus bas.
 \end{enumerate}
@@ -463,16 +463,17 @@ Cela signifie que $V_1 = V_+ = \SI{15}{\volt}$. Dès lors, sachant que l'entrée
     I_1 = \frac{V_1}{R_{17}} = \frac{15}{\num{1e4}} = \SI{1.5}{\milli\ampere} \\
     I_2 = \frac{15V}{R_{18}} = \frac{15}{2R_{17}} = \frac{15}{\num{2e4}} = \SI{0.75}{\milli\ampere} \\
     I_3 = I_1 - I_2 = \frac{I_1}{2} = \SI{0.75}{\milli\ampere}
-    \intertext{Ensuite, reprenant la 3\textsuperscript{ème} hypothèse formulée précédemment et se rappelant
-               de la relation caractéristique d'un condensateur idéal, on peut calculer la
-               valeur du condensateur $C_{19}$ :} 
-    C_{19} = \frac{I_3 \cdot d_t}{d_u} = \frac{\num{0.75} \cdot d_t}{d_{V_{0}}}
+    \intertext{Ensuite, reprenant la 3\textsuperscript{ème} hypothèse formulée précédemment
+               et se rappelant de la relation caractéristique d'un condensateur idéal, on
+               peut calculer la valeur du condensateur $C_{19}$ :}
+    C_{19} = I_3 \frac{dt}{du} = \num{0.75}\frac{dt}{dV_0}
     \label{eqn:cas1C19}
     \intertext{Où, selon la 3ème et la 4ème hypothèse, nous obtenons respectivement :} 
     \begin{cases}
-        d_{t} = \frac{1}{2 \cdot frequence} = \frac{1}{2 \cdot 170.000} = \SI{2.94}
-            {\micro\second} \\
-        d_{V_0}= \SI{2}{\volt}  
+        dt &= \frac{1}{2 \times \text{fréquence}}
+            = \frac{1}{2 \times \SI{170}{\kilo\hertz}}
+            = \SI{2.94}{\micro\second} \\[2mm]
+        dV_0 &= \SI{2}{\volt}
     \end{cases}
     \intertext{On obtient donc pour $C_{19}$ :} 
     C_{19} = \frac{0.00075 \cdot \frac{1}{340.000}}{2} = \frac{0.00075}{340.000 \cdot 2} = \SI{1}{\nano\farad} \\
