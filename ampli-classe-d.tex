@@ -409,13 +409,26 @@ Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtre
 \begin{table}[htbp]
     \centering
     \includegraphics[scale=0.65]{image/tableau-filtres.jpg}
-    \caption{Tableau récapitulatif des valeurs calculées théoriquement pour les filtres de l'amplificateur classe D.}
+    \caption{Tableau récapitulatif des valeurs calculées théoriquement pour les filtres de l'amplificateur classe D.} 
     \label{tab:recapFiltres}
 \end{table}
 
 \subsection{Comparateur Sigma-Delta}
-Le dimensionnement des composants du sigma-delta étant assez complexe, nous allons dans un premier temps énoncer les hypothèses posées ; ensuite, nous détaillerons les différentes étapes nécessaires afin d'obtenir les signaux désirés en sortie du comparateur. \\[1ex]
-\textbf{Hypothèses :}
+Le dimensionnement des composants du sigma-delta étant assez complexe, nous allons dans un premier temps énoncer les hypothèses posées ; ensuite, nous détaillerons les différentes étapes nécessaires afin d'obtenir les signaux désirés en sortie du comparateur. 
+
+Dans la section~\ref{subsec:sigma_delta}, nous avons rappelé les notions théoriques d'intégrateur pur et de comparateur indispensables pour la compréhension de ce qui va suivre.
+Avant de continuer, nous allons nous mettre d'accord sur la notation des différents courants, tensions, capacité et résistances qui entrent en jeux.
+Pour ce faire, référons-nous à la figure~\ref{fig:notation}. 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{image/Sigma_Delta_Notation.png}
+    \caption{Schématique du Sigma-Delta avec les notations utilisées pour les calculs de dimensionnement.}
+    \label{fig:notation}
+\end{figure}
+
+\newpage
+\noindent\textbf{Hypothèses :}
 \begin{enumerate}
     \item Premièrement, nous posons comme hypothèse que nous n'envoyons pas de signaux
         à l'entrée de l'amplificateur classe D.
@@ -424,79 +437,88 @@ Le dimensionnement des composants du sigma-delta étant assez complexe, nous all
         de \SI{7.5}{\volt}.
         En effet, le signal doit obligatoirement rester positif pour le bon fonctionnement
         des MOS dans la suite du circuit.
-        Cela oblige d'avoir un rapport de 2 entre les résistances $R_{17}$ et $R_{18}$ sur
+        Cela implique d'avoir un rapport de 2 entre les résistances $R_{17}$ et $R_{18}$ sur
         le circuit, soit $R_{18} = 2.R_{17}$.
         Nous avons pris comme valeurs : \SI{10}{\kilo\Omega} pour $R_{17}$ et par
         conséquent \SI{20}{\kilo\Omega} pour $R_{18}$.
     \item Troisièmement, nous posons comme hypothèse que nous souhaitons une fréquence de
         basculement à \SI{170}{\kilo\hertz}.
-        Ceci implique que ...
+        En imposant cette fréquence, nous obtenons une valeur standardisée de capacité (à savoir \SI{1}{\nano\farad}) comme 		nous le verrons par la suite dans nos calculs.
+    \item Enfin, quatrièmement, nous posons comme hypothèse que la différence d'amplitude \textit{peak to peak} du signal 		$V_0$ vaut \SI{2}{\volt}. Ce signal oscillera donc entre \SI{0}{\volt} et \SI{-2}{\volt} comme le montre la 					figure~\ref{fig:Graphe_Sigma_Delta} un peu plus bas. \\
 \end{enumerate}
 
 \noindent\textbf{Dimensionnement :} Concernant le dimensionnement du sigma-delta, nous devons analyser 2 cas de figure : 
 \begin{enumerate}
     \item Lorsque la sortie du comparateur délivre un état logique haut, soit \SI{15}{\volt}.
-    \item Lorsque la sortie du comparateur délivre un état logique bas, soit \SI{0}{\volt}.
+    \item Lorsque la sortie du comparateur délivre un état logique bas, soit \SI{0}{\volt}. \\
 \end{enumerate}
-Dans la section~\ref{subsec:sigma_delta}, nous avons rappelé les notions théoriques d'intégrateur pur et de comparateur indispensables pour la compréhension de ce qui va suivre.
-Avant de continuer, nous allons nous mettre d'accord sur la notation des différents courants, tensions, capacité et résistances qui entrent en jeux.
-Pour ce faire, référons-nous à la figure~\ref{fig:notation}. 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\textwidth]{image/Sigma_Delta_Notation.png}
-    \caption{Schématique du Sigma-Delta avec les notations utilisées pour les calculs de dimensionnement.}
-    \label{fig:notation}
-\end{figure}
-\newpage
 
 \noindent\textbf{CAS 1} : la sortie du comparateur est à \SI{15}{\volt}. \\
-Cela signifie que $V_1 = \SI{15}{\volt}$. Dès lors, sachant que l'entrée non inverseuse de l'intégrateur est à la masse, on peut calculer les courants $I_1$, $I_2$ et $I_3$ comme suit : 
+Cela signifie que $V_1 = V_+ = \SI{15}{\volt}$. Dès lors, sachant que l'entrée non inverseuse de l'intégrateur est à la masse, on peut calculer les courants $I_1$, $I_2$ et $I_3$ comme suit : 
 \begin{gather}
-    I_1 = \frac{V_1}{R_{17}} = \frac{15}{1000} = \SI{1.5}{\milli\ampere} \\
-    I_2 = \frac{15V}{R_{18}} = \frac{15}{2R_{17}} = \frac{15}{2000} = \SI{0.75}{\milli\ampere} \\
+    I_1 = \frac{V_1}{R_{17}} = \frac{15}{10.000} = \SI{1.5}{\milli\ampere} \\
+    I_2 = \frac{15V}{R_{18}} = \frac{15}{2R_{17}} = \frac{15}{20.000} = \SI{0.75}{\milli\ampere} \\
     I_3 = I_1 - I_2 = \frac{I_1}{2} = \SI{0.75}{\milli\ampere}
     \intertext{Ensuite, reprenant le 3ème hypothèse formulée précédemment et se rappelant
                de la relation caractéristique d'un condensateur idéal, on peut calculer la
                valeur du condensateur $C_{19}$ :} 
-    C_{19} = \frac{I_3 \cdot d_u}{d_t} = \frac{\num{0.75} \cdot d_u}{1/170} = ... \\
+    C_{19} = \frac{I_3 \cdot d_t}{d_u} = \frac{\num{0.75} \cdot d_t}{d_{V_{0}}} \\
+    \intertext{Où, selon la 3ème et la 4ème hypothèse, nous obtenons respectivement :} 
+    \begin{cases}
+    d_{t} = \frac{1}{2 \cdot frequence} = \frac{1}{2 \cdot 170.000} = \SI{2.94}{\micro\second}     \\
+    d_{V_{0}}= \SI{2}{\volt}  
+    \end{cases}
+    \intertext{On obtient donc pour $C_{19}$ :} 
+    C_{19} = \frac{0.00075 \cdot \frac{1}{340.000}}{2} = \frac{0.00075}{340.000 \cdot 2} = \SI{1}{\nano\farad} \\
     \intertext{Finalement, nous pouvons présenter l'allure dans un graphique de la tension
                $V_2$ en fonction de $V_1$ et $V_0$. En effet, en résolvant l'équation
                différentielle (15) ci-dessus, nous constatons que nous obtenons la formule
                théorique établie à la section~\ref{subsec:sigma_delta} pour un intégrateur pur, soit :} 
-    V_{0} = \frac{-1 \cdot \int V_{+} dt}{2 \cdot R_{18} C_{19}} = \frac{-V_+ \cdot t}{2 \cdot R_{18}C_{19}} \\
-    \intertext{On connait les équation de $V_0$ et $V_1$ :} 
+    V_{0} = \frac{\int -I_3 \cdot d_t}{C_{19}} = \frac{-1 \cdot \int \frac{V_{+} dt}{2 \cdot R_{17}}}{C_{19}} = \frac{-1 \cdot \int V_{+}	                      dt}{2 \cdot R_{17} C_{19}} = 
+    \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
+    \intertext{On connait les équations de $V_0$ et $V_1$ :} 
      \begin{cases}
-     V_0 = \frac{-V_+ \cdot t}{2 \cdot R_{18}C_{19}} \\
+     V_0 = \frac{-V_+ \cdot t}{R_{18}C_{19}} \\
      V_1 = \SI{15}{\volt}
     \end{cases}
     \intertext{Dès lors, on peut calculer celle pour $V_2$ :}
     V_{2} = \frac{(V_1 - V_0) R_{20}}{R_{21}+R_{20}} + V_0
+    \intertext{Il nous reste à calculer les valeurs des 2 résistances $R_{20}$ et $R_{21}$. Connaissant les équations de $V_0$, $V_1$ et $V_2$, il est aisé de les trouver. En effet, au temps $t = 0$, on trouve pour $V_0$ et $V_1$ :}
+     \begin{cases}
+     V_0 = \SI{0}{\volt} \\
+     V_1 = \SI{15}{\volt}
+    \end{cases}
+    \intertext{De plus, on sait que $V_2$ oscille autour de \SI{7.5}{\volt} (hypothèse 2) :}
+    V_2 =  \SI{7.5}{\volt} (t = 0)
+    \intertext{Dès lors, en simplifiant, on trouve :}
+    V_2 = 7.5 = \frac{15 \cdot R_{20}}{R_{20} + R_{21}} \\
+    \Leftrightarrow R_{20} = R_{21} 
 \end{gather}
+Nous avons pris \SI{68.2}{\Omega} comme valeur de résistance pour $R_{20}$ et $R_{21}$. \\
 Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons conclure que : 
                \begin{enumerate}
-	       \item $V_0$ décroit linéairement avec une pente égale à $-V_+ \div \left(2 \cdot R_{18} C_{19}\right)$ ;
+	       \item $V_0$ décroit linéairement avec une pente égale à $-V_+ \div \left(R_{18} C_{19}\right)$ ;
 	       \item $V_1$ est toujours constant (\SI{15}{\volt}) ;
-	       \item $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque ... .
+	       \item $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque $V_0$ décroit.
 	      \end{enumerate}
-Ces 3 points de conclusion sont repérables dans l'encadré bleu présenté sur la figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous. Cette figure a été réalisée à l'aide d'un script MATLAB et présente l'allure de ces 3 équations.
+Ces 3 points de conclusion sont repérables dans l'encadré bleu présenté sur la figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous. Cette figure a été réalisée à l'aide d'un script MATLAB et présente l'allure de ces 3 équations. \\
 
-\newpage
 \noindent\textbf{CAS 2} : la sortie du comparateur est à \SI{0}{\volt}. \\
 Le raisonnement est identique au CAS 1 à l'exception que $V_1$ ne vaut plus \SI{15}{\volt} mais plutôt \SI{0}{\volt} .
 Cela va avoir pour conséquence d'inverser le signe de $I_3$ selon le sens de la flèche dessinée sur la figure~\ref{fig:notation}.
 Dès lors, on obtient comme équation pour $V_0$, $V_1$ et $V_2$ :
 \begin{gather}
     \begin{cases}
-        V_0 = \frac{V_+ \cdot t}{2 \cdot R_{18}C_{19}} \\
+        V_0 = \frac{V_+ \cdot t}{R_{18}C_{19}} \\
         V_1 = \SI{0}{\volt} \\
         V_{2} = \frac{(V_1 - V_0) R_{20}}{R_{21}+R_{20}} + V_0
     \end{cases}
 \end{gather}
 On peut tirer comme conclusion que :
 \begin{enumerate}
-\item $V_0$ croit linéairement avec une pente égale à $V_+ \div \left(2 \cdot R_{18} C_{19}\right)$ ;
+\item $V_0$ croit linéairement avec une pente égale à $V_+ \div \left(R_{18} C_{19}\right)$ ;
 \item $V_1$ est toujours constant (\SI{0}{\volt}) ;
-\item $V_2$ dépend de $V_0$ et $V_1$ et croit lorsque ... .
+\item $V_2$ dépend de $V_0$ et $V_1$ et croit lorsque $V_0$ croit.
 \end{enumerate}
 Ces 3 points de conclusion sont repérables dans l'encadré orange présenté sur la figure~\ref{fig:Graphe_Sigma_Delta}                ci-dessous. \\
 
