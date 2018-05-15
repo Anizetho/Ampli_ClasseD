@@ -415,10 +415,10 @@ Le tableau~\ref{tab:recapFiltres} reprend les valeurs calculées pour les filtre
 \end{table}
 
 \subsection{Comparateur Sigma-Delta}
-Le dimensionnement des composants du sigma-delta étant assez complexe, nous allons dans un premier temps énoncer les hypothèses posées ; nous détaillerons ensuite les différentes étapes nécessaires afin d'obtenir les signaux désirés en sortie du comparateur. 
+Le dimensionnement des composants du Sigma-Delta étant assez complexe, nous allons dans un premier temps énoncer les hypothèses posées ; nous détaillerons ensuite les différentes étapes nécessaires afin d'obtenir les signaux désirés en sortie du comparateur. 
 
-Dans la section~\ref{subsec:sigma_delta}, nous avons rappelé les notions théoriques d'intégrateur pur et de comparateur indispensables pour la compréhension de ce qui va suivre.
-Avant de continuer, nous allons nous mettre d'accord sur la notation des différents courants, tensions, condensateurs et résistances qui entrent en jeu.
+Dans la section~\ref{subsec:sigma_delta}, nous avons rappelé les notions théoriques d'intégrateur pur et de comparateur indispensables pour la compréhension du montage.
+Avant de continuer, accordons nous sur les notations des différents courants, tensions, condensateurs et résistances qui entrent en jeu.
 Pour ce faire, référons-nous à la figure~\ref{fig:notation}. 
 \begin{figure}[!ht]
     \centering
@@ -430,9 +430,9 @@ Pour ce faire, référons-nous à la figure~\ref{fig:notation}.
 \newpage
 \noindent\textbf{Hypothèses :}
 \begin{enumerate}
-    \item Premièrement, nous posons comme hypothèse que nous n'envoyons pas de signaux
-        à l'entrée de l'amplificateur classe D.
-        Ainsi, le signal reçu sur la pin OUTINV est nulle.
+    \item Premièrement, nous posons comme hypothèse que nous n'envoyons pas de signal
+        à l'entrée de l'amplificateur.
+        Ainsi, le signal perçu sur la pin OUTINV est nulle.
     \item Deuxièmement, nous posons comme hypothèse que le signal doit osciller autour
         de \SI{7.5}{\volt}.
         En effet, le signal doit obligatoirement rester positif pour le bon fonctionnement
@@ -443,9 +443,9 @@ Pour ce faire, référons-nous à la figure~\ref{fig:notation}.
         conséquent \SI{20}{\kilo\Omega} pour $R_{18}$.
     \item Troisièmement, nous posons comme hypothèse que nous souhaitons une fréquence de
         basculement à \SI{170}{\kilo\hertz}.
-        En imposant cette fréquence, nous obtenons une valeur standardisée de capacité
+        En imposant cette fréquence, nous obtenons une valeur standardisée de condensateur
         (à savoir \SI{1}{\nano\farad}) comme nous le verrons par la suite dans nos calculs.
-    \item Enfin, quatrièmement, nous posons comme hypothèse que la différence d'amplitude
+    \item Quatrième et dernièrement, nous posons comme hypothèse que la différence d'amplitude
         \textit{peak-to-peak} du signal $V_0$ vaut \SI{2}{\volt}. Ce signal oscillera donc
         entre \SI{0}{\volt} et \SI{-2}{\volt} comme le montre la
         figure~\ref{fig:Graphe_Sigma_Delta} un peu plus bas.
@@ -555,7 +555,7 @@ Ces mesures sont toujours, sauf si cité explicitement, en tension par rapport �
 
 \subsection{Problèmes rencontrés}
 \label{sec:problems}
-Dés le premier branchement de la carte en tension symétrique \pm\SI{25}{\volt}DC,
+Dès le premier branchement de la carte en tension symétrique \pm\SI{25}{\volt}DC,
 nous avons observé un appel de courant de \SI{200}{\milli\ampere} sur le circuit.
 Cette valeur était le maximum parametré sur l'alimentation de laboratoire à notre portée.
 Ce courant est trop élevé pour un amplificateur au repos, c.-à-d. sans signal d'entrée.
@@ -634,7 +634,7 @@ La figure~\ref{fig:osci-compar} présente la comparaison entre le signal avant f
 Nous constatons que la sortie du comparateur varie à chaque fois que le signal d'entrée atteint sa valeur moyenne.
 Avec son duty cycle de \pm50\%, la sortie du comparateur représente bien un signal sinusoïdale.
 
-Ceci nous amènes à regarder le signal \texttt{CMDMOS} à la sortie du Sigma-Delta, la figure~\ref{fig:osci-cmdmos} présente la sortie obtenue pour le signal sinusoïdale présenté précédemment.
+Ceci nous amène à regarder le signal \texttt{CMDMOS} à la sortie du Sigma-Delta, la figure~\ref{fig:osci-cmdmos} présente la sortie obtenue pour le signal sinusoïdale présenté précédemment.
 Nous y voyons un signal avec une flanc montant adouci et un duty cycle de \num{51.8}\% au moment de la capture.
 Encore une fois tout cela semble correcte, nous regardons à la suite le signal dédoublé au travers de l'inverseur \texttt{TC4428}.
 Nous y trouvons les commandes d'ouvertures des transistors qui seront transmises au driver.
@@ -649,7 +649,7 @@ Mise à part que leurs fréquences et amplitudes varient.
 Nous en déduisons que le problème rencontré, énoncé dans la sous-section~\ref{sec:problems}, ne vient pas du circuit Sigma-Delta, mais de l'étage de puissance à sa suite.
 
 \subsection{Performance de l'étage d'amplification}
-Supposant le bon fonctionnement du Sigma-Delta, que nous allons encore cependant vérifier, nous nous sommes mis à prendre des mesures autours du driver MOS et des transistors.
+Supposant le bon fonctionnement du Sigma-Delta, que nous allons encore vérifier cependant, nous nous sommes mis à prendre des mesures autours du driver MOS et des transistors.
 Nous avons voulu vérifier la capacité de l'étage d'amplification à reproduire une tension DC à la sortie de la carte.
 Pourquoi une composante DC ?
 Parce que sa propriété statique rend l'interprétation des signaux mesurés très aisée.
@@ -665,7 +665,7 @@ Nous y distinguons facilement l'échelle et les limites de comparaisons que nous
     Tension & Duty+ \\
     \hline
     \SI{7}{\volt}  & \num{3.764}\% \\
-    \SI{0}{\volt}  & \num{48.80}\% \\
+    \SI{0}{\volt}  & \num{48.800}\% \\
     \SI{-7}{\volt} & \num{96.477}\% \\
     \hline
     \end{tabular}
@@ -676,7 +676,7 @@ Nous sommes étonnés que le duty cycle positif diminue quand la tension DC augm
 
 Nous en profitons pour mesurer la fréquence de comparaison du Sigma-Delta.
 Elle est de \SI{171.7}{\kilo\hertz}.
-C'est bien supérieur au \SI{44}{\kilo\hertz} nécessaire pour échantillonner du son, cela est parfait.
+C'est bien supérieur aux \SI{44}{\kilo\hertz} nécessaires pour échantillonner du son, cela est parfait.
 
 Nous pouvons donc conclure une fois de plus que le modulateur Sigma-Delta fonctionne comme attendu.
 Si nous continuons sur le trajet du signal, nous arrivons à l'inverseur \texttt{TC4428} dédoublant le signal et inversant une sortie.
@@ -859,9 +859,9 @@ Par Inductiveload (Travail personnel) [Public domain], de Wikimedia Commons
 Par Toriicelli (Travail personnel) [Public domain], de Wikimedia Commons
 
 \item Figure~\ref{fig:IntegPur} provenant de :\\*
-Par Daniel Braun [GFDL (http://www.gnu.org/copyleft/fdl.html),
-CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/) ou
-CC BY 2.5 (https://creativecommons.org/licenses/by/2.5)], de Wikimedia Commons
+Par Daniel Braun [GFDL (\url{http://www.gnu.org/copyleft/fdl.html}),
+CC-BY-SA-3.0 (\url{http://creativecommons.org/licenses/by-sa/3.0/}) ou
+CC BY 2.5 (\url{https://creativecommons.org/licenses/by/2.5})], de Wikimedia Commons
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
