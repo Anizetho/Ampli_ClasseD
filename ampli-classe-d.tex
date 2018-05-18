@@ -438,7 +438,7 @@ Pour ce faire, référons-nous à la figure~\ref{fig:notation}.
         En effet, le signal doit obligatoirement rester positif pour le bon fonctionnement
         des MOS dans la suite du circuit.
         Cela implique d'avoir un rapport de 2 entre les résistances $R_{17}$ et $R_{18}$ sur
-        le circuit, soit $R_{18} = 2.R_{17}$.
+        le circuit, soit $R_{18} = 2R_{17}$.
         Nous avons pris comme valeurs : \SI{10}{\kilo\Omega} pour $R_{17}$ et par
         conséquent \SI{20}{\kilo\Omega} pour $R_{18}$.
     \item Troisièmement, nous posons comme hypothèse que nous souhaitons une fréquence de
@@ -518,7 +518,7 @@ Connaissant désormais les équations de $V_0$, $V_1$ et $V_2$, nous pouvons con
     \item $V_2$ dépend de $V_0$ et $V_1$ et décroit lorsque $V_0$ décroit.
 \end{enumerate}
 Ces 3 points de conclusion sont repérables dans l'encadré bleu présenté sur la figure~\ref{fig:Graphe_Sigma_Delta} ci-dessous.
-Cette figure a été réalisée à l'aide d'un script MATLAB et présente l'allure de ces 3 équations.
+Cette figure a été réalisée à l'aide d'un script MATLAB\textregistered{} et présente l'allure de ces 3 équations.
 
 \noindent\textbf{CAS 2} : la sortie du comparateur est à \SI{0}{\volt}. \\
 Le raisonnement est identique au CAS 1 à l'exception que $V_1$ ne vaut plus \SI{15}{\volt} mais plutôt \SI{0}{\volt}.
@@ -604,7 +604,7 @@ Les tables~\ref{tab:gainFiltresEntrees} reprennent les valeurs mesurées à l'os
     \label{tab:gainFiltresEntrees}
 \end{table}
 
-Nous avons réalisé un script Matlab\textregistered{} reprenant toutes les valeurs mesurées et reprises aux tables~\ref{tab:gainFiltresEntrees} afin de représenter la réponse fréquentielle de chacun des filtres dans le diagramme de Bode.
+Nous avons réalisé un script MATLAB\textregistered{} reprenant toutes les valeurs mesurées et reprises aux tables~\ref{tab:gainFiltresEntrees} afin de représenter la réponse fréquentielle de chacun des filtres dans le diagramme de Bode.
 La figure~\ref{fig:resultatRepFreq} présente le résultat obtenu.
 Nous pouvons y reconnaitre au gain qu'il s'agit de filtres Butterworth d'ordre 1~\cite{Horowitz:2015aa}.
 \begin{figure}[!ht]
